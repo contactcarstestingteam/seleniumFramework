@@ -27,8 +27,6 @@ public class OtlobhaPageTest extends TestBase {
     public void openOtlobhaLandingPage() throws InterruptedException {
         com.contactcars.testcases.LoginPageTest.login();
         Thread.sleep(5000);
-//        WebElement carsLink = driver.findElement(By.cssSelector("header > nav > div > ul > li:nth-child(4) > span"));
-//        action.moveToElement(carsLink).build().perform();
         WebElement servicesLink = driver.findElement(By.cssSelector("header > nav > div > ul > li:nth-child(4) > span"));
         Actions action = new Actions(driver);
         action.moveToElement(servicesLink).build().perform();
