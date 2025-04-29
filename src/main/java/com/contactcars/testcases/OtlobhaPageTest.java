@@ -1,20 +1,9 @@
 package com.contactcars.testcases;
 
 import com.contactcars.base.TestBase;
-import com.valensas.undetected.chrome.driver.ChromeDriverBuilder;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
+import com.contactcars.pages.*;
 import org.testng.annotations.Test;
-
-import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class OtlobhaPageTest extends TestBase {
@@ -24,93 +13,69 @@ public class OtlobhaPageTest extends TestBase {
     }
 
     @Test
-    public void openOtlobhaLandingPage() throws InterruptedException {
+    public void openOtlobhaLandingPage() throws InterruptedException, IOException {
+        //Creating object of Home page
+        HomePage home = new HomePage(driver);
         com.contactcars.testcases.LoginPageTest.login();
         Thread.sleep(5000);
-        WebElement servicesLink = driver.findElement(By.cssSelector("header > nav > div > ul > li:nth-child(4) > span"));
-        Actions action = new Actions(driver);
-        action.moveToElement(servicesLink).build().perform();
-        WebElement otlobha = driver.findElement(By.cssSelector("header > nav > div > ul > li:nth-child(4) > div > div > div > a > span"));
-        otlobha.click();
+        home.hoverOnServicesLink();
+        home.clickOtlobhaButton();
     }
 
     @Test
-    public void openOtlobhaForm() throws InterruptedException {
+    public void openOtlobhaForm() throws InterruptedException, IOException {
+        //Creating object of Otlobha landing page
+        OtlobhaLandingPage otlobhaLanding = new OtlobhaLandingPage(driver);
         openOtlobhaLandingPage();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        WebElement requestNewCarButton = driver.findElement(By.cssSelector("main > div:nth-child(2) > section:nth-child(1) > div > div > div > div > div > div > a"));
-        requestNewCarButton.click();
+        Thread.sleep(5000);
+        otlobhaLanding.clickRequestNewCarButton();
     }
 
     @Test
-    public void addNewRequest() throws InterruptedException {
+    public void addNewRequest() throws InterruptedException, IOException {
+        //Creating object of Otlobha form 1st step page
+        OtlobhaForm1stStep form1stStep = new OtlobhaForm1stStep(driver);
+        //Creating object of Otlobha form 2nd step page
+        OtlobhaForm2ndStep form2ndStep = new OtlobhaForm2ndStep(driver);
+        //Creating object of Wallet paymnet gateway page
+        WalletPaymentGateway wallet = new WalletPaymentGateway(driver);
        openOtlobhaForm();
        // first step
-        WebElement country = driver.findElement(By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(4) > div > input"));
-        country.click();
-        List<WebElement> allCountries = driver.findElements(By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(4) > div > ul > li"));
-        allCountries.get(0).click();
-
-        WebElement make = driver.findElement(By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(6) > div > input"));
-        make.click();
-        List<WebElement> allMakes = driver.findElements(By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(6) > div > ul > li"));
-        allMakes.get(0).click();
-
-        WebElement model = driver.findElement(By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(7) > div > input"));
-        model.click();
-        List<WebElement> allModels = driver.findElements(By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(7) >div > ul > li"));
-        allModels.get(0).click();
-
-        WebElement agency = driver.findElement(By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(8) > div > div > div > label > input "));
-        agency.click();
-
-        WebElement year = driver.findElement(By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(9) > div > input"));
-        year.click();
-        List<WebElement> allYears = driver.findElements(By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(9) > div > ul >li"));
-        allYears.get(1).click();
-
-        WebElement trim = driver.findElement(By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(10) > div > input"));
-        trim.click();
-        List<WebElement> allTrims= driver.findElements(By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(10) > div > ul > li"));
-        allTrims.get(0).click();
-
-        WebElement next = driver.findElement(By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(12) > button "));
-        next.click();
+        form1stStep.clickCountry();
+        form1stStep.chooseCountryValue(0);
+        form1stStep.clickMake();
+        form1stStep.chooseMakeValue(0);
+        form1stStep.clickModel();
+        form1stStep.chooseModelValue(0);
+        form1stStep.clickAgency();
+        form1stStep.clickYear();
+        form1stStep.chooseYearValue(1);
+        form1stStep.clickTrim();
+        form1stStep.chooseTrimValue(0);
+        form1stStep.clickNext();
         Thread.sleep(5000);
         // terms and conditions popup
-        WebElement agree = driver.findElement(By.cssSelector("main > div > div:nth-child(2) > div  > div > div > button"));
-        agree.click();
+        form1stStep.clickAgree();
         Thread.sleep(5000);
+
         // second step - promocode
-        WebElement promoCode = driver.findElement(By.id("promoCode"));
-        promoCode.sendKeys(sheet.getRow(1).getCell(8).toString());
-//        promoCode.sendKeys("otbfree");
-        WebElement apply = driver.findElement(By.cssSelector("main > div:nth-child(2) > div:nth-child(2) > form > div > div > button"));
-        apply.click();
+        form2ndStep.enterPromoCode(sheet.getRow(1).getCell(8).toString());
+        form2ndStep.clickApplyPromoCode();
         Thread.sleep(5000);
+        form2ndStep.clickDeletePromoCode();
+
         // second step - wallet
-        WebElement deletePromoCode = driver.findElement(By.cssSelector("main > div:nth-child(2) > div:nth-child(2) > form > div > div > button"));
-        deletePromoCode.click();
-        WebElement wallet = driver.findElement(By.cssSelector("form > div:nth-child(2) > div > label:nth-child(2)"));
-        wallet.click();
-        WebElement submit = driver.findElement(By.cssSelector("main > div:nth-child(2) > div:nth-child(2) > form > button"));
-        submit.click();
+        form2ndStep.chooseWallet();
+        form2ndStep.clickSubmit();
         Thread.sleep(5000);
-        WebElement mobileNumber = driver.findElement(By.id("wallet-number"));
-        mobileNumber.sendKeys(sheet.getRow(1).getCell(5).toString());
-//        mobileNumber.sendKeys("01010101010");
-        WebElement proceedToPay = driver.findElement(By.cssSelector("main > div:nth-child(2) > div:nth-child(2) > form > div:nth-child(4) > div > div:nth-child(2) > div > button"));
-        proceedToPay.click();
+        form2ndStep.enterWalletNumber(sheet.getRow(1).getCell(5).toString());
+        form2ndStep.clickProceedToPay();
         Thread.sleep(5000);
+
         //payment gateway
-        WebElement mPin = driver.findElement(By.id("userPin"));
-        mPin.sendKeys(sheet.getRow(1).getCell(6).toString());
-//        mPin.sendKeys("123456");
-        WebElement otp = driver.findElement(By.id("userOTP"));
-        otp.sendKeys(sheet.getRow(1).getCell(7).toString());
-//        otp.sendKeys("123456");
-        WebElement pay = driver.findElement(By.id("Pbutton"));
-        pay.click();
+        wallet.enterMPin(sheet.getRow(1).getCell(6).toString());
+        wallet.enterOtp(sheet.getRow(1).getCell(7).toString());
+        wallet.clickPay();
     }
 
 }
