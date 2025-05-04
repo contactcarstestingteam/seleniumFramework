@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -22,8 +21,8 @@ public class TestBase {
     // Loading properties and credentials files
     public TestBase() throws IOException {
         prop = new Properties();
-        FileInputStream fis = new FileInputStream("C:\\Users\\sara.maghraby\\IdeaProjects\\ContactCarsRetailStaging\\src\\main\\java\\com\\contactcars\\config\\config.properties");
-//        FileInputStream fis = new FileInputStream("E:\\Automation\\IdeaProjects\\ContactCarsRetailStaging\\src\\main\\java\\com\\contactcars\\config\\config.properties");
+//        FileInputStream fis = new FileInputStream("C:\\Users\\sara.maghraby\\IdeaProjects\\seleniumFramework\\src\\main\\java\\com\\contactcars\\config\\config.properties");
+        FileInputStream fis = new FileInputStream("E:\\Automation\\IdeaProjects\\seleniumFramework\\src\\main\\java\\com\\contactcars\\config\\config.properties");
         prop.load(fis);
 
         File credentials = new File("D:\\Credentials.xlsx");
