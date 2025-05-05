@@ -2,8 +2,10 @@ package com.contactcars.testcases;
 
 import com.contactcars.base.TestBase;
 import com.contactcars.pages.*;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.IOException;
+
 
 
 public class OtlobhaPageTest extends TestBase {
@@ -78,6 +80,12 @@ public class OtlobhaPageTest extends TestBase {
         wallet.enterMPin(sheet.getRow(1).getCell(6).toString());
         wallet.enterOtp(sheet.getRow(1).getCell(7).toString());
         wallet.clickPay();
+        Thread.sleep(5000);
+
+        //Check on success page
+        String expectedResult = "https://web-staging.contactcars.com/ar/otlobha/request-complete";
+        String actualResult = driver.getCurrentUrl();
+        Assert.assertTrue(actualResult.contains(expectedResult));
     }
 
 }
