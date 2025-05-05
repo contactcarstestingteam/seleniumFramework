@@ -2,6 +2,7 @@ package com.contactcars.testcases;
 
 import com.contactcars.base.TestBase;
 import com.contactcars.pages.*;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 import java.io.IOException;
 
@@ -39,8 +40,9 @@ public class OtlobhaPageTest extends TestBase {
         OtlobhaForm2ndStep form2ndStep = new OtlobhaForm2ndStep(driver);
         //Creating object of Wallet paymnet gateway page
         WalletPaymentGateway wallet = new WalletPaymentGateway(driver);
-       openOtlobhaForm();
+        openOtlobhaForm();
        // first step
+        Thread.sleep(5000);
         form1stStep.clickCountry();
         form1stStep.chooseCountryValue(0);
         form1stStep.clickMake();
@@ -50,6 +52,7 @@ public class OtlobhaPageTest extends TestBase {
         form1stStep.clickAgency();
         form1stStep.clickYear();
         form1stStep.chooseYearValue(1);
+        Thread.sleep(5000);
         form1stStep.clickTrim();
         form1stStep.chooseTrimValue(0);
         form1stStep.clickNext();
