@@ -21,6 +21,7 @@ public class LoginPageTest extends TestBase {
 
         initializationOnChrome(prop.getProperty("url"));
         Thread.sleep(5000);
+        home.clickSkip();
         home.clickLoginLink();
         Thread.sleep(5000);
 
@@ -30,6 +31,7 @@ public class LoginPageTest extends TestBase {
 
         login.enterOtp(sheet.getRow(1).getCell(1).toString());
         login.clickConfirm();
+        Thread.sleep(5000);
 
         home.clickNoThanks();
 

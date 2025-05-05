@@ -4,7 +4,10 @@ import com.contactcars.base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,19 +23,19 @@ public class OtlobhaForm1stStep extends TestBase {
     By country = By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(4) > div > input");
 
     //Locator for all countries values
-    @FindBy(css = "main > div > div:nth-child(2) > form > div:nth-child(4) > div > ul > li") List<WebElement> allCountries;
+    By allCountries = By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(4) > div > ul > li");
 
     //Locator for make drop down
     By make = By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(6) > div > input");
 
     //Locator for all makes values
-    @FindBy(css = "main > div > div:nth-child(2) > form > div:nth-child(6) > div > input") List<WebElement> allMakes;
+    By allMakes = By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(6) > div > ul > li");
 
     //Locator for model drop down
     By model = By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(7) > div > input");
 
     //Locator for all models values
-    @FindBy(css = "main > div > div:nth-child(2) > form > div:nth-child(7) >div > ul > li") List<WebElement> allModels;
+    By allModels = By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(7) >div > ul > li");
 
     //Locator for agency radio button
     By agency = By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(8) > div > div > div > label > input ");
@@ -41,13 +44,13 @@ public class OtlobhaForm1stStep extends TestBase {
     By year = By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(9) > div > input");
 
     //Locator for all years values
-    @FindBy(css = "main > div > div:nth-child(2) > form > div:nth-child(9) > div > ul >li") List<WebElement> allYears;
+    By allYears = By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(9) > div > ul > li");
 
     //Locator for trim drop down
     By trim = By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(10) > div > input");
 
     //Locator for all trims values
-    @FindBy (css = "main > div > div:nth-child(2) > form > div:nth-child(10) > div > ul > li") List<WebElement> allTrims;
+    By allTrims = By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(10) > div > ul > li");
 
     //Locator for next button
     By nextButton = By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(12) > button ");
@@ -62,7 +65,7 @@ public class OtlobhaForm1stStep extends TestBase {
 
     //Method to choose country value
     public void chooseCountryValue(int index) {
-        allCountries.get(index).click();
+        driver.findElements(allCountries).get(index).click();
     }
 
     //Method to click on make drop down
@@ -72,7 +75,7 @@ public class OtlobhaForm1stStep extends TestBase {
 
     //Method to choose make value
     public void chooseMakeValue(int index) {
-        allMakes.get(index).click();
+        driver.findElements(allMakes).get(index).click();
     }
 
     //Method to click on model drop down
@@ -82,7 +85,7 @@ public class OtlobhaForm1stStep extends TestBase {
 
     //Method to choose model value
     public void chooseModelValue(int index) {
-        allModels.get(index).click();
+        driver.findElements(allModels).get(index).click();
     }
 
     //Method to click on agency radio button
@@ -97,7 +100,7 @@ public class OtlobhaForm1stStep extends TestBase {
 
     //Method to choose year value
     public void chooseYearValue(int index) {
-        allYears.get(index).click();
+        driver.findElements(allYears).get(index).click();
     }
 
     //Method to click on trim drop down
@@ -107,7 +110,7 @@ public class OtlobhaForm1stStep extends TestBase {
 
     //Method to choose trim value
     public void chooseTrimValue(int index) {
-        allTrims.get(index).click();
+        driver.findElements(allTrims).get(index).click();
     }
 
     //Method to click on next button

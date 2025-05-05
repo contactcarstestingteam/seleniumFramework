@@ -21,8 +21,8 @@ public class TestBase {
     // Loading properties and credentials files
     public TestBase() throws IOException {
         prop = new Properties();
-//        FileInputStream fis = new FileInputStream("C:\\Users\\sara.maghraby\\IdeaProjects\\seleniumFramework\\src\\main\\java\\com\\contactcars\\config\\config.properties");
-        FileInputStream fis = new FileInputStream("E:\\Automation\\IdeaProjects\\seleniumFramework\\src\\main\\java\\com\\contactcars\\config\\config.properties");
+        FileInputStream fis = new FileInputStream("C:\\Users\\sara.maghraby\\IdeaProjects\\seleniumFramework\\src\\main\\java\\com\\contactcars\\config\\config.properties");
+       // FileInputStream fis = new FileInputStream("E:\\Automation\\IdeaProjects\\seleniumFramework\\src\\main\\java\\com\\contactcars\\config\\config.properties");
         prop.load(fis);
 
         File credentials = new File("D:\\Credentials.xlsx");
