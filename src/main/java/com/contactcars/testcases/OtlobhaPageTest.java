@@ -2,12 +2,21 @@ package com.contactcars.testcases;
 
 import com.contactcars.base.TestBase;
 import com.contactcars.pages.*;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 import java.io.IOException;
 
 
 public class OtlobhaPageTest extends TestBase {
+    //Creating object of Home page
+    HomePage home = new HomePage(driver);
+    //Creating object of Otlobha landing page
+    OtlobhaLandingPage otlobhaLanding = new OtlobhaLandingPage(driver);
+    //Creating object of Otlobha form 1st step page
+    OtlobhaForm1stStep form1stStep = new OtlobhaForm1stStep(driver);
+    //Creating object of Otlobha form 2nd step page
+    OtlobhaForm2ndStep form2ndStep = new OtlobhaForm2ndStep(driver);
+    //Creating object of Wallet paymnet gateway page
+    WalletPaymentGateway wallet = new WalletPaymentGateway(driver);
 
     public OtlobhaPageTest() throws IOException {
         super();
@@ -15,8 +24,6 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test
     public void openOtlobhaLandingPage() throws InterruptedException, IOException {
-        //Creating object of Home page
-        HomePage home = new HomePage(driver);
         com.contactcars.testcases.LoginPageTest.login();
         Thread.sleep(5000);
         home.hoverOnServicesLink();
@@ -25,8 +32,6 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test
     public void openOtlobhaForm() throws InterruptedException, IOException {
-        //Creating object of Otlobha landing page
-        OtlobhaLandingPage otlobhaLanding = new OtlobhaLandingPage(driver);
         openOtlobhaLandingPage();
         Thread.sleep(5000);
         otlobhaLanding.clickRequestNewCarButton();
@@ -34,12 +39,6 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test
     public void addNewRequest() throws InterruptedException, IOException {
-        //Creating object of Otlobha form 1st step page
-        OtlobhaForm1stStep form1stStep = new OtlobhaForm1stStep(driver);
-        //Creating object of Otlobha form 2nd step page
-        OtlobhaForm2ndStep form2ndStep = new OtlobhaForm2ndStep(driver);
-        //Creating object of Wallet paymnet gateway page
-        WalletPaymentGateway wallet = new WalletPaymentGateway(driver);
         openOtlobhaForm();
        // first step
         Thread.sleep(5000);
