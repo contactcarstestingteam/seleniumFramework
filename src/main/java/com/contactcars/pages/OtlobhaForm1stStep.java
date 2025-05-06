@@ -90,7 +90,9 @@ public class OtlobhaForm1stStep extends TestBase {
 
     //Method to click on agency radio button
     public void clickAgency() {
-        driver.findElement(agency).click();
+        if(!driver.findElement(agency).isSelected()) {
+            driver.findElement(agency).click();
+        }
     }
 
     //Method to click on year drop down
