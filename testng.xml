@@ -9,7 +9,6 @@
                         <include name="addNewRequest"></include>
                     </methods>
                 </class>
-
         </classes>
     </test>
 </suite>

@@ -1,8 +1,11 @@
 package com.contactcars.testcases;
 
+import com.aventstack.extentreports.Status;
 import com.contactcars.base.TestBase;
 import com.contactcars.pages.HomePage;
 import com.contactcars.pages.LoginPage;
+import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.Test;
 import java.io.IOException;
 
@@ -35,6 +38,17 @@ public class LoginPageTest extends TestBase {
 
         home.clickNoThanks();
 
+        extentTest = extentReports.createTest("Login Test Case");
+
+        //Check on logging in successfully
+        String actualUrl = driver.getCurrentUrl();
+        String expectedUrl = "https://web-staging.contactcars.com/ar";
+         if (actualUrl.contentEquals(expectedUrl)){
+             Assert.assertTrue(actualUrl.contentEquals(expectedUrl));
+             logAssertionBetweenTwoEqualValues(Pass, actualUrl, expectedUrl);
+         } else {
+             logAssertionBetweenTwoEqualValues(Fail, actualUrl, expectedUrl);
+         }
     }
 }
 

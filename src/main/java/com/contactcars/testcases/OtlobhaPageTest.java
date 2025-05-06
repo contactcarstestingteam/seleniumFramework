@@ -85,7 +85,11 @@ public class OtlobhaPageTest extends TestBase {
         //Check on success page
         String expectedResult = "https://web-staging.contactcars.com/ar/otlobha/request-complete";
         String actualResult = driver.getCurrentUrl();
-        Assert.assertTrue(actualResult.contains(expectedResult));
+        if (actualResult.contains(expectedResult)){
+            Assert.assertTrue(actualResult.contains(expectedResult));
+            logAssertionBetweenTwoEqualValues(Pass, actualResult, expectedResult);
+        } else {
+            logAssertionBetweenTwoEqualValues(Fail, actualResult, expectedResult);
+        }
     }
-
 }
