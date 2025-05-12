@@ -32,7 +32,7 @@ public class TestBase {
 
     // Loading properties and credentials files
     public TestBase() throws IOException {
-        File credentials = new File("D:\\Credentials.xlsx");
+        File credentials = new File("D:\\Website Variables.xlsx");
         FileInputStream fisc = new FileInputStream(credentials);
         workbook = new XSSFWorkbook(fisc);
         sheet = workbook.getSheetAt(0);
