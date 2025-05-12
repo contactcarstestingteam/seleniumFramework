@@ -18,7 +18,7 @@ public class HomePageTest extends TestBase {
 
     @Test
     public void getRecentDealerAds() throws InterruptedException {
-//        initializationOnChrome(prop.getProperty("url"));
+//        initializationOnChrome(sheet.getRow(1).getCell(9).toString());
 //        Thread.sleep(5000);
 
         // Specify the base URL to the RESTful web service

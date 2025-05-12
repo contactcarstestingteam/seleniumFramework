@@ -83,7 +83,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         //Check on success page
-        String expectedResult = "https://web-staging.contactcars.com/ar/otlobha/request-complete";
+        String expectedResult = sheet.getRow(1).getCell(9).toString() + sheet.getRow(1).getCell(10).toString();
         String actualResult = driver.getCurrentUrl();
         if (actualResult.contains(expectedResult)){
             Assert.assertTrue(actualResult.contains(expectedResult));

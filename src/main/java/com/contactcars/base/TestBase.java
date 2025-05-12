@@ -10,13 +10,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
-import javax.annotation.Nullable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -36,11 +32,6 @@ public class TestBase {
 
     // Loading properties and credentials files
     public TestBase() throws IOException {
-        prop = new Properties();
-        FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\com\\contactcars\\config\\config.properties");
-        System.out.println(fis);
-        prop.load(fis);
-
         File credentials = new File("D:\\Credentials.xlsx");
         FileInputStream fisc = new FileInputStream(credentials);
         workbook = new XSSFWorkbook(fisc);
