@@ -10,7 +10,7 @@ import java.io.IOException;
 public class HomePage extends TestBase {
 
     //Constructor that will be automatically called as soon as the object of the class is created
-    public HomePage(WebDriver driver) throws IOException {
+    public HomePage() throws IOException {
         super();
     }
 

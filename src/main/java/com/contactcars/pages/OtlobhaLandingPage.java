@@ -9,7 +9,7 @@ import java.io.IOException;
 public class OtlobhaLandingPage extends TestBase {
 
     //Constructor that will be automatically called as soon as the object of the class is created
-    public OtlobhaLandingPage(WebDriver driver) throws IOException {
+    public OtlobhaLandingPage() throws IOException {
         super();
     }
 

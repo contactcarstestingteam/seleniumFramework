@@ -25,9 +25,9 @@ public class ShowroomsPageTest extends TestBase {
     @Test
     public void getSearchDealers() throws InterruptedException, IOException {
         //Creating object of Home page
-        HomePage home = new HomePage(driver);
+        HomePage home = new HomePage();
         //Creating object of Showrooms page
-        ShowroomsPage showroom = new ShowroomsPage(driver);
+        ShowroomsPage showroom = new ShowroomsPage();
 
         initializationOnChrome(sheet1.getRow(1).getCell(9).toString());
         Thread.sleep(10000);

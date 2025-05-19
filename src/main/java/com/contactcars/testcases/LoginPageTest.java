@@ -17,8 +17,8 @@ public class LoginPageTest extends TestBase {
     @Test
     public static void login() throws InterruptedException, IOException {
         //Creating object of HOME and Login pages
-        HomePage home = new HomePage(driver);
-        LoginPage login = new LoginPage(driver);
+        HomePage home = new HomePage();
+        LoginPage login = new LoginPage();
 
         initializationOnChrome(sheet1.getRow(1).getCell(9).toString());
         Thread.sleep(5000);

@@ -10,7 +10,7 @@ import java.util.List;
 public class ShowroomsPage extends TestBase {
 
     //Constructor that will be automatically called as soon as the object of the class is created
-    public ShowroomsPage(WebDriver driver) throws IOException {
+    public ShowroomsPage() throws IOException {
         super();
     }
 

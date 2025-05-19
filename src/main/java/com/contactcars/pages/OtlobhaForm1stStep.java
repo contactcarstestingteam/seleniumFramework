@@ -15,7 +15,7 @@ import java.util.List;
 public class OtlobhaForm1stStep extends TestBase {
 
     //Constructor that will be automatically called as soon as the object of the class is created
-    public OtlobhaForm1stStep(WebDriver driver) throws IOException {
+    public OtlobhaForm1stStep() throws IOException {
         super();
     }
 
