@@ -2,20 +2,13 @@ package com.contactcars.pages;
 
 import com.contactcars.base.TestBase;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
-import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
-import java.util.List;
 
 public class OtlobhaForm1stStep extends TestBase {
 
     //Constructor that will be automatically called as soon as the object of the class is created
-    public OtlobhaForm1stStep(WebDriver driver) throws IOException {
+    public OtlobhaForm1stStep() throws IOException {
         super();
     }
 

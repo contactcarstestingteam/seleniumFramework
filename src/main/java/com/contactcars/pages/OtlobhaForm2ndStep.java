@@ -2,14 +2,13 @@ package com.contactcars.pages;
 
 import com.contactcars.base.TestBase;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 
 public class OtlobhaForm2ndStep extends TestBase {
 
     //Constructor that will be automatically called as soon as the object of the class is created
-    public OtlobhaForm2ndStep(WebDriver driver) throws IOException {
+    public OtlobhaForm2ndStep() throws IOException {
         super();
     }
 

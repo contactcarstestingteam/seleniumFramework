@@ -10,15 +10,15 @@ import java.io.IOException;
 
 public class OtlobhaPageTest extends TestBase {
     //Creating object of Home page
-    HomePage home = new HomePage(driver);
+    HomePage home = new HomePage();
     //Creating object of Otlobha landing page
-    OtlobhaLandingPage otlobhaLanding = new OtlobhaLandingPage(driver);
+    OtlobhaLandingPage otlobhaLanding = new OtlobhaLandingPage();
     //Creating object of Otlobha form 1st step page
-    OtlobhaForm1stStep form1stStep = new OtlobhaForm1stStep(driver);
+    OtlobhaForm1stStep form1stStep = new OtlobhaForm1stStep();
     //Creating object of Otlobha form 2nd step page
-    OtlobhaForm2ndStep form2ndStep = new OtlobhaForm2ndStep(driver);
+    OtlobhaForm2ndStep form2ndStep = new OtlobhaForm2ndStep();
     //Creating object of Wallet paymnet gateway page
-    WalletPaymentGateway wallet = new WalletPaymentGateway(driver);
+    WalletPaymentGateway wallet = new WalletPaymentGateway();
 
     public OtlobhaPageTest() throws IOException {
         super();

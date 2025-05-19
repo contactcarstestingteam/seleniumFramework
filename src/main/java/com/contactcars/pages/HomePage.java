@@ -2,7 +2,6 @@ package com.contactcars.pages;
 
 import com.contactcars.base.TestBase;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
 import java.io.IOException;
@@ -10,7 +9,7 @@ import java.io.IOException;
 public class HomePage extends TestBase {
 
     //Constructor that will be automatically called as soon as the object of the class is created
-    public HomePage(WebDriver driver) throws IOException {
+    public HomePage() throws IOException {
         super();
     }
 

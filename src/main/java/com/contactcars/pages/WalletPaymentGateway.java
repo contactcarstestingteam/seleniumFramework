@@ -9,7 +9,7 @@ import java.io.IOException;
 public class WalletPaymentGateway extends TestBase {
 
     //Constructor that will be automatically called as soon as the object of the class is created
-    public WalletPaymentGateway(WebDriver driver) throws IOException {
+    public WalletPaymentGateway() throws IOException {
         super();
     }
 
