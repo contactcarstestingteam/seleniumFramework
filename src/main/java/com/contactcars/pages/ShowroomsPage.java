@@ -3,10 +3,8 @@ package com.contactcars.pages;
 import com.contactcars.base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ShowroomsPage extends TestBase {
@@ -20,15 +18,11 @@ public class ShowroomsPage extends TestBase {
     By allDealersNames = By.cssSelector("main > div:nth-child(3) > div:nth-child(3) > section > ul > li > article > a > div > div:nth-child(2) > h3");
 
     //Method to get all dealers arabic names
-    public void getDealersNames() {
-//        List<String> dealersNames = new ArrayList<>();
-//        List<WebElement> dealersList= driver.findElements(allDealersNames);
-        System.out.println(driver.findElements(allDealersNames));
-//
-//        for(int i=0; i < dealersList.size(); i++){
-//           dealersNames.add(dealersList.get(i).toString());
-//        }
-
+    public void getDealersNames(List <String> dealersNamesList) {
+        String dealerName;
+        for(int i=0; i < driver.findElements(allDealersNames).size(); i++){
+            dealerName = driver.findElements(allDealersNames).get(i).getText();
+            dealersNamesList.add(dealerName);
+        }
     }
-
 }

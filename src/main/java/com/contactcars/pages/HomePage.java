@@ -15,7 +15,7 @@ public class HomePage extends TestBase {
     }
 
     //Locator for skip button in notification pop up
-    By skipButton = By.cssSelector("body > div > div > div:nth-child(2) > button:nth-child(2)");
+    By skipButton = By.cssSelector("body > div:last-child > div:nth-child(2) > button:last-child");
 
     //Locator for login button
     By loginLink = By.cssSelector("header > div > div:nth-child(3) > button");
