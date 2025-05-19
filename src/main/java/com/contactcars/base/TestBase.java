@@ -23,7 +23,8 @@ public class TestBase {
     public static WebDriver driver;
     public static Properties prop;
     public static XSSFWorkbook workbook;
-    public static Sheet sheet;
+    public static Sheet sheet1;
+    public static Sheet sheet2;
     public static ExtentSparkReporter extentSparkReporter;
     public static ExtentReports extentReports;
     public static ExtentTest extentTest;
@@ -35,7 +36,8 @@ public class TestBase {
         File credentials = new File("D:\\Website Variables.xlsx");
         FileInputStream fisc = new FileInputStream(credentials);
         workbook = new XSSFWorkbook(fisc);
-        sheet = workbook.getSheetAt(0);
+        sheet1 = workbook.getSheetAt(0);
+        sheet2 = workbook.getSheetAt(1);
     }
 
     // Open chrome window

@@ -15,7 +15,7 @@ public class HomePage extends TestBase {
     }
 
     //Locator for skip button in notification pop up
-    By skipButton = By.cssSelector("body > div > div > div:nth-child(2) > button:nth-child(2)");
+    By skipButton = By.cssSelector("body > div:last-child > div:nth-child(2) > button:last-child");
 
     //Locator for login button
     By loginLink = By.cssSelector("header > div > div:nth-child(3) > button");
@@ -28,6 +28,9 @@ public class HomePage extends TestBase {
 
     //Locator for otlobha button
     By otlobhaButton = By.cssSelector("header > nav > div > ul > li:nth-child(4) > div > div > div > a > span");
+
+    //Locator for showrooms link
+    By showroomsLink = By.cssSelector("header > nav > div > ul > li:nth-child(5) > a");
 
     //Method to click on skip button in notification pop up
     public void clickSkip() {
@@ -57,5 +60,9 @@ public class HomePage extends TestBase {
         driver.findElement(otlobhaButton).click();
     }
 
+    //Method to click on showrooms link
+    public void clickShowroomsLink() {
+        driver.findElement(showroomsLink).click();
+    }
 }
 
