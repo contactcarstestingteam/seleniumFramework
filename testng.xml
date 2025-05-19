@@ -9,8 +9,8 @@
 <!--                        <include name="addNewRequest"></include>-->
 <!--                    </methods>-->
 <!--                </class>-->
-               <class name="com.contactcars.testcases.HomePageTest"></class>
-
+<!--               <class name="com.contactcars.testcases.HomePageTest"></class>-->
+              <class name="com.contactcars.testcases.ShowroomsPageTest"></class>
         </classes>
     </test>
 </suite>
