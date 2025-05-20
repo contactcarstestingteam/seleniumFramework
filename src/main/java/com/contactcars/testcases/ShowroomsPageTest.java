@@ -18,17 +18,35 @@ import java.util.List;
 
 public class ShowroomsPageTest extends TestBase {
 
+    //Creating object of Home page
+    HomePage home = new HomePage();
+    //Creating object of Showrooms page
+    ShowroomsPage showroom = new ShowroomsPage();
+
     public ShowroomsPageTest() throws IOException {
         super();
     }
 
     @Test
-    public void getSearchDealers() throws InterruptedException, IOException {
-        //Creating object of Home page
-        HomePage home = new HomePage();
-        //Creating object of Showrooms page
-        ShowroomsPage showroom = new ShowroomsPage();
+    public void dealerFilter() throws InterruptedException {
+        initializationOnChrome(sheet1.getRow(1).getCell(9).toString());
+        Thread.sleep(10000);
+        home.clickSkip();
+        home.clickShowroomsLink();
+        Thread.sleep(5000);
+        showroom.enterShowroomName(sheet3.getRow(6).getCell(0).toString());
+        showroom.clickCountry();
+        showroom.chooseCountryValue(0);
+        Thread.sleep(5000);
+        showroom.clickArea();
+        showroom.chooseAreaValue(6);
+        showroom.clickMake();
+        showroom.chooseMakeValue(0);
+        showroom.clickUsed();
+    }
 
+    @Test
+    public void getSearchDealers() throws InterruptedException, IOException {
         initializationOnChrome(sheet1.getRow(1).getCell(9).toString());
         Thread.sleep(10000);
         home.clickSkip();
@@ -62,6 +80,5 @@ public class ShowroomsPageTest extends TestBase {
         showroom.getDealersNames(expectedNamesList);
         // Compare the content of the two lists regardless of their order
         Assert.assertTrue(expectedNamesList.containsAll(apiNamesList));
-
     }
 }

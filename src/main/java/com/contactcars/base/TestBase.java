@@ -25,6 +25,7 @@ public class TestBase {
     public static XSSFWorkbook workbook;
     public static Sheet sheet1;
     public static Sheet sheet2;
+    public static Sheet sheet3;
     public static ExtentSparkReporter extentSparkReporter;
     public static ExtentReports extentReports;
     public static ExtentTest extentTest;
@@ -38,6 +39,7 @@ public class TestBase {
         workbook = new XSSFWorkbook(fisc);
         sheet1 = workbook.getSheetAt(0);
         sheet2 = workbook.getSheetAt(1);
+        sheet3 = workbook.getSheetAt(2);
     }
 
     // Open chrome window
