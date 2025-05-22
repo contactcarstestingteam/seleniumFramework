@@ -29,13 +29,13 @@ public class ShowroomsPageTest extends TestBase {
         //Creating object of Showrooms page
         ShowroomsPage showroom = new ShowroomsPage();
 
-        initializationOnChrome(sheet1.getRow(1).getCell(9).toString());
+        initializationOnChrome(getVariableValue("URL"));
         Thread.sleep(10000);
         home.clickSkip();
         home.clickShowroomsLink();
         Thread.sleep(5000);
         // Specify the base URL to the RESTful web service
-        RestAssured.baseURI = sheet2.getRow(1).getCell(0).toString() + sheet2.getRow(1).getCell(1).toString();
+//        RestAssured.baseURI = sheet2.getRow(1).getCell(0).toString() + sheet2.getRow(1).getCell(1).toString();
         // Get the RequestSpecification of the request that is to be sent
         // to the server.
         RequestSpecification httpRequest = RestAssured.given();

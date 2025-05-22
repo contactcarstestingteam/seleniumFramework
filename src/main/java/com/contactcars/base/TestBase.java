@@ -24,12 +24,13 @@ public class TestBase {
     public static Properties prop;
     public static XSSFWorkbook workbook;
     public static Sheet sheet1;
-    public static Sheet sheet2;
+//    public static Sheet sheet2;
     public static ExtentSparkReporter extentSparkReporter;
     public static ExtentReports extentReports;
     public static ExtentTest extentTest;
     public static String Pass;
     public static String Fail;
+    public static String variableValue;
 
     // Loading properties and credentials files
     public TestBase() throws IOException {
@@ -37,7 +38,7 @@ public class TestBase {
         FileInputStream fisc = new FileInputStream(credentials);
         workbook = new XSSFWorkbook(fisc);
         sheet1 = workbook.getSheetAt(0);
-        sheet2 = workbook.getSheetAt(1);
+//        sheet2 = workbook.getSheetAt(1);
     }
 
     // Open chrome window
@@ -60,6 +61,20 @@ public class TestBase {
         extentSparkReporter.config().setReportName("Test Report");
         extentSparkReporter.config().setTheme(Theme.STANDARD);
         extentSparkReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
+    }
+
+    // Get the variables from the Excel sheet regardless of their position
+    public static String getVariableValue(String variableKey) {
+        int lastColumn = sheet1.getLastRowNum();
+        System.out.println(lastColumn);
+
+        for (int i = 0; i <= lastColumn; i++) {
+            System.out.println(sheet1.getRow(i).getCell(0).toString());
+            if (variableKey.equals(sheet1.getRow(i).getCell(0).toString())) {
+                return sheet1.getRow(i).getCell(1).toString();
+            }
+        }
+        return null;
     }
 
     public static void logAssertionBetweenTwoEqualValues (String status, String actual, String expected){
