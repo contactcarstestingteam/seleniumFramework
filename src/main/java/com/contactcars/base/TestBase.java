@@ -66,10 +66,7 @@ public class TestBase {
     // Get the variables from the Excel sheet regardless of their position
     public static String getVariableValue(String variableKey) {
         int lastColumn = sheet1.getLastRowNum();
-        System.out.println(lastColumn);
-
         for (int i = 0; i <= lastColumn; i++) {
-            System.out.println(sheet1.getRow(i).getCell(0).toString());
             if (variableKey.equals(sheet1.getRow(i).getCell(0).toString())) {
                 return sheet1.getRow(i).getCell(1).toString();
             }

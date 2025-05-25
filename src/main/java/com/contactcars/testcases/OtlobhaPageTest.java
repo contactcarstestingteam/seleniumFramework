@@ -78,7 +78,7 @@ public class OtlobhaPageTest extends TestBase {
 
         //payment gateway
         wallet.enterMPin(getVariableValue("Mpin"));
-        wallet.enterOtp("WalletOTP");
+        wallet.enterOtp(getVariableValue("WalletOTP"));
         wallet.clickPay();
         Thread.sleep(5000);
 
