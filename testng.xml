@@ -10,7 +10,11 @@
 <!--                    </methods>-->
 <!--                </class>-->
 <!--               <class name="com.contactcars.testcases.HomePageTest"></class>-->
-              <class name="com.contactcars.testcases.ShowroomsPageTest"></class>
+              <class name="com.contactcars.testcases.ShowroomsPageTest">
+                  <methods>
+                      <include name="applyMakeFilter"></include>
+                  </methods>
+              </class>
         </classes>
     </test>
 </suite>
