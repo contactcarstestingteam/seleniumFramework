@@ -24,21 +24,20 @@ import java.io.IOException;
 import java.util.*;
 
 public class TestBase {
-
+ 
     public static WebDriver driver;
     public static Properties prop;
     public static XSSFWorkbook workbook;
     public static Sheet sheet1;
     public static Sheet sheet2;
-    public static Sheet sheet3;
     public static ExtentSparkReporter extentSparkReporter;
     public static ExtentReports extentReports;
     public static ExtentTest extentTest;
     public static String Pass;
     public static String Fail;
     public static Map<String, String> queryParams = new HashMap<>();
-
-
+  
+  
     // Loading properties and credentials files
     public TestBase() throws IOException {
         File credentials = new File("D:\\Website Variables.xlsx");
@@ -46,7 +45,6 @@ public class TestBase {
         workbook = new XSSFWorkbook(fisc);
         sheet1 = workbook.getSheetAt(0);
         sheet2 = workbook.getSheetAt(1);
-//        sheet3 = workbook.getSheetAt(2);
     }
 
     // Open chrome window
@@ -71,7 +69,7 @@ public class TestBase {
         extentSparkReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
     }
 
-    // Get the variables from the Excel sheet 1 regardless of their position
+   // Get the variables from the Excel sheet 1 regardless of their position
     public static String getVariableValueFromSheet1(String variableKey) {
         int lastColumn = sheet1.getLastRowNum();
         for (int i = 0; i <= lastColumn; i++) {
@@ -82,7 +80,7 @@ public class TestBase {
         return null;
     }
 
-    // Get the variables from the Excel sheet 2 regardless of their position
+  // Get the variables from the Excel sheet 2 regardless of their position
     public static String getVariableValueFromSheet2(String variableKey) {
         int lastColumn = sheet2.getLastRowNum();
         for (int i = 0; i <= lastColumn; i++) {
@@ -127,7 +125,7 @@ public class TestBase {
             return apiNamesList;
     }
 
-    public static void logAssertionBetweenTwoEqualValues(String status, String actual, String expected){
+    public static void logAssertionBetweenTwoEqualValues (String status, String actual, String expected){
         if (status == Pass){
             extentTest.log(Status.PASS, "Actual Result = "+ actual + " & " + "Expected Result = " + expected);
         } else if (status == Fail){

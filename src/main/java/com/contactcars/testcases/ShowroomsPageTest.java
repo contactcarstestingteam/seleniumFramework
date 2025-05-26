@@ -166,7 +166,7 @@ public class ShowroomsPageTest extends TestBase {
         Assert.assertTrue(expectedNamesList.containsAll(apiNamesList));
     }
 
-    // Get all the cars showrooms with applying new status filter only
+// Get all the cars showrooms with applying new status filter only
     @Test
     public void applyNewStatusFilter() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
