@@ -63,7 +63,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         // second step - promocode
-        form2ndStep.enterPromoCode(getVariableValue("FreeOtlobhaCoupon"));
+        form2ndStep.enterPromoCode(getVariableValueFromSheet1("FreeOtlobhaCoupon"));
         form2ndStep.clickApplyPromoCode();
         Thread.sleep(5000);
         form2ndStep.clickDeletePromoCode();
@@ -72,18 +72,18 @@ public class OtlobhaPageTest extends TestBase {
         form2ndStep.chooseWallet();
         form2ndStep.clickSubmit();
         Thread.sleep(5000);
-        form2ndStep.enterWalletNumber(getVariableValue("WalletNo"));
+        form2ndStep.enterWalletNumber(getVariableValueFromSheet1("WalletNo"));
         form2ndStep.clickProceedToPay();
         Thread.sleep(5000);
 
         //payment gateway
-        wallet.enterMPin(getVariableValue("Mpin"));
-        wallet.enterOtp(getVariableValue("WalletOTP"));
+        wallet.enterMPin(getVariableValueFromSheet1("Mpin"));
+        wallet.enterOtp(getVariableValueFromSheet1("WalletOTP"));
         wallet.clickPay();
         Thread.sleep(5000);
 
         //Check on success page
-        String expectedResult = getVariableValue("URL") + getVariableValue("OtlobhaSuccessURL");
+        String expectedResult = getVariableValueFromSheet1("URL") + getVariableValueFromSheet1("OtlobhaSuccessURL");
         String actualResult = driver.getCurrentUrl();
         if (actualResult.contains(expectedResult)){
             Assert.assertTrue(actualResult.contains(expectedResult));

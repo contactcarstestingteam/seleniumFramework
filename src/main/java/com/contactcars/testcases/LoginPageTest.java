@@ -20,17 +20,17 @@ public class LoginPageTest extends TestBase {
         HomePage home = new HomePage();
         LoginPage login = new LoginPage();
 
-        initializationOnChrome(getVariableValue("URL"));
+        initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         home.clickLoginLink();
         Thread.sleep(5000);
 
-        login.enterMobileNumber(getVariableValue("MobileNo"));
+        login.enterMobileNumber(getVariableValueFromSheet1("MobileNo"));
         login.clickLogin();
         Thread.sleep(5000);
 
-        login.enterOtp(getVariableValue("OTP"));
+        login.enterOtp(getVariableValueFromSheet1("OTP"));
         login.clickConfirm();
         Thread.sleep(5000);
 
@@ -40,7 +40,7 @@ public class LoginPageTest extends TestBase {
 
         //Check on logging in successfully
         String actualUrl = driver.getCurrentUrl();
-        String expectedUrl = getVariableValue("URL");
+        String expectedUrl = getVariableValueFromSheet1("URL");
          if (actualUrl.contentEquals(expectedUrl)){
              Assert.assertTrue(actualUrl.contentEquals(expectedUrl));
              logAssertionBetweenTwoEqualValues(Pass, actualUrl, expectedUrl);
