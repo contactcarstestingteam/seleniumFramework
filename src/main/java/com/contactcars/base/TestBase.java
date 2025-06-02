@@ -5,6 +5,8 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.contactcars.pages.OtlobhaForm2ndStep;
+import com.contactcars.pages.WalletPaymentGateway;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -36,7 +38,10 @@ public class TestBase {
     public static String Pass;
     public static String Fail;
     public static Map<String, String> queryParams = new HashMap<>();
-  
+
+
+
+
   
     // Loading properties and credentials files
     public TestBase() throws IOException {
@@ -89,6 +94,25 @@ public class TestBase {
             }
         }
         return null;
+    }
+
+    // Adding promo code for Otlobha request
+    public void addOtlobhaPromoCode() throws InterruptedException, IOException {
+        //Creating object of Otlobha form 2nd step page
+        OtlobhaForm2ndStep form2ndStep = new OtlobhaForm2ndStep();
+        form2ndStep.enterPromoCode(getVariableValueFromSheet1("FreeOtlobhaCoupon"));
+        form2ndStep.clickApplyPromoCode();
+        Thread.sleep(5000);
+        form2ndStep.clickDeletePromoCode();
+    }
+
+    // Pay with wallet
+    public void payWithWallet() throws IOException {
+        //Creating object of Wallet paymnet gateway page
+        WalletPaymentGateway wallet = new WalletPaymentGateway();
+        wallet.enterMPin(getVariableValueFromSheet1("Mpin"));
+        wallet.enterOtp(getVariableValueFromSheet1("WalletOTP"));
+        wallet.clickPay();
     }
 
     // Build qeury params for any Api

@@ -13,7 +13,7 @@ public class OtlobhaLandingPage extends TestBase {
     }
 
     //Locator for request new car button
-    By requestNewCarButton = By.cssSelector("main > div:nth-child(2) > section:nth-child(1) > div > div > div > div > div > div > a");
+    By requestNewCarButton = By.cssSelector("main > section > div > div > div > a");
 
     //Method to click on request new car button
     public void clickRequestNewCarButton() {

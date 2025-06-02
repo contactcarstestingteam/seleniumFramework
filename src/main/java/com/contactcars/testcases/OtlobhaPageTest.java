@@ -63,10 +63,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         // second step - promocode
-        form2ndStep.enterPromoCode(getVariableValueFromSheet1("FreeOtlobhaCoupon"));
-        form2ndStep.clickApplyPromoCode();
-        Thread.sleep(5000);
-        form2ndStep.clickDeletePromoCode();
+        addOtlobhaPromoCode();
 
         // second step - wallet
         form2ndStep.chooseWallet();
@@ -77,9 +74,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         //payment gateway
-        wallet.enterMPin(getVariableValueFromSheet1("Mpin"));
-        wallet.enterOtp(getVariableValueFromSheet1("WalletOTP"));
-        wallet.clickPay();
+        payWithWallet();
         Thread.sleep(5000);
 
         //Check on success page
