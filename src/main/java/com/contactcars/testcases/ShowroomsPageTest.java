@@ -2,6 +2,7 @@ package com.contactcars.testcases;
 
 import com.contactcars.base.TestBase;
 import com.contactcars.pages.HomePage;
+import com.contactcars.pages.ShowroomsDetailsPage;
 import com.contactcars.pages.ShowroomsPage;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -22,6 +23,8 @@ public class ShowroomsPageTest extends TestBase {
     HomePage home = new HomePage();
     //Creating object of Showrooms page
     ShowroomsPage showroom = new ShowroomsPage();
+    ShowroomsDetailsPage showroomDetails = new ShowroomsDetailsPage();
+
 
     public ShowroomsPageTest() throws IOException {
         super();
@@ -472,6 +475,67 @@ public class ShowroomsPageTest extends TestBase {
         showroom.getDealersNames(expectedNamesList);
         // Compare the content of the two lists regardless of their order
         Assert.assertTrue(expectedNamesList.containsAll(apiNamesList));
+    }
+
+    // Redirect to a specific showroom page without applying any filters
+    @Test
+    public void openShowroomPage() throws InterruptedException {
+        initializationOnChrome(getVariableValueFromSheet1("URLEn"));
+        Thread.sleep(5000);
+        home.clickSkip();
+        Thread.sleep(5000);
+        home.clickShowroomsLink();
+        Thread.sleep(5000);
+        String showroomName = showroom.getShowroomName(9);
+        showroom.chooseShowroomCard(9);
+        Thread.sleep(5000);
+        String currentURL = driver.getCurrentUrl();
+        Assert.assertTrue(currentURL.contains(showroomName.replace(" ", "-")));
+        Assert.assertEquals(showroomName, showroomDetails.getName());
+    }
+
+    // Redirect to a specific showroom branch page without applying any filters
+    @Test
+    public void openBranchesTab() throws InterruptedException {
+        initializationOnChrome(getVariableValueFromSheet1("URLEn"));
+        Thread.sleep(5000);
+        home.clickSkip();
+        Thread.sleep(5000);
+        home.clickShowroomsLink();
+        Thread.sleep(5000);
+        String showroomName = showroom.getShowroomName(9);
+        showroom.chooseShowroomCard(9);
+        Thread.sleep(5000);
+        String currentShowroomURL = driver.getCurrentUrl();
+        Assert.assertTrue(currentShowroomURL.contains(showroomName.replace(" ", "-")));
+        Assert.assertEquals(showroomName, showroomDetails.getName());
+        Thread.sleep(5000);
+        showroomDetails.clickBranches();
+        Thread.sleep(5000);
+        String currentBranchesURL = driver.getCurrentUrl();
+        Assert.assertTrue(currentBranchesURL.contains("activeTab=branches"));
+    }
+
+    // Redirect to a specific showroom contact us page without applying any filters
+    @Test
+    public void openContactUsTab() throws InterruptedException {
+        initializationOnChrome(getVariableValueFromSheet1("URLEn"));
+        Thread.sleep(5000);
+        home.clickSkip();
+        Thread.sleep(5000);
+        home.clickShowroomsLink();
+        Thread.sleep(5000);
+        String showroomName = showroom.getShowroomName(9);
+        showroom.chooseShowroomCard(9);
+        Thread.sleep(5000);
+        String currentShowroomURL = driver.getCurrentUrl();
+        Assert.assertTrue(currentShowroomURL.contains(showroomName.replace(" ", "-")));
+        Assert.assertEquals(showroomName, showroomDetails.getName());
+        Thread.sleep(5000);
+        showroomDetails.clickContactUs();
+        Thread.sleep(5000);
+        String currentContactUsURL = driver.getCurrentUrl();
+        Assert.assertTrue(currentContactUsURL.contains("activeTab=contact"));
     }
 }
 

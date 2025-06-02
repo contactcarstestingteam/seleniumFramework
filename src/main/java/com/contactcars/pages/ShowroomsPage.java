@@ -43,6 +43,9 @@ public class ShowroomsPage extends TestBase {
     // Locator for all dealers names in arabic values
     By allDealersNames = By.cssSelector("main > div:nth-child(3) > div:nth-child(3) > section > ul > li > article > a > div > div:nth-child(2) > h3");
 
+    // Locator for all dealers cards
+    By allShowrooms = By.cssSelector("main > div:nth-child(3) > div:nth-child(3) > section > ul > li");
+
     // Method to enter showroom name
     public void enterShowroomName(String name) {
         driver.findElement(showroomName).sendKeys(name);
@@ -95,5 +98,15 @@ public class ShowroomsPage extends TestBase {
             dealerName = driver.findElements(allDealersNames).get(i).getText();
             dealersNamesList.add(dealerName);
         }
+    }
+
+    // Method to click on showroom card
+    public void chooseShowroomCard(int index) {
+        driver.findElements(allShowrooms).get(index).click();
+    }
+
+    // Method to get showroom name
+    public String getShowroomName(int index) {
+        return driver.findElements(allDealersNames).get(index).getText();
     }
 }

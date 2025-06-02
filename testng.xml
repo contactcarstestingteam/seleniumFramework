@@ -12,7 +12,7 @@
 <!--               <class name="com.contactcars.testcases.HomePageTest"></class>-->
               <class name="com.contactcars.testcases.ShowroomsPageTest">
                   <methods>
-                      <include name="applyMakeFilter"></include>
+                      <include name="openContactUsTab"></include>
                   </methods>
               </class>
         </classes>
