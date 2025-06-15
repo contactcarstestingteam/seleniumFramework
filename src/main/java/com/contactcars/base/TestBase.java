@@ -5,6 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.contactcars.pages.CradPaymentGateway;
 import com.contactcars.pages.OtlobhaForm2ndStep;
 import com.contactcars.pages.WalletPaymentGateway;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -104,6 +105,17 @@ public class TestBase {
         form2ndStep.clickApplyPromoCode();
         Thread.sleep(5000);
         form2ndStep.clickDeletePromoCode();
+    }
+
+    // Pay with card
+    public void payWithCard() throws IOException {
+        //Creating object of card paymnet gateway page
+        CradPaymentGateway card = new CradPaymentGateway();
+        card.enterCardNumber(getVariableValueFromSheet1("Card No"));
+        card.enterCardName(getVariableValueFromSheet1("Card Name"));
+        card.enterCardDate(getVariableValueFromSheet1("Expirey"));
+        card.enterCardCVV(getVariableValueFromSheet1("CVV"));
+        card.clickPay();
     }
 
     // Pay with wallet
