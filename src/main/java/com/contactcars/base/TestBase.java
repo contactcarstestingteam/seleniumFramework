@@ -18,6 +18,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.v129.network.Network;
+import org.openqa.selenium.devtools.v129.network.model.Request;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
@@ -39,6 +42,8 @@ public class TestBase {
     public static String Pass;
     public static String Fail;
     public static Map<String, String> queryParams = new HashMap<>();
+//    public static ArrayList<Request> requests = new ArrayList<>();
+
 
 
 
@@ -53,12 +58,17 @@ public class TestBase {
         sheet2 = workbook.getSheetAt(1);
     }
 
-    // Open chrome window
-    public static void initializationOnChrome(String URL) {
+    // Initialize web driver
+    public static WebDriver driverInitialization() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get(URL);
+        return driver;
+    }
+
+    // Open Website
+    public static void openChrome(String url) {
+        driver.get(url);
     }
 
     @BeforeTest

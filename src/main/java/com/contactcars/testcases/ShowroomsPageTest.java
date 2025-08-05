@@ -33,7 +33,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms without any filters
     @Test
     public void getAllCarsShowrooms() throws InterruptedException, IOException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         home.clickShowroomsLink();
@@ -51,7 +52,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms with applying all filters
     @Test
     public void applyAllFilters() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -80,7 +82,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms with applying name filter only
     @Test
     public void applyNameFilter() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -101,7 +104,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms with applying governorate filter only
     @Test
     public void applyGovernorateFilter() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -123,7 +127,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms with applying governorate and area filters only
     @Test
     public void applyGovernorateAndAreaFilter() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -148,7 +153,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms with applying make filter only
     @Test
     public void applyMakeFilter() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -172,7 +178,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms with applying new status filter only
     @Test
     public void applyNewStatusFilter() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -193,7 +200,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms with applying used status filter only
     @Test
     public void applyUsedStatusFilter() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -214,7 +222,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms with applying name and governorate filters only
     @Test
     public void applyNameAndGovernorateFilters() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -237,7 +246,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms with applying name, governorate and area filters only
     @Test
     public void applyNameAndAreaFilters() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -262,7 +272,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms with applying name and make filters only
     @Test
     public void applyNameAndMakeFilters() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -285,7 +296,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms with applying governorate and make filters only
     @Test
     public void applyGovernorateAndMakeFilters() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -309,7 +321,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms with applying governorate and new status filters only
     @Test
     public void applyGovernorateAndNewStatusFilters() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -332,7 +345,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms with applying governorate and used status filters only
     @Test
     public void applyGovernorateAndUsedStatusFilters() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -355,7 +369,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms with applying governorate, area and make filters only
     @Test
     public void applyAreaAndMakeFilters() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -382,7 +397,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms with applying governorate, area and new status filters only
     @Test
     public void applyAreaAndNewStatusFilters() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -408,7 +424,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms with applying governorate, area and used status filters only
     @Test
     public void applyAreaAndUsedStatusFilters() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -434,7 +451,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms with applying make and new status filters only
     @Test
     public void applyMakeAndNewStatusFilters() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -457,7 +475,8 @@ public class ShowroomsPageTest extends TestBase {
     // Get all the cars showrooms with applying make and used status filters only
     @Test
     public void applyMakeAndUsedStatusFilters() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -480,7 +499,8 @@ public class ShowroomsPageTest extends TestBase {
     // Redirect to a specific showroom page without applying any filters
     @Test
     public void openShowroomPage() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URLEn"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URLEn"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -497,7 +517,8 @@ public class ShowroomsPageTest extends TestBase {
     // Redirect to a specific showroom branch page without applying any filters
     @Test
     public void openBranchesTab() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URLEn"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URLEn"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);
@@ -519,7 +540,8 @@ public class ShowroomsPageTest extends TestBase {
     // Redirect to a specific showroom contact us page without applying any filters
     @Test
     public void openContactUsTab() throws InterruptedException {
-        initializationOnChrome(getVariableValueFromSheet1("URLEn"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URLEn"));
         Thread.sleep(5000);
         home.clickSkip();
         Thread.sleep(5000);

@@ -9,7 +9,11 @@
 <!--                        <include name="addNewRequest"></include>-->
 <!--                    </methods>-->
 <!--                </class>-->
-               <class name="com.contactcars.testcases.HomePageTest"></class>
+               <class name="com.contactcars.testcases.HomePageTest">
+                   <methods>
+                       <include name="getRecentDealerAds"></include>
+                   </methods>
+               </class>
 <!--              <class name="com.contactcars.testcases.ShowroomsPageTest">-->
 <!--                  <methods>-->
 <!--                      <include name="openContactUsTab"></include>-->

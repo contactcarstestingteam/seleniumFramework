@@ -3,8 +3,11 @@ package com.contactcars.pages;
 import com.contactcars.base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
+import java.time.Duration;
 
 public class HomePage extends TestBase {
 
@@ -30,6 +33,11 @@ public class HomePage extends TestBase {
 
     //Locator for showrooms link
     By showroomsLink = By.cssSelector("header > nav > div > ul > li:nth-child(5) > a");
+
+    // Locator for dealer ads section
+    By dealerAds = By.cssSelector("main > section:nth-child(5) > div > div > div > div > div > div > a");
+
+
 
     //Method to click on skip button in notification pop up
     public void clickSkip() {
@@ -62,6 +70,15 @@ public class HomePage extends TestBase {
     //Method to click on showrooms link
     public void clickShowroomsLink() {
         driver.findElement(showroomsLink).click();
+    }
+
+    //Method to wait until dealer ads section appears
+    public void waitDealerAds() {
+        // Create a WebDriverWait instance
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // Use Explicit Wait to wait for a specific condition
+        wait.until(ExpectedConditions.visibilityOfElementLocated(dealerAds));
     }
 }
 
