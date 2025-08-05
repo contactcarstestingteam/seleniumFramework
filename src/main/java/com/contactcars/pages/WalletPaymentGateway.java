@@ -3,8 +3,12 @@ package com.contactcars.pages;
 import com.contactcars.base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
+import java.time.Duration;
 
 public class WalletPaymentGateway extends TestBase {
 
@@ -24,7 +28,9 @@ public class WalletPaymentGateway extends TestBase {
 
     //Method to enter user pin
     public void enterMPin(String userPin) {
-        driver.findElement(mPin).sendKeys(userPin);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement pinField = wait.until(ExpectedConditions.visibilityOfElementLocated(mPin));
+        pinField.sendKeys(userPin);
     }
 
     //Method to enter user otp

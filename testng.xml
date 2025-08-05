@@ -6,7 +6,7 @@
 <!--                <class name="com.contactcars.testcases.LoginPageTest"></class>-->
                 <class name="com.contactcars.testcases.OtlobhaPageTest">
                     <methods>
-                        <include name="addNewRequest"></include>
+                        <include name="OtlobhaImportedDPvalue2"></include>
                     </methods>
                 </class>
 <!--               <class name="com.contactcars.testcases.HomePageTest"></class>-->
