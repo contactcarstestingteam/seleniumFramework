@@ -16,15 +16,21 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.*;
+import java.util.NoSuchElementException;
+
 
 public class TestBase {
  
@@ -39,11 +45,12 @@ public class TestBase {
     public static String Pass;
     public static String Fail;
     public static Map<String, String> queryParams = new HashMap<>();
+    public static Actions actions;
 
 
 
 
-  
+
     // Loading properties and credentials files
     public TestBase() throws IOException {
         File credentials = new File("D:\\Website Variables.xlsx");
@@ -53,6 +60,7 @@ public class TestBase {
         sheet2 = workbook.getSheetAt(1);
     }
 
+
     // Open chrome window
     public static void initializationOnChrome(String URL) {
         WebDriverManager.chromedriver().setup();
@@ -60,10 +68,9 @@ public class TestBase {
         driver.manage().window().maximize();
         driver.get(URL);
     }
-
     @BeforeTest
     public void startReporter() {
-        extentSparkReporter  = new ExtentSparkReporter(System.getProperty("user.dir") + "/test-output/extentReport.html");
+        extentSparkReporter  = new ExtentSparkReporter("C:/Users/Nada.Adel/IdeaProjects/seleniumFramework/test-output/extentReport.html");
         extentReports = new ExtentReports();
         extentReports.attachReporter(extentSparkReporter);
 
@@ -96,29 +103,128 @@ public class TestBase {
         }
         return null;
     }
+// method to Closes the ad popup if it's present on any page
+    public void closeAdIfPresent() {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+            WebElement ad = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("cntf_mpu")));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].style.display='none';", ad);
+            System.out.println("Ad was hidden.");
+        } catch (Exception e) {
+            System.out.println("Ad not found, continue normally.");
+        }
+    }
+    /*
+    // Method to close the pop -up of extra features
+    public void dismissExtrasPopup() {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-    // Adding promo code for Otlobha request
-    public void addOtlobhaPromoCode() throws InterruptedException, IOException {
-        //Creating object of Otlobha form 2nd step page
-        OtlobhaForm2ndStep form2ndStep = new OtlobhaForm2ndStep();
-        form2ndStep.enterPromoCode(getVariableValueFromSheet1("FreeOtlobhaCoupon"));
-        form2ndStep.clickApplyPromoCode();
-        Thread.sleep(5000);
-        form2ndStep.clickDeletePromoCode();
+            // Wait for the popup title to appear
+            WebElement popupTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//*[contains(text(),'مميزات إضافية لبيع سيارتك أسرع')]")
+            ));
+
+            // Click the close button
+            WebElement closeButton = driver.findElement(By.cssSelector("div.flex.items-center.gap-3.mt-6 > button"));
+            closeButton.click();
+
+            System.out.println("Extras popup dismissed successfully.");
+
+        } catch (TimeoutException e) {
+            // Popup did not appear — no action needed
+            System.out.println("Extras popup was not displayed.");
+        } catch (Exception e) {
+            // Any other error while dismissing popup
+            System.out.println("Error while dismissing extras popup: " + e.getMessage());
+        }
     }
 
-    // Pay with card
+     */
+
+    // Adding free promo code for Otlobha request
+    public void addOtlobhaPromoCode(String promoCode) throws InterruptedException, IOException {
+        //Creating object of Otlobha form 2nd step page
+        OtlobhaForm2ndStep form2ndStep = new OtlobhaForm2ndStep();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#promoCode")));
+        form2ndStep.enterPromoCode(getVariableValueFromSheet1(promoCode));
+       // wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("main > div:nth-child(2) > div:nth-child(2) > form > div > div > button")));
+        form2ndStep.clickApplyPromoCode();
+    }
+
+/*
+// Pay with card
+
+    public void payWithCard() throws IOException, InterruptedException {
+        // Creating object of card payment gateway page
+        CradPaymentGateway card = new CradPaymentGateway();
+        Thread.sleep(5000);
+
+
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#paymob_checkout > div:nth-child(6)")));
+        WebElement cardNumberField = driver.findElement(By.name("number"));
+
+        //cardNumberField.click();
+        //cardNumberField.sendKeys(getVariableValueFromSheet1("Card No"));
+
+        //WebElement cardNameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#name")));
+        WebElement cardNameField = driver.findElement(By.cssSelector("#paymob_checkout > div:nth-child(9) > input[type=text]"));
+        cardNameField.click();
+        cardNameField.sendKeys(getVariableValueFromSheet1("Card Name"));
+
+        /*WebElement cardExpiryField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#expiry")));
+        cardExpiryField.click();
+        cardExpiryField.sendKeys(getVariableValueFromSheet1("Expirey"));
+
+        WebElement cardCvvField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#cvv")));
+        cardCvvField.click();
+        cardCvvField.sendKeys(getVariableValueFromSheet1("CVV"));
+
+        card.clickPay();
+    }
+
+ */
+
+
+
+
     public void payWithCard() throws IOException {
-        //Creating object of card paymnet gateway page
+        //Creating object of card payment gateway page
         CradPaymentGateway card = new CradPaymentGateway();
         card.enterCardNumber(getVariableValueFromSheet1("Card No"));
         card.enterCardName(getVariableValueFromSheet1("Card Name"));
-        card.enterCardDate(getVariableValueFromSheet1("Expirey"));
+        card.enterCardDate(getVariableValueFromSheet1("Date"));
         card.enterCardCVV(getVariableValueFromSheet1("CVV"));
         card.clickPay();
     }
 
+
+
     // Pay with wallet
+    public void payWithWallet() throws IOException {
+        WalletPaymentGateway wallet = new WalletPaymentGateway();
+
+        try {
+            wallet.enterMPin(getVariableValueFromSheet1("Mpin"));
+            wallet.enterOtp(getVariableValueFromSheet1("WalletOTP"));
+            wallet.clickPay();
+        } catch (NoSuchElementException e) {
+            driver.navigate().refresh();
+
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[name='mpin']")));
+
+            ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+
+            wallet.enterMPin(getVariableValueFromSheet1("Mpin"));
+            wallet.enterOtp(getVariableValueFromSheet1("WalletOTP"));
+            wallet.clickPay();
+        }
+    }
+
+    /*
     public void payWithWallet() throws IOException {
         //Creating object of Wallet paymnet gateway page
         WalletPaymentGateway wallet = new WalletPaymentGateway();
@@ -126,6 +232,8 @@ public class TestBase {
         wallet.enterOtp(getVariableValueFromSheet1("WalletOTP"));
         wallet.clickPay();
     }
+
+     */
 
     // Build qeury params for any Api
     public static Map<String, String> buildQueryParams(String... keyValuePairs) {
@@ -175,10 +283,39 @@ public class TestBase {
         extentReports.flush();
     }
 
-    // Close chrome window
+    // Close Chrome window
     public void quitChrome() {
         driver.quit();
     }
+
+    /*
+//Freeze page .. disappear scroll
+public void refreshIfNoScroll() {
+    try {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        Long scrollHeight = (Long) js.executeScript("return document.body.scrollHeight;");
+        Long clientHeight = (Long) js.executeScript("return window.innerHeight;");
+
+        System.out.println("Scroll height: " + scrollHeight);
+        System.out.println("Client height: " + clientHeight);
+
+        if (scrollHeight <= clientHeight) {
+            System.out.println("Scroll not found. Refreshing page...");
+            Thread.sleep(2000);
+            js.executeScript("location.reload()");
+        } else {
+            System.out.println("Scroll exists, no need to refresh.");
+        }
+
+    } catch (Exception e) {
+        System.out.println("Error checking scroll: " + e.getMessage());
+    }
+}
+
+     */
+
+
+
 
 
 }

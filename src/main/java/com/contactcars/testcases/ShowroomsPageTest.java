@@ -35,7 +35,7 @@ public class ShowroomsPageTest extends TestBase {
     public void getAllCarsShowrooms() throws InterruptedException, IOException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+        //home.clickSkip();
         home.clickShowroomsLink();
         Thread.sleep(5000);
         // Adding all names in a list
@@ -53,7 +53,7 @@ public class ShowroomsPageTest extends TestBase {
     public void applyAllFilters() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+        //home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -82,7 +82,7 @@ public class ShowroomsPageTest extends TestBase {
     public void applyNameFilter() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+        //home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -103,7 +103,7 @@ public class ShowroomsPageTest extends TestBase {
     public void applyGovernorateFilter() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -125,7 +125,7 @@ public class ShowroomsPageTest extends TestBase {
     public void applyGovernorateAndAreaFilter() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -150,7 +150,7 @@ public class ShowroomsPageTest extends TestBase {
     public void applyMakeFilter() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+        // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -174,7 +174,7 @@ public class ShowroomsPageTest extends TestBase {
     public void applyNewStatusFilter() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+        //home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -195,7 +195,7 @@ public class ShowroomsPageTest extends TestBase {
     public void applyUsedStatusFilter() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -216,7 +216,7 @@ public class ShowroomsPageTest extends TestBase {
     public void applyNameAndGovernorateFilters() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+      //  home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -239,7 +239,7 @@ public class ShowroomsPageTest extends TestBase {
     public void applyNameAndAreaFilters() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -264,7 +264,7 @@ public class ShowroomsPageTest extends TestBase {
     public void applyNameAndMakeFilters() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+      //  home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -287,7 +287,7 @@ public class ShowroomsPageTest extends TestBase {
     public void applyGovernorateAndMakeFilters() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -311,7 +311,7 @@ public class ShowroomsPageTest extends TestBase {
     public void applyGovernorateAndNewStatusFilters() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -334,7 +334,7 @@ public class ShowroomsPageTest extends TestBase {
     public void applyGovernorateAndUsedStatusFilters() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -357,7 +357,7 @@ public class ShowroomsPageTest extends TestBase {
     public void applyAreaAndMakeFilters() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+      //  home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -384,7 +384,7 @@ public class ShowroomsPageTest extends TestBase {
     public void applyAreaAndNewStatusFilters() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+        //home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -410,7 +410,7 @@ public class ShowroomsPageTest extends TestBase {
     public void applyAreaAndUsedStatusFilters() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+     //   home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -436,7 +436,7 @@ public class ShowroomsPageTest extends TestBase {
     public void applyMakeAndNewStatusFilters() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+      //  home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -459,7 +459,7 @@ public class ShowroomsPageTest extends TestBase {
     public void applyMakeAndUsedStatusFilters() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+    //    home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -482,7 +482,7 @@ public class ShowroomsPageTest extends TestBase {
     public void openShowroomPage() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URLEn"));
         Thread.sleep(5000);
-        home.clickSkip();
+        // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -499,7 +499,7 @@ public class ShowroomsPageTest extends TestBase {
     public void openBranchesTab() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URLEn"));
         Thread.sleep(5000);
-        home.clickSkip();
+       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -521,7 +521,7 @@ public class ShowroomsPageTest extends TestBase {
     public void openContactUsTab() throws InterruptedException {
         initializationOnChrome(getVariableValueFromSheet1("URLEn"));
         Thread.sleep(5000);
-        home.clickSkip();
+        //home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);

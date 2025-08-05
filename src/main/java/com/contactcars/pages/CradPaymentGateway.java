@@ -2,8 +2,12 @@ package com.contactcars.pages;
 
 import com.contactcars.base.TestBase;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
+import java.time.Duration;
 
 public class CradPaymentGateway extends TestBase {
 
@@ -13,7 +17,7 @@ public class CradPaymentGateway extends TestBase {
     }
 
     //Locator for card number
-    By cardNumber = By.xpath("//input [@name = 'number']");
+    By cardNumber = By.id("number");
 
     //Locator for card holder name
     By cardHolder = By.xpath("//input [@name = 'name']");
@@ -30,6 +34,7 @@ public class CradPaymentGateway extends TestBase {
 
     //Method to enter card number
     public void enterCardNumber(String cardNo) {
+        driver.switchTo().frame(0);
         driver.findElement(cardNumber).sendKeys(cardNo);
     }
 
