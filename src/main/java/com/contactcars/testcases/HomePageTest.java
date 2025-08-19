@@ -3,24 +3,17 @@ package com.contactcars.testcases;
 import com.contactcars.base.TestBase;
 
 import com.contactcars.pages.HomePage;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v138.fetch.Fetch;
 import org.openqa.selenium.devtools.v138.network.Network;
-import org.openqa.selenium.devtools.v138.network.model.Request;
-import org.openqa.selenium.devtools.v138.network.model.RequestId;
 import org.openqa.selenium.devtools.v138.network.model.ResourceType;
-import org.openqa.selenium.devtools.v138.network.model.Response;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.time.Duration;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public class HomePageTest extends TestBase {
@@ -65,32 +58,58 @@ public class HomePageTest extends TestBase {
 //            }
 //        });
 //
-//        devTools.addListener(Network.loadingFinished(), loadingFinished -> {
-//                    RequestId requestId = loadingFinished.getRequestId();
-//                    if (matchedUrls.containsKey(requestId)) {
-//                        Network.GetResponseBodyResponse body = devTools.send(Network.getResponseBody(requestId));
-//                        System.out.println("Response Body for " + matchedUrls.get(requestId) + ":\n" + body.getBody());
-//                    }
-//                });
 
 
+        // Enable Network monitoring
+        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty(),Optional.empty()));
 
-        devTools.send(Fetch.enable(Optional.empty(), Optional.empty()));
-        devTools.addListener(Fetch.requestPaused(), requestPaused -> {
-            String url = requestPaused.getRequest().getUrl();
-            System.out.println("Fetch intercepted: " + url);
-            devTools.send(Fetch.continueRequest(
-                    requestPaused.getRequestId(),
-                    Optional.of(url),
-                    Optional.of(requestPaused.getRequest().getMethod()),
-                    Optional.empty(),
-                    Optional.empty(),
-                    Optional.empty()
-            ));
+// Map to track API requests
+        Map<String, String> apiRequests = new ConcurrentHashMap<>();
+
+        devTools.addListener(Network.requestWillBeSent(), request -> {
+            String requestId = request.getRequestId().toString();
+            String url = request.getRequest().getUrl();
+            String method = request.getRequest().getMethod();
+            Optional<ResourceType> resourceType = request.getType();
+
+            // Debug: print all requests to see what types exist
+            System.out.println("🔍 " + resourceType + " " + method + " " + url);
+
+            if (isApiCall(url, method, resourceType)) {
+                apiRequests.put(requestId, url);
+                System.out.println("✅ API REQUEST: " + method + " " + url);
+                System.out.println("   Type: " + resourceType);
+
+                // Log headers
+                System.out.println("   Headers: " + request.getRequest().getHeaders());
+
+            }
+        });
+
+// Listen for responses
+        devTools.addListener(Network.responseReceived(), response -> {
+            String requestId = response.getRequestId().toString();
+
+            if (apiRequests.containsKey(requestId)) {
+                String url = apiRequests.get(requestId);
+                int status = response.getResponse().getStatus();
+
+                System.out.println("✅ API RESPONSE: " + status + " " + url);
+
+//                // Try to get response body
+//                try {
+//                    CompletableFuture<String> bodyFuture = devTools.send(Network.getResponseBody(requestId));
+//                    bodyFuture.thenAccept(body -> {
+//                        System.out.println("   Response: " + (body.length() > 300 ? body.substring(0, 300) + "..." : body));
+//                    });
+//                } catch (Exception e) {
+//                    System.out.println("   Could not retrieve response body");
+//                }
+            }
         });
 
 
-        Thread.sleep(5000);
+
 
         openChrome(getVariableValueFromSheet1("URL"));
     }
