@@ -6,13 +6,13 @@ import com.contactcars.pages.HomePage;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v138.network.Network;
-import org.openqa.selenium.devtools.v138.network.model.ResourceType;
+import org.openqa.selenium.devtools.v138.network.model.Request;
+import org.openqa.selenium.devtools.v138.network.model.Response;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 
 
@@ -29,88 +29,87 @@ public class HomePageTest extends TestBase {
 
     @Test
     public void getRecentDealerAds() throws InterruptedException {
-
         driverInitialization();
-
-        // Trigger the network activity
-
-        DevTools devTools = ((ChromeDriver) driver).getDevTools();
-        devTools.createSession();
-
-
-        // Enable Network Monitoring
-//        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty()));
-//
-//        devTools.addListener(Network.requestWillBeSent(), requestWillBeSent -> {
-//            Request request = requestWillBeSent.getRequest();
-////            System.out.println("Mine" + request.getUrl());
-//        });
-//
-//
-////        final RequestId[] requestId = new RequestId[1];
-//        final Map<RequestId, String> matchedUrls = new HashMap<>();
-//
-//        // Listen to responseReceived events
-//        devTools.addListener(Network.responseReceived(), responseReceived -> {
-//            if (responseReceived.getResponse().getUrl().contains("getRecentDealerAds")) {
-//                matchedUrls.put(responseReceived.getRequestId(), responseReceived.getResponse().getUrl());
-//                System.out.println("Captured response for: " + responseReceived.getResponse().getUrl());
-//            }
-//        });
-//
-
-
-        // Enable Network monitoring
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty(),Optional.empty()));
-
-// Map to track API requests
         Map<String, String> apiRequests = new ConcurrentHashMap<>();
 
+        // Trigger the network activity
+        DevTools devTools = ((ChromeDriver) driver).getDevTools();
+        devTools.createSession();
+       //  Enable Network Monitoring
+        devTools.send(Network.enable(Optional.of(10000000), Optional.of(10000000), Optional.of(10000000), Optional.empty()));
+
+        // Listen for all requests
         devTools.addListener(Network.requestWillBeSent(), request -> {
             String requestId = request.getRequestId().toString();
-            String url = request.getRequest().getUrl();
-            String method = request.getRequest().getMethod();
-            Optional<ResourceType> resourceType = request.getType();
+            Request networkRequest = request.getRequest();
+            String url = networkRequest.getUrl();
+            String method = networkRequest.getMethod();
 
-            // Debug: print all requests to see what types exist
-            System.out.println("🔍 " + resourceType + " " + method + " " + url);
-
-            if (isApiCall(url, method, resourceType)) {
+            // Capture API requests based on patterns
+            if (isApiRequest(url, method)) {
                 apiRequests.put(requestId, url);
-                System.out.println("✅ API REQUEST: " + method + " " + url);
-                System.out.println("   Type: " + resourceType);
 
-                // Log headers
-                System.out.println("   Headers: " + request.getRequest().getHeaders());
+                if(url.contains("DealerAds")){
 
+//                    System.out.println("\n" + "=".repeat(80));
+                    System.out.println("🚀 API REQUEST CAPTURED");
+//                    System.out.println("=".repeat(80));
+                    System.out.println("URL: " + url);
+                    System.out.println("Method: " + method);
+                    System.out.println("Request ID: " + requestId);
+
+                    // Log request body for POST/PUT requests
+//                    if (networkRequest.getPostData() != null && !networkRequest.getPostData().isEmpty()) {
+//                        System.out.println("Request Body: " + networkRequest.getPostData());
+//                    }
+                }
             }
         });
 
-// Listen for responses
+
+
+        // Listen for all responses
         devTools.addListener(Network.responseReceived(), response -> {
             String requestId = response.getRequestId().toString();
 
-            if (apiRequests.containsKey(requestId)) {
-                String url = apiRequests.get(requestId);
-                int status = response.getResponse().getStatus();
+            if (apiRequests.containsKey(requestId) && response.getResponse().getStatus() == 200) {
+                Response networkResponse = response.getResponse();
+                String url = networkResponse.getUrl();
+                int statusCode = networkResponse.getStatus();
+                String statusText = networkResponse.getStatusText();
 
-                System.out.println("✅ API RESPONSE: " + status + " " + url);
+//                System.out.println("\n" + "=".repeat(80));
+                System.out.println("✅ API RESPONSE RECEIVED");
+//                System.out.println("=".repeat(80));
+                System.out.println("URL: " + url);
+                System.out.println("Status: " + statusCode + " " + statusText);
+                System.out.println("Request ID: " + requestId);
 
-//                // Try to get response body
-//                try {
-//                    CompletableFuture<String> bodyFuture = devTools.send(Network.getResponseBody(requestId));
-//                    bodyFuture.thenAccept(body -> {
-//                        System.out.println("   Response: " + (body.length() > 300 ? body.substring(0, 300) + "..." : body));
-//                    });
-//                } catch (Exception e) {
-//                    System.out.println("   Could not retrieve response body");
-//                }
+                // Get and log response body
+                try {
+                    Network.GetResponseBodyResponse responseBody = devTools.send(Network.getResponseBody(response.getRequestId()));
+                    String body = responseBody.getBody();
+                    System.out.println("Response Body: ");
+                    System.out.println(formatJsonResponse(body));
+                    System.out.println("=".repeat(80));
+
+                } catch (Exception e) {
+                    System.out.println("Error getting response body: " + e.getMessage());
+                }
             }
         });
 
 
-
+        // Also capture loading failed events
+//        devTools.addListener(Network.loadingFailed(), loadingFailed -> {
+//            String requestId = loadingFailed.getRequestId().toString();
+//            if (apiRequests.containsKey(requestId)) {
+//                System.out.println("\n❌ API REQUEST FAILED: " + apiRequests.get(requestId));
+//                System.out.println("Error: " + loadingFailed.getErrorText());
+//            }
+//        });
 
         openChrome(getVariableValueFromSheet1("URL"));
+        Thread.sleep(5000);
     }
 }

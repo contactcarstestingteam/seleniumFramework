@@ -18,9 +18,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-//import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v138.network.Network;
-import org.openqa.selenium.devtools.v138.network.model.ResourceType;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
@@ -192,41 +189,52 @@ public class TestBase {
 
 
 
-
-    // Enhanced API detection
-    public static boolean isApiCall(String url, String method, Optional<ResourceType> resourceType) {
+    public static boolean isApiRequest(String url, String method) {
         String lowerUrl = url.toLowerCase();
 
-        // 1. Check by URL patterns (most reliable)
-        if (lowerUrl.contains("/api/") ||
-                lowerUrl.contains("api.") ||
-                lowerUrl.contains("graphql") ||
-                lowerUrl.contains("rest") ||
-                lowerUrl.contains("json") ||
-                lowerUrl.contains("xml") ||
-                lowerUrl.contains("webservice") ||
-                lowerUrl.contains("endpoint")) {
-            return true;
-        }
+        // Common API patterns
+        String[] apiPatterns = {
+                "/api/", "api.", "graphql", "rest", "json", "xml",
+                "service", "endpoint", "ajax", "xhr", "webservice",
+                "v1/", "v2/", "v3/", "users", "products", "auth",
+                "login", "register", "customer", "order", "cart",
+                "/api", "api-", "fetch"
+        };
 
-        // 2. Check by resource type + method combination
-        if (resourceType == Network.ResourceType.XHR ||
-                resourceType == Network.ResourceType.FETCH ||
-                resourceType == Network.ResourceType.OTHER)
-            if (method.equals("POST") || method.equals("PUT") || method.equals("DELETE") || method.equals("PATCH")) {
+        // Check URL patterns
+        for (String pattern : apiPatterns) {
+            if (lowerUrl.contains(pattern)) {
                 return true;
             }
+        }
 
-        // 3. Exclude obvious non-API resources
-        if (lowerUrl.endsWith(".css") || lowerUrl.endsWith(".js") ||
-                lowerUrl.endsWith(".png") || lowerUrl.endsWith(".jpg") ||
-                lowerUrl.endsWith(".gif") || lowerUrl.endsWith(".ico") ||
-                lowerUrl.contains("fonts.") || lowerUrl.contains("cdn.")) {
-            return false;
+        // Also capture non-GET requests to unknown endpoints (often APIs)
+        if (!"GET".equalsIgnoreCase(method) &&
+                !lowerUrl.endsWith(".html") &&
+                !lowerUrl.endsWith(".css") &&
+                !lowerUrl.endsWith(".js") &&
+                !lowerUrl.endsWith(".png") &&
+                !lowerUrl.endsWith(".jpg") &&
+                !lowerUrl.endsWith(".gif")) {
+            return true;
         }
 
         return false;
     }
+
+    public static String formatJsonResponse(String response) {
+        // Simple JSON formatting
+        try {
+            return response.replace(",", ",\n    ")
+                    .replace("{", "{\n    ")
+                    .replace("}", "\n}")
+                    .replace("[", "[\n    ")
+                    .replace("]", "\n]");
+        } catch (Exception e) {
+            return response; // Return original if formatting fails
+        }
+    }
+
 
 
 }
