@@ -39,10 +39,6 @@ public class TestBase {
     public static String Pass;
     public static String Fail;
     public static Map<String, String> queryParams = new HashMap<>();
-//    public static ArrayList<Request> requests = new ArrayList<>();
-
-
-
 
 
   
@@ -186,55 +182,5 @@ public class TestBase {
     public void quitChrome() {
         driver.quit();
     }
-
-
-
-    public static boolean isApiRequest(String url, String method) {
-        String lowerUrl = url.toLowerCase();
-
-        // Common API patterns
-        String[] apiPatterns = {
-                "/api/", "api.", "graphql", "rest", "json", "xml",
-                "service", "endpoint", "ajax", "xhr", "webservice",
-                "v1/", "v2/", "v3/", "users", "products", "auth",
-                "login", "register", "customer", "order", "cart",
-                "/api", "api-", "fetch"
-        };
-
-        // Check URL patterns
-        for (String pattern : apiPatterns) {
-            if (lowerUrl.contains(pattern)) {
-                return true;
-            }
-        }
-
-        // Also capture non-GET requests to unknown endpoints (often APIs)
-        if (!"GET".equalsIgnoreCase(method) &&
-                !lowerUrl.endsWith(".html") &&
-                !lowerUrl.endsWith(".css") &&
-                !lowerUrl.endsWith(".js") &&
-                !lowerUrl.endsWith(".png") &&
-                !lowerUrl.endsWith(".jpg") &&
-                !lowerUrl.endsWith(".gif")) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public static String formatJsonResponse(String response) {
-        // Simple JSON formatting
-        try {
-            return response.replace(",", ",\n    ")
-                    .replace("{", "{\n    ")
-                    .replace("}", "\n}")
-                    .replace("[", "[\n    ")
-                    .replace("]", "\n]");
-        } catch (Exception e) {
-            return response; // Return original if formatting fails
-        }
-    }
-
-
 
 }
