@@ -52,6 +52,8 @@ public class HomePage extends TestBase {
     //Locator for all dealer ads years
     By allAdsYears = By.cssSelector("main > section:nth-child(5) > div > div > div > div > div > div > a:nth-child(2) > h2 > span(3)");
 
+    //Locator for all dealer ads names
+    By allAdsNames = By.cssSelector("main > section:nth-child(5) > div > div > div > div > div > div > div > div > span");
 
     //Method to click on skip button in notification pop up
     public void clickSkip() {
@@ -98,20 +100,42 @@ public class HomePage extends TestBase {
     //Method to get text for all dealer ads prices
     public void getAdsPrices() {
         List<WebElement> prices = driver.findElements(allAdsprices);
+        for (int i = 0; i <= prices.size(); i++) {
+            prices.get(i).getText();
+        }
     }
 
     //Method to get text for all dealer ads makes
-    public void getFirstMake() {
-        driver.findElement(firstMake).getText();
+    public void getAdsMakes() {
+        List<WebElement> makes = driver.findElements(allAdsMakes);
+        for (int i = 0; i <= makes.size(); i++) {
+            makes.get(i).getText();
+        }
     }
 
-
-    ArrayList<WebElement> prices = new ArrayList<>();
-    for(int i = 0; i >= prices.length; i++){
-
+    //Method to get text for all dealer ads models
+    public void getAdsModels() {
+        List<WebElement> models = driver.findElements(allAdsModels);
+        for (int i = 0; i <= models.size(); i++) {
+            models.get(i).getText();
+        }
     }
 
+    //Method to get text for all dealer ads years
+    public void getAdsYears() {
+        List<WebElement> years = driver.findElements(allAdsYears);
+        for (int i = 0; i <= years.size(); i++) {
+            years.get(i).getText();
+        }
+    }
 
+    //Method to get text for all dealer ads names
+    public void getAdsNames() {
+        List<WebElement> names = driver.findElements(allAdsNames);
+        for (int i = 0; i <= names.size(); i++) {
+            names.get(i).getText();
+        }
+    }
 
 }
 

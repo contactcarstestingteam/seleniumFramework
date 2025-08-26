@@ -1,10 +1,13 @@
 package com.contactcars.base;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v138.network.Network;
 import org.openqa.selenium.devtools.v138.network.model.Request;
 import org.openqa.selenium.devtools.v138.network.model.Response;
+import org.testng.Assert;
 
 import java.io.IOException;
 import java.util.Map;
@@ -42,12 +45,10 @@ public class DevToolsManager extends TestBase{
                 apiRequests.put(requestId, url);
 
                 if(url.contains(apiName)){
-//                    System.out.println("\n" + "=".repeat(80));
-                    System.out.println("🚀 API REQUEST CAPTURED");
-//                    System.out.println("=".repeat(80));
-                    System.out.println("URL: " + url);
-                    System.out.println("Method: " + method);
-                    System.out.println("Request ID: " + requestId);
+//                    System.out.println("🚀 API REQUEST CAPTURED");
+//                    System.out.println("URL: " + url);
+//                    System.out.println("Method: " + method);
+//                    System.out.println("Request ID: " + requestId);
 
                     // Log request body for POST/PUT requests
 //                    if (networkRequest.getPostData() != null && !networkRequest.getPostData().isEmpty()) {
@@ -69,24 +70,43 @@ public class DevToolsManager extends TestBase{
                 int statusCode = networkResponse.getStatus();
                 String statusText = networkResponse.getStatusText();
 
-//                System.out.println("\n" + "=".repeat(80));
-                System.out.println("✅ API RESPONSE RECEIVED");
-//                System.out.println("=".repeat(80));
-                System.out.println("URL: " + url);
-                System.out.println("Status: " + statusCode + " " + statusText);
-                System.out.println("Request ID: " + requestId);
+//                System.out.println("✅ API RESPONSE RECEIVED");
+//                System.out.println("URL: " + url);
+//                System.out.println("Status: " + statusCode + " " + statusText);
+//                System.out.println("Request ID: " + requestId);
 
                 // Get and log response body
                 try {
                     Network.GetResponseBodyResponse responseBody = devTools.send(Network.getResponseBody(response.getRequestId()));
                     String body = responseBody.getBody();
-                    System.out.println("Response Body: ");
+//                    System.out.println("Response Body: ");
                     System.out.println(formatJsonResponse(body));
-                    System.out.println("=".repeat(80));
+
+
+
+
+
+                    // First get the Json object instance from the Response interface
+                    JSONObject responseBodyInJSON = new JSONObject(body);
+                    // Get the result array from the response
+                    JSONArray result = responseBodyInJSON.getJSONArray("result");
+//                    System.out.println(result);
+                    // Get the items object from the result array
+                    JSONObject object = result.getJSONObject(0);
+                    System.out.println(object);
+                    String make = object.get("nameAr").toString();
+                    System.out.println(make);
+
+
+
+
+
 
                 } catch (Exception e) {
                     System.out.println("Error getting response body: " + e.getMessage());
                 }
+
+//                Assert.assertEquals("","");
             }
         });
 
