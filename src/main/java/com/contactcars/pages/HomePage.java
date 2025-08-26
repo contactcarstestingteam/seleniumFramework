@@ -2,12 +2,15 @@ package com.contactcars.pages;
 
 import com.contactcars.base.TestBase;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomePage extends TestBase {
 
@@ -34,9 +37,20 @@ public class HomePage extends TestBase {
     //Locator for showrooms link
     By showroomsLink = By.cssSelector("header > nav > div > ul > li:nth-child(5) > a");
 
-    // Locator for dealer ads section
+    //Locator for dealer ads section
     By dealerAds = By.cssSelector("main > section:nth-child(5) > div > div > div > div > div > div > a");
 
+    //Locator for all dealer ads prices
+    By allAdsprices = By.cssSelector("main > section:nth-child(5) > div > div > div > div > div > div > a:nth-child(2) > div > span");
+
+    //Locator for all dealer ads makes
+    By allAdsMakes = By.cssSelector("main > section:nth-child(5) > div > div > div > div > div > div > a:nth-child(2) > h2 > span(1)");
+
+    //Locator for all dealer ads models
+    By allAdsModels = By.cssSelector("main > section:nth-child(5) > div > div > div > div > div > div > a:nth-child(2) > h2 > span(2)");
+
+    //Locator for all dealer ads years
+    By allAdsYears = By.cssSelector("main > section:nth-child(5) > div > div > div > div > div > div > a:nth-child(2) > h2 > span(3)");
 
 
     //Method to click on skip button in notification pop up
@@ -80,5 +94,24 @@ public class HomePage extends TestBase {
         // Use Explicit Wait to wait for a specific condition
         wait.until(ExpectedConditions.visibilityOfElementLocated(dealerAds));
     }
+
+    //Method to get text for all dealer ads prices
+    public void getAdsPrices() {
+        List<WebElement> prices = driver.findElements(allAdsprices);
+    }
+
+    //Method to get text for all dealer ads makes
+    public void getFirstMake() {
+        driver.findElement(firstMake).getText();
+    }
+
+
+    ArrayList<WebElement> prices = new ArrayList<>();
+    for(int i = 0; i >= prices.length; i++){
+
+    }
+
+
+
 }
 
