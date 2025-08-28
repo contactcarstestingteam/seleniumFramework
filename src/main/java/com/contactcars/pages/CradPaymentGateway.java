@@ -2,12 +2,9 @@ package com.contactcars.pages;
 
 import com.contactcars.base.TestBase;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
-import java.time.Duration;
+
 
 public class CradPaymentGateway extends TestBase {
 

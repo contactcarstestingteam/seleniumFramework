@@ -2,14 +2,12 @@ package com.contactcars.pages;
 
 import com.contactcars.base.TestBase;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 import java.time.Duration;
-import java.time.Instant;
 
 public class LoginPage extends TestBase {
 
@@ -36,12 +34,6 @@ public class LoginPage extends TestBase {
         WebElement mobileInput = wait.until(ExpectedConditions.visibilityOfElementLocated(mobileNumber));
         mobileInput.sendKeys(mobileNo);
     }
-
-//    public void enterMobileNumber(String mobileNo) {
-//        driver.findElement(mobileNumber).sendKeys(mobileNo);
-//    }
-
-
 
     //Method to click on login button
     public static void clickLogin() {
