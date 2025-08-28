@@ -34,10 +34,10 @@ static By loginLink = By.cssSelector("header > div > div:nth-child(3) > button")
     By noThanksButton = By.cssSelector("body > div > div > div > div:nth-child(5) > button");
 
     //Locator for services link
-    static By servicesLink = By.cssSelector("header > nav > div > ul > li:nth-child(4) > span");
+    By servicesLink = By.cssSelector("header > nav > div > ul > li:nth-child(4) > span");
 
     //Locator for otlobha button
-    static By otlobhaButton = By.cssSelector("header > nav > div > ul > li:nth-child(4) > div > div > div > a > span");
+    By otlobhaButton = By.cssSelector("header > nav > div > ul > li:nth-child(4) > div > div > div > a > span");
 
     //Locator for showrooms link
     By showroomsLink = By.cssSelector("header > nav > div > ul > li:nth-child(5) > a");
@@ -75,13 +75,13 @@ static By loginLink = By.cssSelector("header > div > div:nth-child(3) > button")
     }
 
     //Method to hover on services link
-    public static void hoverOnServicesLink() {
+    public void hoverOnServicesLink() {
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(servicesLink)).build().perform();
     }
 
     //Method to click on otlobha button
-    public static void clickOtlobhaButton() {
+    public void clickOtlobhaButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement button = wait.until(ExpectedConditions.elementToBeClickable(otlobhaButton));
         button.click();

@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class HomePageTest extends DevToolsManager {
 
     //Creating object of Home page
@@ -25,6 +24,15 @@ public class HomePageTest extends DevToolsManager {
 
     public HomePageTest() throws IOException {
         super();
+    }
+
+    public void openOtlobhaLandingPage() throws InterruptedException, IOException {
+        LoginPageTest.login();
+        Thread.sleep(5000);
+        home.hoverOnServicesLink();
+        Thread.sleep(5000);
+        home.clickOtlobhaButton();
+        Thread.sleep(5000);
     }
 
     @Test

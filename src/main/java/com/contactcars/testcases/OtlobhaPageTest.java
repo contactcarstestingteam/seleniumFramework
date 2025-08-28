@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class OtlobhaPageTest extends TestBase {
     //Creating object of Home page
-    HomePage home = new HomePage();
+    HomePageTest homeTest = new HomePageTest();
     //Creating object of Otlobha landing page
     OtlobhaLandingPage otlobhaLanding = new OtlobhaLandingPage();
     //Creating object of Otlobha form 1st step page
@@ -25,7 +25,7 @@ public class OtlobhaPageTest extends TestBase {
 
 @Test // Test (1) (Agency + Specific Trim + cash + Wallet)
     public void OtlobhaAgencySpecificTrim() throws InterruptedException, IOException {
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
@@ -60,7 +60,7 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (2) (Agency + All Trims + cash + wallet)
     public void OtlobhaAgencyAllTrims() throws InterruptedException, IOException {
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
@@ -102,7 +102,7 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (3) (Agency + Other Trim + cash + wallet)
     public void OtlobhaAgencyOtherTrim() throws InterruptedException, IOException {
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
@@ -145,7 +145,7 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (4) (Agency + Specific Trim + Finance + Minimum Down Payment + Wallet)
     public void OtlobhaAgencyMinDownPayment() throws InterruptedException, IOException {
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
@@ -191,7 +191,7 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (5) (Agency + All Trims +  Finance + Minimum Down Payment + wallet)
     public void OtlobhaAgencyMinDownPayment2() throws InterruptedException, IOException {
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
@@ -238,7 +238,7 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (6) (Agency + Other Trim + Finance + Minimum Down Payment + wallet)
     public void OtlobhaAgencyMinDownPayment3() throws InterruptedException, IOException {
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
@@ -286,7 +286,7 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (7) (Agency + Specific Trim + Finance + Down Payment Value + Wallet)
     public void OtlobhaAgencyDownPaymentValue() throws InterruptedException, IOException {
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
@@ -333,7 +333,7 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (8) (Agency + All Trims + Finance + Down Payment Value + Wallet)
     public void OtlobhaAgencyDownPaymentValue2() throws InterruptedException, IOException {
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
@@ -381,7 +381,7 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (9) (Agency +Other Trim + Finance + Down Payment Value + Wallet)
     public void OtlobhaAgencyDownPaymentValue3() throws InterruptedException, IOException {
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
@@ -429,7 +429,7 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (10) (Imported + Specific Trim + cash + wallet)
     public void OtlobhaImportedSpecificTrim() throws InterruptedException, IOException {
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
@@ -472,7 +472,7 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (11) (Imported + "Imported= All trims" + cash + wallet)
     public void OtlobhaImportedAllTrims() throws InterruptedException, IOException {
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
@@ -514,7 +514,7 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (12) (Imported + Specific Trim + Finance + Minimum Down Payment + wallet)
     public void OtlobhaImportedMiniDP() throws InterruptedException, IOException {
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
@@ -561,7 +561,7 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (13) (Imported + (Imported = all trims) + Finance + Minimum Down Payment + wallet)
     public void OtlobhaImportedMiniDP2() throws InterruptedException, IOException {
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
@@ -609,7 +609,7 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (14) (Imported + Specific trim + Finance + Down Payment value + wallet)
     public void OtlobhaImportedDPvalue() throws InterruptedException, IOException {
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
@@ -656,7 +656,7 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (15) (Imported + All trims + Finance + Down Payment value + wallet)
     public void OtlobhaImportedDPvalue2() throws InterruptedException, IOException {
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
