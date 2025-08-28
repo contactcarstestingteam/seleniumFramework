@@ -8,10 +8,17 @@
   <url>http://maven.apache.org</url>
   <dependencies>
     <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+<!--    <dependency>-->
+<!--      <groupId>org.seleniumhq.selenium</groupId>-->
+<!--      <artifactId>selenium-java</artifactId>-->
+<!--      <version>4.28.1</version>-->
+<!--    </dependency>-->
+
+    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>4.28.1</version>
+      <version>4.34.0</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
@@ -100,6 +107,14 @@
       <version>20250107</version>
     </dependency>
 
+      <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-devtools-v118 -->
+      <dependency>
+          <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-devtools-v138</artifactId>
+          <version>4.34.0</version>
+      </dependency>
+
+
   </dependencies>
   <build>
     <plugins>
@@ -107,8 +122,8 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>8</source>
-          <target>8</target>
+          <source>11</source>
+          <target>11</target>
           <compilerArgs>--enable-preview</compilerArgs>
         </configuration>
       </plugin>

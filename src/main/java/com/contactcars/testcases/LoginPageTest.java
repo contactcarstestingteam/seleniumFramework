@@ -21,7 +21,8 @@ public class LoginPageTest extends TestBase {
         HomePage home = new HomePage();
         LoginPage login = new LoginPage();
 
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
        // home.clickSkip();
         home.clickLoginLink();

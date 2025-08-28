@@ -48,9 +48,6 @@ public class TestBase {
     public static Actions actions;
 
 
-
-
-
     // Loading properties and credentials files
     public TestBase() throws IOException {
         File credentials = new File("D:\\Website Variables.xlsx");
@@ -60,14 +57,19 @@ public class TestBase {
         sheet2 = workbook.getSheetAt(1);
     }
 
-
-    // Open chrome window
-    public static void initializationOnChrome(String URL) {
+    // Initialize web driver
+    public static WebDriver driverInitialization() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get(URL);
+        return driver;
     }
+
+    // Open Website
+    public static void openChrome(String url) {
+        driver.get(url);
+    }
+  
     @BeforeTest
     public void startReporter() {
         extentSparkReporter  = new ExtentSparkReporter("C:/Users/Nada.Adel/IdeaProjects/seleniumFramework/test-output/extentReport.html");
@@ -114,33 +116,7 @@ public class TestBase {
             System.out.println("Ad not found, continue normally.");
         }
     }
-    /*
-    // Method to close the pop -up of extra features
-    public void dismissExtrasPopup() {
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-            // Wait for the popup title to appear
-            WebElement popupTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                    By.xpath("//*[contains(text(),'مميزات إضافية لبيع سيارتك أسرع')]")
-            ));
-
-            // Click the close button
-            WebElement closeButton = driver.findElement(By.cssSelector("div.flex.items-center.gap-3.mt-6 > button"));
-            closeButton.click();
-
-            System.out.println("Extras popup dismissed successfully.");
-
-        } catch (TimeoutException e) {
-            // Popup did not appear — no action needed
-            System.out.println("Extras popup was not displayed.");
-        } catch (Exception e) {
-            // Any other error while dismissing popup
-            System.out.println("Error while dismissing extras popup: " + e.getMessage());
-        }
-    }
-
-     */
 
     // Adding free promo code for Otlobha request
     public void addOtlobhaPromoCode(String promoCode) throws InterruptedException, IOException {
@@ -152,43 +128,6 @@ public class TestBase {
        // wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("main > div:nth-child(2) > div:nth-child(2) > form > div > div > button")));
         form2ndStep.clickApplyPromoCode();
     }
-
-/*
-// Pay with card
-
-    public void payWithCard() throws IOException, InterruptedException {
-        // Creating object of card payment gateway page
-        CradPaymentGateway card = new CradPaymentGateway();
-        Thread.sleep(5000);
-
-
-        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#paymob_checkout > div:nth-child(6)")));
-        WebElement cardNumberField = driver.findElement(By.name("number"));
-
-        //cardNumberField.click();
-        //cardNumberField.sendKeys(getVariableValueFromSheet1("Card No"));
-
-        //WebElement cardNameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#name")));
-        WebElement cardNameField = driver.findElement(By.cssSelector("#paymob_checkout > div:nth-child(9) > input[type=text]"));
-        cardNameField.click();
-        cardNameField.sendKeys(getVariableValueFromSheet1("Card Name"));
-
-        /*WebElement cardExpiryField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#expiry")));
-        cardExpiryField.click();
-        cardExpiryField.sendKeys(getVariableValueFromSheet1("Expirey"));
-
-        WebElement cardCvvField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#cvv")));
-        cardCvvField.click();
-        cardCvvField.sendKeys(getVariableValueFromSheet1("CVV"));
-
-        card.clickPay();
-    }
-
- */
-
-
-
 
     public void payWithCard() throws IOException {
         //Creating object of card payment gateway page
@@ -223,17 +162,6 @@ public class TestBase {
             wallet.clickPay();
         }
     }
-
-    /*
-    public void payWithWallet() throws IOException {
-        //Creating object of Wallet paymnet gateway page
-        WalletPaymentGateway wallet = new WalletPaymentGateway();
-        wallet.enterMPin(getVariableValueFromSheet1("Mpin"));
-        wallet.enterOtp(getVariableValueFromSheet1("WalletOTP"));
-        wallet.clickPay();
-    }
-
-     */
 
     // Build qeury params for any Api
     public static Map<String, String> buildQueryParams(String... keyValuePairs) {
@@ -287,35 +215,4 @@ public class TestBase {
     public void quitChrome() {
         driver.quit();
     }
-
-    /*
-//Freeze page .. disappear scroll
-public void refreshIfNoScroll() {
-    try {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        Long scrollHeight = (Long) js.executeScript("return document.body.scrollHeight;");
-        Long clientHeight = (Long) js.executeScript("return window.innerHeight;");
-
-        System.out.println("Scroll height: " + scrollHeight);
-        System.out.println("Client height: " + clientHeight);
-
-        if (scrollHeight <= clientHeight) {
-            System.out.println("Scroll not found. Refreshing page...");
-            Thread.sleep(2000);
-            js.executeScript("location.reload()");
-        } else {
-            System.out.println("Scroll exists, no need to refresh.");
-        }
-
-    } catch (Exception e) {
-        System.out.println("Error checking scroll: " + e.getMessage());
-    }
-}
-
-     */
-
-
-
-
-
 }
