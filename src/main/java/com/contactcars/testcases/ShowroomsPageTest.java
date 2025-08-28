@@ -31,7 +31,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+        //home.clickSkip();
         home.clickShowroomsLink();
         Thread.sleep(5000);
         // Adding all names in a list
@@ -50,7 +50,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+        //home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -80,7 +80,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+        //home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -102,7 +102,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -125,7 +125,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -151,7 +151,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+        // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -176,7 +176,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+        //home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -198,7 +198,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -220,7 +220,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+      //  home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -244,7 +244,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -270,7 +270,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+      //  home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -294,7 +294,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -319,7 +319,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -343,7 +343,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -367,7 +367,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+      //  home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -395,7 +395,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+        //home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -422,7 +422,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+     //   home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -449,7 +449,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+      //  home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -473,7 +473,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+    //    home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -497,7 +497,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URLEn"));
         Thread.sleep(5000);
-        home.clickSkip();
+        // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -515,7 +515,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URLEn"));
         Thread.sleep(5000);
-        home.clickSkip();
+       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -538,7 +538,7 @@ public class ShowroomsPageTest extends TestBase {
         driverInitialization();
         openChrome(getVariableValueFromSheet1("URLEn"));
         Thread.sleep(5000);
-        home.clickSkip();
+        //home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);

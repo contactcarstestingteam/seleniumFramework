@@ -23,11 +23,9 @@ public class HomePageTest extends DevToolsManager {
     List<String> responsePricesList = new ArrayList<>();
     List<String> responseDealerNamesList = new ArrayList<>();
 
-
     public HomePageTest() throws IOException {
         super();
     }
-
 
     @Test
     public void getRecentDealerAds() throws InterruptedException {
@@ -82,4 +80,5 @@ public class HomePageTest extends DevToolsManager {
         Assert.assertEquals(responseYearsList, home.getAdsYears());
         Assert.assertEquals(responseDealerNamesList, home.getAdsNames());
     }
+    
 }
