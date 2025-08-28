@@ -14,6 +14,13 @@ import java.util.List;
 
 public class HomePage extends TestBase {
 
+    List<String> priceValues = new ArrayList<>();
+    List<String> makeValues = new ArrayList<>();
+    List<String> modelValues = new ArrayList<>();
+    List<String> yearValues = new ArrayList<>();
+    List<String> nameValues = new ArrayList<>();
+
+
     //Constructor that will be automatically called as soon as the object of the class is created
     public HomePage() throws IOException {
         super();
@@ -44,13 +51,13 @@ public class HomePage extends TestBase {
     By allAdsprices = By.cssSelector("main > section:nth-child(5) > div > div > div > div > div > div > a:nth-child(2) > div > span");
 
     //Locator for all dealer ads makes
-    By allAdsMakes = By.cssSelector("main > section:nth-child(5) > div > div > div > div > div > div > a:nth-child(2) > h2 > span(1)");
+    By allAdsMakes = By.cssSelector("main > section:nth-child(5) > div > div > div > div > div > div > a:nth-child(2) > h2 > span:first-child");
 
     //Locator for all dealer ads models
-    By allAdsModels = By.cssSelector("main > section:nth-child(5) > div > div > div > div > div > div > a:nth-child(2) > h2 > span(2)");
+    By allAdsModels = By.cssSelector("main > section:nth-child(5) > div > div > div > div > div > div > a:nth-child(2) > h2 > span:nth-child(2)");
 
     //Locator for all dealer ads years
-    By allAdsYears = By.cssSelector("main > section:nth-child(5) > div > div > div > div > div > div > a:nth-child(2) > h2 > span(3)");
+    By allAdsYears = By.cssSelector("main > section:nth-child(5) > div > div > div > div > div > div > a:nth-child(2) > h2 > span:last-child");
 
     //Locator for all dealer ads names
     By allAdsNames = By.cssSelector("main > section:nth-child(5) > div > div > div > div > div > div > div > div > span");
@@ -98,43 +105,53 @@ public class HomePage extends TestBase {
     }
 
     //Method to get text for all dealer ads prices
-    public void getAdsPrices() {
+    public List<String> getAdsPrices() {
         List<WebElement> prices = driver.findElements(allAdsprices);
-        for (int i = 0; i <= prices.size(); i++) {
-            prices.get(i).getText();
+        for (int i = 0; i < prices.size(); i++) {
+            String price = prices.get(i).getText().replaceAll(",", "");
+            if(driver.getCurrentUrl().equals(getVariableValueFromSheet1("URL"))){
+                priceValues.add(price.replaceAll(" ج.م.", ""));
+            } else if(driver.getCurrentUrl().equals(getVariableValueFromSheet1("URLEn"))) {
+                priceValues.add(price.replaceAll("EGP", ""));
+            }
         }
+        return priceValues;
     }
 
     //Method to get text for all dealer ads makes
-    public void getAdsMakes() {
+    public List <String> getAdsMakes() {
         List<WebElement> makes = driver.findElements(allAdsMakes);
-        for (int i = 0; i <= makes.size(); i++) {
-            makes.get(i).getText();
+        for (int i = 0; i < makes.size(); i++) {
+            makeValues.add(makes.get(i).getText());
         }
+        return makeValues;
     }
 
     //Method to get text for all dealer ads models
-    public void getAdsModels() {
+    public List<String> getAdsModels() {
         List<WebElement> models = driver.findElements(allAdsModels);
-        for (int i = 0; i <= models.size(); i++) {
-            models.get(i).getText();
+        for (int i = 0; i < models.size(); i++) {
+            modelValues.add(models.get(i).getText());
         }
+        return modelValues;
     }
 
     //Method to get text for all dealer ads years
-    public void getAdsYears() {
+    public List<String> getAdsYears() {
         List<WebElement> years = driver.findElements(allAdsYears);
-        for (int i = 0; i <= years.size(); i++) {
-            years.get(i).getText();
+        for (int i = 0; i < years.size(); i++) {
+            yearValues.add(years.get(i).getText());
         }
+        return yearValues;
     }
 
     //Method to get text for all dealer ads names
-    public void getAdsNames() {
+    public List<String> getAdsNames() {
         List<WebElement> names = driver.findElements(allAdsNames);
-        for (int i = 0; i <= names.size(); i++) {
-            names.get(i).getText();
+        for (int i = 0; i < names.size(); i++) {
+            nameValues.add(names.get(i).getText());
         }
+        return nameValues;
     }
 
 }

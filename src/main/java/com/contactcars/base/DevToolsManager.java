@@ -2,14 +2,17 @@ package com.contactcars.base;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v138.network.Network;
 import org.openqa.selenium.devtools.v138.network.model.Request;
 import org.openqa.selenium.devtools.v138.network.model.Response;
-import org.testng.Assert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
@@ -22,6 +25,7 @@ public class DevToolsManager extends TestBase{
 
     public static DevTools devTools;
     public static Map<String, String> apiRequests = new ConcurrentHashMap<>();
+    public static JSONArray result;
 
     public static void setupDevTools() {
         driverInitialization();
@@ -79,34 +83,20 @@ public class DevToolsManager extends TestBase{
                 try {
                     Network.GetResponseBodyResponse responseBody = devTools.send(Network.getResponseBody(response.getRequestId()));
                     String body = responseBody.getBody();
-//                    System.out.println("Response Body: ");
-                    System.out.println(formatJsonResponse(body));
+//                    System.out.println(formatJsonResponse(body));
 
-
-
-
+                    // Create a WebDriverWait instance
+                    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+                    // Wait for the document.readyState to be "complete"
+                    wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
 
                     // First get the Json object instance from the Response interface
                     JSONObject responseBodyInJSON = new JSONObject(body);
                     // Get the result array from the response
-                    JSONArray result = responseBodyInJSON.getJSONArray("result");
-//                    System.out.println(result);
-                    // Get the items object from the result array
-                    JSONObject object = result.getJSONObject(0);
-                    System.out.println(object);
-                    String make = object.get("nameAr").toString();
-                    System.out.println(make);
-
-
-
-
-
-
+                    result = responseBodyInJSON.getJSONArray("result");
                 } catch (Exception e) {
                     System.out.println("Error getting response body: " + e.getMessage());
                 }
-
-//                Assert.assertEquals("","");
             }
         });
 

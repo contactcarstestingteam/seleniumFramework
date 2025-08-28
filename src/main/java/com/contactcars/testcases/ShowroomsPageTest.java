@@ -4,11 +4,6 @@ import com.contactcars.base.TestBase;
 import com.contactcars.pages.HomePage;
 import com.contactcars.pages.ShowroomsDetailsPage;
 import com.contactcars.pages.ShowroomsPage;
-import io.restassured.RestAssured;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
