@@ -28,7 +28,7 @@ public class HomePage extends TestBase {
     }
 
     //Locator for login button
-static By loginLink = By.cssSelector("header > div > div:nth-child(3) > button");
+    By loginLink = By.cssSelector("header > div > div:nth-child(3) > button");
 
     //Locator for no thanks button
     By noThanksButton = By.cssSelector("body > div > div > div > div:nth-child(5) > button");
@@ -63,7 +63,7 @@ static By loginLink = By.cssSelector("header > div > div:nth-child(3) > button")
 
 
     //Method to click login link
-    public static void clickLoginLink() {
+    public void clickLoginLink() {
         driver.findElement(loginLink).click();
     }
 

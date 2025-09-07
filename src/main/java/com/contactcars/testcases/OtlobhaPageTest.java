@@ -8,7 +8,7 @@ import java.io.IOException;
 
 
 public class OtlobhaPageTest extends TestBase {
-    //Creating object of Home page
+    //Creating object of Home page test
     HomePageTest homeTest = new HomePageTest();
     //Creating object of Otlobha landing page
     OtlobhaLandingPage otlobhaLanding = new OtlobhaLandingPage();
@@ -18,6 +18,8 @@ public class OtlobhaPageTest extends TestBase {
     OtlobhaForm2ndStep form2ndStep = new OtlobhaForm2ndStep();
     //Creating object of Wallet paymnet gateway page
     WalletPaymentGateway wallet = new WalletPaymentGateway();
+    // Creating object of home page
+    HomePage home = new HomePage();
 
     public OtlobhaPageTest() throws IOException {
         super();
@@ -704,7 +706,7 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test //Test (16) wallet then free promocode
     public void ReqFreePromo() throws InterruptedException, IOException{
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
@@ -747,7 +749,7 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test //Test (17) Parcial promocode + Wallet
     public void ReqParcialPromoWallet() throws InterruptedException, IOException{
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
@@ -799,7 +801,7 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test //Test (18) Parcial promocode + Bank Card
     public void ReqParcialPromoVisa() throws InterruptedException, IOException{
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
@@ -844,7 +846,7 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test //Test (19) Parcial promocode + Fawry
     public void ReqParcialPromoFawry() throws InterruptedException, IOException{
-        HomePageTest.openOtlobhaLandingPage();
+        homeTest.openOtlobhaLandingPage();
         OtlobhaLandingPage.clickRequestNewCarButton();
 
         //Step one
@@ -887,14 +889,15 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test //Test (21) login to otlobha from another entry point
     public void LoginFromOtlobha() throws InterruptedException, IOException{
-        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
 
 
-        HomePage.hoverOnServicesLink();
+        home.hoverOnServicesLink();
         Thread.sleep(5000);
 
-        HomePage.clickOtlobhaButton();
+        home.clickOtlobhaButton();
         Thread.sleep(5000);
         OtlobhaLandingPage.clickRequestNewCarButton();
 
