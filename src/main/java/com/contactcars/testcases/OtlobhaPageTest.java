@@ -700,4 +700,247 @@ public class OtlobhaPageTest extends TestBase {
         form2ndStep.CheckUrl();
         quitChrome();
     }
+
+
+    @Test //Test (16) wallet then free promocode
+    public void ReqFreePromo() throws InterruptedException, IOException{
+        HomePageTest.openOtlobhaLandingPage();
+        OtlobhaLandingPage.clickRequestNewCarButton();
+
+        //Step one
+        Thread.sleep(5000);
+        form1stStep.clickCountry();
+        form1stStep.chooseCountryValue(0);
+        form1stStep.clickMake();
+        form1stStep.chooseMakeValue(6);
+        form1stStep.clickModel();
+        form1stStep.chooseModelValue(1);
+        form1stStep.clickImported();
+        Thread.sleep(5000);
+        form1stStep.clickYear();
+        form1stStep.chooseYearValue(0);
+        form1stStep.clickTrim();
+        Thread.sleep(5000);
+        form1stStep.chooseTrimValue(2);
+        form1stStep.ClickFinance();
+        form1stStep.DownPaymentValue2();
+        form1stStep.ClickJopTitle();
+        form1stStep.WriteJopTilte();
+        Thread.sleep(5000);
+        form1stStep.ClickTerms();
+        form1stStep.clickNext();
+        Thread.sleep(5000);
+
+        // second step
+        form2ndStep.chooseWallet();
+        Thread.sleep(5000);
+        form2ndStep.enterPromoCode(getVariableValueFromSheet1("FreeOtlobhaCoupon"));
+        form2ndStep.clickApplyPromoCode();
+        Thread.sleep(5000);
+        form2ndStep.clickSubmit();
+
+        //Check on success page
+        form2ndStep.CheckUrl();
+        quitChrome();
+    }
+
+
+    @Test //Test (17) Parcial promocode + Wallet
+    public void ReqParcialPromoWallet() throws InterruptedException, IOException{
+        HomePageTest.openOtlobhaLandingPage();
+        OtlobhaLandingPage.clickRequestNewCarButton();
+
+        //Step one
+        Thread.sleep(5000);
+        form1stStep.clickCountry();
+        form1stStep.chooseCountryValue(0);
+        form1stStep.clickMake();
+        form1stStep.chooseMakeValue(6);
+        form1stStep.clickModel();
+        form1stStep.chooseModelValue(1);
+        form1stStep.clickImported();
+        Thread.sleep(5000);
+        form1stStep.clickYear();
+        form1stStep.chooseYearValue(0);
+        form1stStep.clickTrim();
+        Thread.sleep(5000);
+        form1stStep.chooseTrimValue(2);
+        form1stStep.ClickFinance();
+        form1stStep.DownPaymentValue2();
+        form1stStep.ClickJopTitle();
+        form1stStep.WriteJopTilte();
+        Thread.sleep(5000);
+        form1stStep.ClickTerms();
+        form1stStep.clickNext();
+        Thread.sleep(5000);
+
+        // second step
+        form2ndStep.enterPromoCode(getVariableValueFromSheet1("PromoCode"));
+        form2ndStep.clickApplyPromoCode();
+        Thread.sleep(5000);
+
+        // second step
+        form2ndStep.chooseWallet();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        form2ndStep.clickSubmit();
+        Thread.sleep(5000);
+        form2ndStep.enterWalletNumber(getVariableValueFromSheet1("WalletNo"));
+        form2ndStep.clickProceedToPay();
+        Thread.sleep(5000);
+
+        //payment gateway
+        payWithWallet();
+        Thread.sleep(5000);
+        //Check on success page
+        form2ndStep.CheckUrl();
+        quitChrome();
+    }
+
+    @Test //Test (18) Parcial promocode + Bank Card
+    public void ReqParcialPromoVisa() throws InterruptedException, IOException{
+        HomePageTest.openOtlobhaLandingPage();
+        OtlobhaLandingPage.clickRequestNewCarButton();
+
+        //Step one
+        Thread.sleep(5000);
+        form1stStep.clickCountry();
+        form1stStep.chooseCountryValue(0);
+        form1stStep.clickMake();
+        form1stStep.chooseMakeValue(6);
+        form1stStep.clickModel();
+        form1stStep.chooseModelValue(1);
+        form1stStep.clickImported();
+        Thread.sleep(5000);
+        form1stStep.clickYear();
+        form1stStep.chooseYearValue(0);
+        form1stStep.clickTrim();
+        Thread.sleep(5000);
+        form1stStep.chooseTrimValue(2);
+        form1stStep.ClickFinance();
+        form1stStep.DownPaymentValue2();
+        form1stStep.ClickJopTitle();
+        form1stStep.WriteJopTilte();
+        Thread.sleep(5000);
+        form1stStep.ClickTerms();
+        form1stStep.clickNext();
+        Thread.sleep(5000);
+
+        // second step
+        form2ndStep.enterPromoCode(getVariableValueFromSheet1("PromoCode"));
+        form2ndStep.clickApplyPromoCode();
+        Thread.sleep(5000);
+
+        // second step Bank Card
+        form2ndStep.ChooseBankCard();
+        form2ndStep.clickSubmit();
+        Thread.sleep(10000);
+        payWithCard();
+        Thread.sleep(30000);
+        //Check on success page
+        form2ndStep.CheckUrl();
+        quitChrome();
+    }
+
+    @Test //Test (19) Parcial promocode + Fawry
+    public void ReqParcialPromoFawry() throws InterruptedException, IOException{
+        HomePageTest.openOtlobhaLandingPage();
+        OtlobhaLandingPage.clickRequestNewCarButton();
+
+        //Step one
+        Thread.sleep(5000);
+        form1stStep.clickCountry();
+        form1stStep.chooseCountryValue(0);
+        form1stStep.clickMake();
+        form1stStep.chooseMakeValue(6);
+        form1stStep.clickModel();
+        form1stStep.chooseModelValue(1);
+        form1stStep.clickImported();
+        Thread.sleep(5000);
+        form1stStep.clickYear();
+        form1stStep.chooseYearValue(0);
+        form1stStep.clickTrim();
+        Thread.sleep(5000);
+        form1stStep.chooseTrimValue(2);
+        form1stStep.ClickFinance();
+        form1stStep.DownPaymentValue2();
+        form1stStep.ClickJopTitle();
+        form1stStep.WriteJopTilte();
+        Thread.sleep(5000);
+        form1stStep.ClickTerms();
+        form1stStep.clickNext();
+        Thread.sleep(5000);
+
+        // second step Fawry
+        form2ndStep.enterPromoCode(getVariableValueFromSheet1("PromoCode"));
+        form2ndStep.clickApplyPromoCode();
+        Thread.sleep(5000);
+
+        form2ndStep.ChooseFawry();
+        form2ndStep.clickSubmit();
+        Thread.sleep(10000);
+
+        //Check on success page
+        form2ndStep.CheckUrl();
+        quitChrome();
+    }
+
+    @Test //Test (21) login to otlobha from another entry point
+    public void LoginFromOtlobha() throws InterruptedException, IOException{
+        initializationOnChrome(getVariableValueFromSheet1("URL"));
+        Thread.sleep(5000);
+
+
+        HomePage.hoverOnServicesLink();
+        Thread.sleep(5000);
+
+        HomePage.clickOtlobhaButton();
+        Thread.sleep(5000);
+        OtlobhaLandingPage.clickRequestNewCarButton();
+
+        //Step one
+        Thread.sleep(5000);
+        form1stStep.ClickName();
+        form1stStep.WriteName(getVariableValueFromSheet1("Name"));
+        form1stStep.ClickPhone();
+        form1stStep.WritePhone(getVariableValueFromSheet1("MobileNo"));
+        Thread.sleep(5000);
+        form1stStep.clickCountry();
+        form1stStep.chooseCountryValue(0);
+        form1stStep.clickMake();
+        form1stStep.chooseMakeValue(6);
+        form1stStep.clickModel();
+        form1stStep.chooseModelValue(1);
+        form1stStep.clickImported();
+        Thread.sleep(5000);
+        form1stStep.clickYear();
+        form1stStep.chooseYearValue(0);
+        form1stStep.clickTrim();
+        Thread.sleep(5000);
+        form1stStep.chooseTrimValue(2);
+        form1stStep.ClickFinance();
+        form1stStep.DownPaymentValue2();
+        form1stStep.ClickJopTitle();
+        form1stStep.WriteJopTilte();
+        Thread.sleep(5000);
+        form1stStep.ClickTerms();
+        form1stStep.clickNext();
+        Thread.sleep(5000);
+        LoginPage.enterOtp(getVariableValueFromSheet1("OTP"));
+        LoginPage.clickConfirm();
+        Thread.sleep(5000);
+        // second step Fawry
+        form2ndStep.enterPromoCode(getVariableValueFromSheet1("PromoCode"));
+        form2ndStep.clickApplyPromoCode();
+        Thread.sleep(5000);
+
+        form2ndStep.ChooseFawry();
+        form2ndStep.clickSubmit();
+        Thread.sleep(10000);
+
+        //Check on success page
+        form2ndStep.CheckUrl();
+        quitChrome();
+    }
+
 }
