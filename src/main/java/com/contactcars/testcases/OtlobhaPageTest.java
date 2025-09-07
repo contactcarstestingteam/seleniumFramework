@@ -945,5 +945,4 @@ public class OtlobhaPageTest extends TestBase {
         form2ndStep.CheckUrl();
         quitChrome();
     }
-
 }
