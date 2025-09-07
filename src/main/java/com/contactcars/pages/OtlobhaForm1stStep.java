@@ -18,6 +18,12 @@ public class OtlobhaForm1stStep extends TestBase {
         super();
     }
 
+    //Locator for name field
+    static By Name = By.cssSelector("#name");
+
+    //Locator for Phone number field
+    static By Phone = By.cssSelector("#mobile");
+
     //Locator for country drop down
     By country = By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(4) > div > input");
 
@@ -209,6 +215,31 @@ public class OtlobhaForm1stStep extends TestBase {
             //if all of this not working use JavaScript click
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", termsElement);
         }
+    }
+
+    //Method to click on name field
+    public void ClickName (){
+        driver.findElement(Name).click();
+    }
+
+    //Method to enter name field
+    public static void WriteName(String UserName) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement user = wait.until(ExpectedConditions.visibilityOfElementLocated(Name));
+        user.sendKeys(UserName);
+    }
+
+
+    //Method to click on phone field
+    public void ClickPhone (){
+        driver.findElement(Phone).click();
+    }
+
+    //Method to enter name field
+    public static void WritePhone(String MobileNo) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement user = wait.until(ExpectedConditions.visibilityOfElementLocated(Phone));
+        user.sendKeys(MobileNo);
     }
 
 }
