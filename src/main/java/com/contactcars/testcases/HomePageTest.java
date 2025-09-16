@@ -37,9 +37,10 @@ public class HomePageTest extends DevToolsManager {
 
     @Test
     public void getRecentDealerAds() throws InterruptedException {
+        driverInitialization();
         setupDevTools();
         setupRequestListeners("DealerAds");
-        setupResponseListeners("DealerAds");
+        setupResponseListeners("DealerAds", "Array");
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         getResponseItems();
@@ -48,10 +49,10 @@ public class HomePageTest extends DevToolsManager {
     }
 
     public void getResponseItems() {
-        // Loop on all objects inside the main result object
-        for (int i = 0; i < result.length(); i++){
-            // Get the data object from the result array
-            JSONObject data = result.getJSONObject(i);
+        // Loop on all objects inside the main resultObject object
+        for (int i = 0; i < resultArray.length(); i++){
+            // Get the data object from the resultObject array
+            JSONObject data = resultArray.getJSONObject(i);
             // Get the make object
             JSONObject makeObject = data.getJSONObject("make");
             // Get the make name

@@ -1,52 +1,49 @@
 package com.contactcars.testcases;
 
-import com.alibaba.fastjson.JSONObject;
-import com.contactcars.base.TestBase;
+import com.contactcars.base.DevToolsManager;
 import com.contactcars.pages.HomePage;
+import com.contactcars.pages.LoginPage;
 import com.contactcars.pages.UserInfoPage;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserInfoTest extends TestBase {
+public class UserInfoTest extends DevToolsManager {
 
     public UserInfoTest() throws IOException {
     }
 
     private UserInfoPage userInfoPage = new UserInfoPage();
     private HomePage home = new HomePage();
-/*
-    // --- Token Validation (لو حبيت تستخدمه) ---
-    public boolean isTokenValid(String token) {
-        try {
-            String[] chunks = token.split("\\.");
-            Base64.Decoder decoder = Base64.getUrlDecoder();
-            String payload = new String(decoder.decode(chunks[1]));
-            JSONObject json = JSONObject.parseObject(payload);
-
-            long expiration = json.getLong("exp") * 1000; // Convert to milliseconds
-            return System.currentTimeMillis() < expiration;
-        } catch (Exception e) {
-            System.out.println("Token validation error: " + e.getMessage());
-            return false;
-        }
-    }
-
- */
+    private LoginPage Login = new LoginPage();
 
     @Test
     public void compareApiUserInfoWithUi() throws IOException, InterruptedException {
         // --- Login & Navigate to Profile Page ---
-        LoginPageTest.login();
+        driverInitialization();
+        openChrome("https://web-staging.contactcars.com/ar/login");
+        Thread.sleep(5000);
+
+        Login.enterMobileNumber(getVariableValueFromSheet1("MobileNo"));
+        Login.clickLogin();
+        Thread.sleep(5000);
+        Login.enterOtp(getVariableValueFromSheet1("OTP"));
+        setupDevTools();
+        setupRequestListeners("token");
+        setupResponseListeners("token", "");
+        Login.clickConfirm();
+        Thread.sleep(5000);
+        home.clickNoThanks();
+        String token = result.get("access_token").toString();
+        Thread.sleep(5000);
         home.ClickMyAccountIcon();
 
         // --- 1) Get API Data ---
-        Response apiResponse = userInfoPage.getUserInfoAPI();
+        Response apiResponse = userInfoPage.getUserInfoAPI(token);
         String apiName = userInfoPage.getApiName(apiResponse);
         String apiPhone = userInfoPage.getApiPhone(apiResponse);
         String apiGovernorateId = userInfoPage.getApigovernate(apiResponse);

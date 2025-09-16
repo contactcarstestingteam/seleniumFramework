@@ -183,9 +183,9 @@ public class TestBase {
             String strJson = response.asString();
             // First get the Json object instance from the Response interface
             JSONObject responseBodyInJSON = new JSONObject(strJson);
-            // Get the result object from the response
+            // Get the resultObject object from the response
             JSONObject result = responseBodyInJSON.getJSONObject("result");
-            // Get the items array from the result object
+            // Get the items array from the resultObject object
             JSONArray itemsArray = result.getJSONArray("items");
             // Adding all names in a list
             List<String> apiNamesList = new ArrayList<>();
