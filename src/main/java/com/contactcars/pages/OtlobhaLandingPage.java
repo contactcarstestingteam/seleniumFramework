@@ -2,23 +2,27 @@ package com.contactcars.pages;
 
 import com.contactcars.base.TestBase;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
+import java.time.Duration;
 
 public class OtlobhaLandingPage extends TestBase {
 
     //Constructor that will be automatically called as soon as the object of the class is created
-    public OtlobhaLandingPage(WebDriver driver) throws IOException {
+    public OtlobhaLandingPage() throws IOException {
         super();
     }
 
     //Locator for request new car button
-    By requestNewCarButton = By.cssSelector("main > div:nth-child(2) > section:nth-child(1) > div > div > div > div > div > div > a");
+    static By requestNewCarButton = By.cssSelector("div > div > div > div > button > span.whitespace-nowrap");
 
     //Method to click on request new car button
-    public void clickRequestNewCarButton() {
-        driver.findElement(requestNewCarButton).click();
+    public static void clickRequestNewCarButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(requestNewCarButton));
+        button.click();
     }
-
 }

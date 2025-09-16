@@ -4,13 +4,17 @@
     <test verbose="2" preserve-order="true" name="C:/Users/sara.maghraby/IdeaProjects/ContactCarsRetailStaging">
         <classes>
 <!--                <class name="com.contactcars.testcases.LoginPageTest"></class>-->
-<!--                <class name="com.contactcars.testcases.OtlobhaPageTest">-->
-<!--                    <methods>-->
-<!--                        <include name="addNewRequest"></include>-->
-<!--                    </methods>-->
-<!--                </class>-->
-               <class name="com.contactcars.testcases.HomePageTest"></class>
-
+                <class name="com.contactcars.testcases.OtlobhaPageTest">
+                    <methods>
+                        <include name="LoginFromOtlobha"></include>
+                    </methods>
+                </class>
+<!--               <class name="com.contactcars.testcases.HomePageTest"></class>-->
+<!--              <class name="com.contactcars.testcases.ShowroomsPageTest">-->
+<!--                  <methods>-->
+<!--                      <include name="openContactUsTab"></include>-->
+<!--                  </methods>-->
+<!--              </class>-->
         </classes>
     </test>
 </suite>

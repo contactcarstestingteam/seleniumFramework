@@ -16,21 +16,23 @@ public class LoginPageTest extends TestBase {
 
     @Test
     public static void login() throws InterruptedException, IOException {
-        //Creating object of HOME and Login pages
-        HomePage home = new HomePage(driver);
-        LoginPage login = new LoginPage(driver);
 
-        initializationOnChrome(sheet.getRow(1).getCell(9).toString());
+        //Creating object of HOME and Login pages
+        HomePage home = new HomePage();
+        LoginPage login = new LoginPage();
+
+        driverInitialization();
+        openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        home.clickSkip();
+       // home.clickSkip();
         home.clickLoginLink();
         Thread.sleep(5000);
 
-        login.enterMobileNumber(sheet.getRow(1).getCell(0).toString());
+        login.enterMobileNumber(getVariableValueFromSheet1("MobileNo"));
         login.clickLogin();
         Thread.sleep(5000);
 
-        login.enterOtp(sheet.getRow(1).getCell(1).toString());
+        login.enterOtp(getVariableValueFromSheet1("OTP"));
         login.clickConfirm();
         Thread.sleep(5000);
 
@@ -40,7 +42,7 @@ public class LoginPageTest extends TestBase {
 
         //Check on logging in successfully
         String actualUrl = driver.getCurrentUrl();
-        String expectedUrl = sheet.getRow(1).getCell(9).toString();
+        String expectedUrl = getVariableValueFromSheet1("URL");
          if (actualUrl.contentEquals(expectedUrl)){
              Assert.assertTrue(actualUrl.contentEquals(expectedUrl));
              logAssertionBetweenTwoEqualValues(Pass, actualUrl, expectedUrl);
