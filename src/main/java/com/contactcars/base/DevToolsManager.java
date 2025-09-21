@@ -43,9 +43,6 @@ public class DevToolsManager extends TestBase{
             String url = networkRequest.getUrl();
             String method = networkRequest.getMethod();
 
-
-
-
             // Capture API requests based on patterns
             if (isApiRequest(url, method)) {
                 apiRequests.put(requestId, url);
@@ -89,7 +86,6 @@ public class DevToolsManager extends TestBase{
 
                     // First get the Json object instance from the Response interface
                     responseBodyInJSON = new JSONObject(body);
-
                     if (type == "Array") {
                         parseJsonArray();
                     } else if (type == "Object") {
@@ -97,12 +93,6 @@ public class DevToolsManager extends TestBase{
                     } else {
                         result = responseBodyInJSON;
                     }
-
-
-
-
-
-
                 } catch (Exception e) {
                     System.out.println("Error getting response body: " + e.getMessage());
                 }

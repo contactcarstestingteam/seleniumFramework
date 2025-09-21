@@ -163,40 +163,6 @@ public class TestBase {
         }
     }
 
-    // Build qeury params for any Api
-    public static Map<String, String> buildQueryParams(String... keyValuePairs) {
-        for (int i = 0; i < keyValuePairs.length - 1; i += 2) {
-            queryParams.put(keyValuePairs[i], keyValuePairs[i + 1]);
-        }
-        return queryParams;
-    }
-
-    public static List<String> callingShowroomsApi(String... params) {
-            // Specify the base URL to the RESTful web service
-            RestAssured.baseURI = getVariableValueFromSheet2("BaseURL") + getVariableValueFromSheet2("SearchDealersApi");
-            // Get the RequestSpecification of the request that is to be sent
-            // to the server.
-            RequestSpecification httpRequest = RestAssured.given();
-            // Call RequestSpecification.get() method to get the response.
-            // Adding query params
-            Response response = httpRequest.queryParams(buildQueryParams(params)).get("");
-            String strJson = response.asString();
-            // First get the Json object instance from the Response interface
-            JSONObject responseBodyInJSON = new JSONObject(strJson);
-            // Get the resultObject object from the response
-            JSONObject result = responseBodyInJSON.getJSONObject("result");
-            // Get the items array from the resultObject object
-            JSONArray itemsArray = result.getJSONArray("items");
-            // Adding all names in a list
-            List<String> apiNamesList = new ArrayList<>();
-            for (int i = 0; i < itemsArray.length(); i++) {
-                JSONObject firstItem = itemsArray.getJSONObject(i);
-                String nameAr = firstItem.getString("nameAr");
-                apiNamesList.add(nameAr);
-            }
-            return apiNamesList;
-    }
-
     public static void logAssertionBetweenTwoEqualValues (String status, String actual, String expected){
         if (status == Pass){
             extentTest.log(Status.PASS, "Actual Result = "+ actual + " & " + "Expected Result = " + expected);

@@ -16,6 +16,7 @@ public class HomePageTest extends DevToolsManager {
 
     //Creating object of Home page
     HomePage home = new HomePage();
+    LoginPageTest login = new LoginPageTest();
     List<String> responseMakesList = new ArrayList<>();
     List<String> responseModelsList = new ArrayList<>();
     List<String> responseYearsList = new ArrayList<>();
@@ -27,7 +28,7 @@ public class HomePageTest extends DevToolsManager {
     }
 
     public void openOtlobhaLandingPage() throws InterruptedException, IOException {
-        LoginPageTest.login();
+        login.login();
         Thread.sleep(5000);
         home.hoverOnServicesLink();
         Thread.sleep(5000);

@@ -1,8 +1,9 @@
 package com.contactcars.testcases;
 
-import com.contactcars.base.DevToolsManager;
+
 import com.contactcars.pages.HomePage;
 import com.contactcars.pages.LoginPage;
+import com.contactcars.base.RestAssuredManager;
 import com.contactcars.pages.UserInfoPage;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -12,20 +13,21 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserInfoTest extends DevToolsManager {
+public class UserInfoTest extends RestAssuredManager {
 
     public UserInfoTest() throws IOException {
+        super();
     }
 
-    private UserInfoPage userInfoPage = new UserInfoPage();
-    private HomePage home = new HomePage();
-    private LoginPage Login = new LoginPage();
+     UserInfoPage userInfoPage = new UserInfoPage();
+     HomePage home = new HomePage();
+     LoginPage Login = new LoginPage();
 
     @Test
     public void compareApiUserInfoWithUi() throws IOException, InterruptedException {
         // --- Login & Navigate to Profile Page ---
         driverInitialization();
-        openChrome("https://web-staging.contactcars.com/ar/login");
+        openChrome(getVariableValueFromSheet1("LoginURL"));
         Thread.sleep(5000);
 
         Login.enterMobileNumber(getVariableValueFromSheet1("MobileNo"));
@@ -43,13 +45,15 @@ public class UserInfoTest extends DevToolsManager {
         home.ClickMyAccountIcon();
 
         // --- 1) Get API Data ---
-        Response apiResponse = userInfoPage.getUserInfoAPI(token);
-        String apiName = userInfoPage.getApiName(apiResponse);
-        String apiPhone = userInfoPage.getApiPhone(apiResponse);
-        String apiGovernorateId = userInfoPage.getApigovernate(apiResponse);
-        String apiAreaId = userInfoPage.getApiArea(apiResponse);
+       // Response apiResponse = userInfoPage.getUserInfoAPI(token);
+        Response apiResponse = getRequest("/gateway/identity/profile/getUserInfo", token);
+        System.out.println("API Raw Response: " + apiResponse.asString());
+        String apiName = apiResponse.jsonPath().getString("result.name");
+        String apiPhone = apiResponse.jsonPath().getString("result.phoneNumber");
+        String apiGovernorateId = apiResponse.jsonPath().getString("result.governate");
+        String apiAreaId = apiResponse.jsonPath().getString("result.area");
 
-        // --- 2) Mapping IDs to Names ---
+        // Mapping IDs to Names ---
         Map<String, String> governorates = new HashMap<>();
         governorates.put("1", "القاهرة");
         governorates.put("2", "الجيزة");
@@ -60,17 +64,17 @@ public class UserInfoTest extends DevToolsManager {
         areas.put("251", "الدقي");
         areas.put("252", "المهندسين");
 
-        // تحويل الـ ID إلى الاسم الفعلي
+        // Convert ID to name
         String apiGovernorateName = governorates.getOrDefault(apiGovernorateId, apiGovernorateId);
         String apiAreaName = areas.getOrDefault(apiAreaId, apiAreaId);
 
-        // --- 3) Get UI Data ---
+        // Get UI Data ---
         String uiName = userInfoPage.getUiName();
         String uiPhone = userInfoPage.getUiPhone();
         String uiGovernorate = userInfoPage.getUiGovernorate();
         String uiArea = userInfoPage.getUiArea();
 
-        // --- Debug Print ---
+        // Debug Print ---
         System.out.println("API Name: " + apiName);
         System.out.println("API Phone: " + apiPhone);
         System.out.println("API Governorate: " + apiGovernorateName + " (ID=" + apiGovernorateId + ")");
@@ -81,7 +85,7 @@ public class UserInfoTest extends DevToolsManager {
         System.out.println("UI Governorate: " + uiGovernorate);
         System.out.println("UI Area: " + uiArea);
 
-        // --- 4) Compare API vs UI ---
+        // Compare API vs UI
         Assert.assertEquals(uiName, apiName, "Name mismatch between UI and API");
         Assert.assertEquals(uiPhone, apiPhone, "Phone mismatch between UI and API");
         Assert.assertEquals(uiGovernorate, apiGovernorateName, "Governorate mismatch between UI and API");
