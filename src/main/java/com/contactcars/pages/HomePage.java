@@ -60,6 +60,13 @@ public class HomePage extends TestBase {
 
     //Locator for all dealer ads names
     By allAdsNames = By.cssSelector("main > section:nth-child(5) > div > div > div > div > div > div > div > div > span");
+    By usedCarsTab = By.cssSelector("body > header > nav > div > ul > li:nth-child(2) > span");
+    By showAllUsedCarsButton = By.cssSelector("body > header > nav > div > ul > li:nth-child(2) > div > div > div.flex.items-center.justify-between > a > span");
+
+    public void NavigateToUsedCarSEOPage (){
+        driver.findElement(usedCarsTab).click();
+        driver.findElement(showAllUsedCarsButton).click();
+    }
 
 
     //Method to click login link

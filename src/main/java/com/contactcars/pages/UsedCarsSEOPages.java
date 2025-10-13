@@ -1,6 +1,7 @@
 package com.contactcars.pages;
 import java.io.IOException;
 import java.time.Duration;
+import java.time.Instant;
 import java.util.NoSuchElementException;
 import java.util.Random;
 
@@ -11,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class UsedCarsSEOPages extends TestBase{
 
@@ -24,6 +26,10 @@ public class UsedCarsSEOPages extends TestBase{
     private int numberOfModelsHits;
     private int numberOfYearsHits;
     private int numberOfTrimsHits;
+    private int makeId = 0;
+    private int modelId = 0;
+    private int yearId = 0;
+    private int trimId = 0;
     private WebElement makeElement;
     private WebElement modelElement;
     private WebElement yearElement;
@@ -37,12 +43,13 @@ public class UsedCarsSEOPages extends TestBase{
     private String make_URL;
     private boolean testDone;
     private boolean nextMakeSelected;
+    private WebDriverWait wait ;
     By mainTabsSelector = By.cssSelector("#tabs > div > ul > li");
     By makeHitSelector = By.cssSelector("#tabs > div:nth-child(4) > ul > li");
     By otherSelectors = By.cssSelector("#tabs > div:nth-child(3) > ul > li");
     By showAllBrandsButton = By.cssSelector("#tabs > div:nth-child(4) > button");
     By otlobhaPromotionSection = By.cssSelector("body > main > div > div > div > div");
-    By newCarsSEOPagesEntryPoint = By.cssSelector("body > main > div > div > div > div:nth-child(3");
+    By newCarsSEOPagesEntryPoint = By.cssSelector("body > main > div > div > div > div:nth-child(3)");
     By advancedFilterEntryPoint = By.cssSelector("body > main > div > div> div > div:nth-child(2)");
     By cardSelector = By.cssSelector("body > main > div> div > section > ul > li");
     By breadCrumb = By.cssSelector("div.bg-gray-200 > div > div.flex");
@@ -66,23 +73,76 @@ public class UsedCarsSEOPages extends TestBase{
         driver.findElement(newCarsSEOPagesEntryPoint).click();
     }
 
-    public void clickOnMakeHit(int id){
+    public void clickOnMakeHit(int id) throws InterruptedException {
         driver.findElements(makeHitSelector).get(id).click();
+        Thread.sleep(2000);
     }
 
-    public void clickOnOtherSelector(int id){
+    public void clickOnOtherSelector(int id) throws InterruptedException {
         driver.findElements(otherSelectors).get(id).click();
+        Thread.sleep(2000);
     }
 
     public void chooseTab(int id){
         driver.findElements(mainTabsSelector).get(id).click();
     }
 
-    public void navigateToCard(int id){
-
+    public void makeModelYearTrimPath () throws InterruptedException {
+        clickOnShowAllBrandsButton();
+        numberOfMakesHits = driver.findElements(makeHitSelector).size();
+        if (numberOfMakesHits == makeId){
+            driver.findElements(breadCrumb).get(0);
+        } else {
+            makeName = driver.findElements(makeHitSelector).get(makeId).getText();
+            clickOnMakeHit(makeId);
+            getModelHitDetails();
+        }
     }
 
-    private void selectMakeHit () throws InterruptedException, IOException {
+    public void getModelHitDetails () throws InterruptedException {
+        numberOfModelsHits = driver.findElements(otherSelectors).size();
+        if (numberOfModelsHits == modelId) {
+            makeId++;
+            modelId = 0;
+            driver.findElements(breadCrumb).get(1).click();
+            makeModelYearTrimPath();
+        } else {
+            modelName = driver.findElements(otherSelectors).get(modelId).getText();
+            clickOnOtherSelector(modelId);
+            getYearHitDetails();
+        }
+    }
+    public void getYearHitDetails () throws InterruptedException {
+        numberOfYearsHits = driver.findElements(otherSelectors).size();
+        if (numberOfYearsHits == yearId) {
+            modelId++;
+            yearId = 0;
+            driver.findElements(breadCrumb).get(2).click();
+            getModelHitDetails();
+        } else {
+            yearName = driver.findElements(otherSelectors).get(yearId).getText();
+            clickOnOtherSelector(yearId);
+            getTrimHitDetails();
+        }
+    }
+    public void getTrimHitDetails () throws InterruptedException {
+        numberOfTrimsHits = driver.findElements(otherSelectors).size();
+        if (numberOfTrimsHits == trimId)
+        {
+            yearId++;
+            trimId = 0;
+            driver.findElements(breadCrumb).get(3).click();
+            getYearHitDetails();
+        } else {
+            trimName = driver.findElements(otherSelectors).get(trimId).getText();
+            clickOnOtherSelector(trimId);
+            trimId++;
+            driver.findElements(breadCrumb).get(4).click();
+            getTrimHitDetails();
+        }
+    }
+
+    /*public void selectMakeHit () throws InterruptedException, IOException {
         numberOfMakesHits = driver.findElements(makeHitSelector).size();
         for (int Make_i = 0; Make_i < numberOfMakesHits; Make_i++) {
             wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(cardSelector));
@@ -99,7 +159,7 @@ public class UsedCarsSEOPages extends TestBase{
         }
     }
 
-    private void selectModelHit () throws InterruptedException, IOException {
+    public void selectModelHit () throws InterruptedException, IOException {
         numberOfModelsHits = driver.findElements(otherSelectors).size();
         for (int Model_i = 0 ; Model_i < numberOfModelsHits; Model_i++) {
             wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(cardSelector));
@@ -122,7 +182,7 @@ public class UsedCarsSEOPages extends TestBase{
         Thread.sleep(2000);
     }
 
-    private void selectYearHit () throws InterruptedException, IOException {
+    public void selectYearHit () throws InterruptedException, IOException {
         numberOfYearsHits = driver.findElements(otherSelectors).size();
         for (int Year_i = 0 ; Year_i < numberOfYearsHits; Year_i++) {
             wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(cardSelector));
@@ -140,7 +200,7 @@ public class UsedCarsSEOPages extends TestBase{
         Thread.sleep(3000);
     }
 
-    private void selectTrimHit () throws InterruptedException, IOException {
+    public void selectTrimHit () throws InterruptedException, IOException {
         wait.until(ExpectedConditions.urlContains("year"));
         numberOfTrimsHits = driver.findElements(otherSelectors).size();
         for (int Trim_i = 0 ; Trim_i < numberOfTrimsHits; Trim_i++) {
@@ -159,7 +219,9 @@ public class UsedCarsSEOPages extends TestBase{
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
         Thread.sleep(2000);
-    }
+    }*/
+
+
 
     private void getHitDetails(String selector) throws InterruptedException, IOException {
         //Thread.sleep(2000);

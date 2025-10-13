@@ -50,7 +50,7 @@ public class TestBase {
 
     // Loading properties and credentials files
     public TestBase() throws IOException {
-        File credentials = new File("D:\\Website Variables.xlsx");
+        File credentials = new File("E:\\Website Variables.xlsx");
         FileInputStream fisc = new FileInputStream(credentials);
         workbook = new XSSFWorkbook(fisc);
         sheet1 = workbook.getSheetAt(0);
@@ -69,8 +69,8 @@ public class TestBase {
     public static void openChrome(String url) {
         driver.get(url);
     }
-  
     @BeforeTest
+
     public void startReporter() {
         extentSparkReporter  = new ExtentSparkReporter("C:/Users/Nada.Adel/IdeaProjects/seleniumFramework/test-output/extentReport.html");
         extentReports = new ExtentReports();
