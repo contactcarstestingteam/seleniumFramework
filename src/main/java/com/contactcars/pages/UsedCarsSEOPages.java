@@ -1,39 +1,39 @@
 package com.contactcars.pages;
 import java.io.IOException;
 import java.time.Duration;
-import java.time.Instant;
-import java.util.NoSuchElementException;
+import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
-import com.aventstack.extentreports.Status;
 import com.contactcars.base.TestBase;
+import com.contactcars.utils.WaitUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class UsedCarsSEOPages extends TestBase{
+public class UsedCarsSEOPages {
 
+    private WebDriver driver;
+    private WaitUtils waitUtils = new WaitUtils(driver,10);
     private Random rand = new Random();
     private String expected;
     private int priceTo;
     private int priceFrom;
     private int hitNumber;
     private int numberOfHits;
-    private int numberOfMakesHits;
-    private int numberOfModelsHits;
-    private int numberOfYearsHits;
-    private int numberOfTrimsHits;
-    private int makeId = 0;
-    private int modelId = 0;
-    private int yearId = 0;
-    private int trimId = 0;
-    private WebElement makeElement;
-    private WebElement modelElement;
-    private WebElement yearElement;
-    private WebElement trimElement;
+    private List<WebElement> makes;
+    private List<WebElement> models;
+    private List<WebElement> years;
+    private List<WebElement> trims;
+    private int makeId;
+    private int modelId;
+    private int yearId;
+    private int trimId;
+
     private WebElement element;
     private String makeName;
     private String modelName;
@@ -43,102 +43,102 @@ public class UsedCarsSEOPages extends TestBase{
     private String make_URL;
     private boolean testDone;
     private boolean nextMakeSelected;
-    private WebDriverWait wait ;
-    By mainTabsSelector = By.cssSelector("#tabs > div > ul > li");
-    By makeHitSelector = By.cssSelector("#tabs > div:nth-child(4) > ul > li");
-    By otherSelectors = By.cssSelector("#tabs > div:nth-child(3) > ul > li");
-    By showAllBrandsButton = By.cssSelector("#tabs > div:nth-child(4) > button");
-    By otlobhaPromotionSection = By.cssSelector("body > main > div > div > div > div");
-    By newCarsSEOPagesEntryPoint = By.cssSelector("body > main > div > div > div > div:nth-child(3)");
-    By advancedFilterEntryPoint = By.cssSelector("body > main > div > div> div > div:nth-child(2)");
-    By cardSelector = By.cssSelector("body > main > div> div > section > ul > li");
-    By breadCrumb = By.cssSelector("div.bg-gray-200 > div > div.flex");
+    private static final By mainTabsSelector = By.cssSelector("#tabs > div > ul > li");
+    private static final By makeHitSelector = By.cssSelector("#tabs > div:nth-child(4) > ul > li");
+    private static final By otherSelectors = By.cssSelector("#tabs > div:nth-child(3) > ul > li");
+    private static final By showAllBrandsButton = By.cssSelector("#tabs > div:nth-child(4) > button");
+    private static final By otlobhaPromotionSection = By.cssSelector("body > main > div > div > div > div");
+    private static final By newCarsSEOPagesEntryPoint = By.cssSelector("body > main > div > div > div > div:nth-child(3)");
+    private static final By advancedFilterEntryPoint = By.cssSelector("body > main > div > div> div > div:nth-child(2)");
+    private static final By cardSelector = By.cssSelector("body > main > div> div > section > ul > li");
+    private static final By breadCrumb = By.cssSelector("div.bg-gray-200 > div > div.flex");
 
-    public UsedCarsSEOPages() throws IOException {
+    public UsedCarsSEOPages(WebDriver driver) throws IOException {
+        this.driver = driver;
+        this.waitUtils = new WaitUtils (driver, 10);
     }
-
-    public void clickOnShowAllBrandsButton (){
+    public void openAllBrandsSection (){
+        waitUtils.waitForElementClickable(showAllBrandsButton).click();
         driver.findElement(showAllBrandsButton).click();
     }
-
     public void clickOnOtlobhPromotionSection (){
         driver.findElement(otlobhaPromotionSection).click();
     }
-
     public void clickOnAdvancedFilterButton (){
         driver.findElement(advancedFilterEntryPoint).click();
     }
-
     public void clickOnNewCarsSEOPagesEntryPoint (){
         driver.findElement(newCarsSEOPagesEntryPoint).click();
     }
-
-    public void clickOnMakeHit(int id) throws InterruptedException {
-        driver.findElements(makeHitSelector).get(id).click();
-        Thread.sleep(2000);
+    public void selectMakeHits (int id) {
+        List<WebElement> makes = waitUtils.waitForAllElementsVisible(makeHitSelector);
+        if (id < makes.size()){
+            makes.get(id).click();
+        } else {
+            System.out.println("Invalid make hit index: " + id);
+        }
     }
-
-    public void clickOnOtherSelector(int id) throws InterruptedException {
-        driver.findElements(otherSelectors).get(id).click();
-        Thread.sleep(2000);
+    public void selectOtherHits (int id) {
+        List<WebElement> others = waitUtils.waitForAllElementsVisible(otherSelectors);
+        if (id < others.size()){
+            others.get(id).click();
+        } else {
+            System.out.println("Invalid other hit index: " + id);
+        }
+    }
+    public void clickOnBreadcrumbItem (int id) {
+        List<WebElement> breadcrumbElements = waitUtils.waitForAllElementsVisible(breadCrumb);
+        breadcrumbElements.get(id).click();
     }
 
     public void chooseTab(int id){
         driver.findElements(mainTabsSelector).get(id).click();
     }
-
-    public void makeModelYearTrimPath () throws InterruptedException {
-        clickOnShowAllBrandsButton();
-        numberOfMakesHits = driver.findElements(makeHitSelector).size();
-        if (numberOfMakesHits == makeId){
-            driver.findElements(breadCrumb).get(0);
-        } else {
-            makeName = driver.findElements(makeHitSelector).get(makeId).getText();
-            clickOnMakeHit(makeId);
+    public void makeModelYearTrimPath () {
+        openAllBrandsSection();
+        makes = waitUtils.waitForAllElementsVisible(makeHitSelector);
+        for (makeId = 0 ; makeId < makes.size() ; makeId ++){
+            makes = waitUtils.waitForAllElementsVisible(makeHitSelector);
+            WebElement makeHit = makes.get(makeId);
+            makeName = makeHit.getText();
+            waitUtils.waitForElementClickable(makeHit).click();
             getModelHitDetails();
+            clickOnBreadcrumbItem(1);
         }
     }
+    public void getModelHitDetails () {
+        models = waitUtils.waitForAllElementsVisible(otherSelectors);
+        for (modelId = 0 ; modelId < models.size() ; modelId++){
+            models = waitUtils.waitForAllElementsVisible(otherSelectors);
+            WebElement modelHit = models.get(modelId);
+            modelName = modelHit.getText();
+            waitUtils.waitForElementClickable(modelHit).click();
+            getYearHitDetails();
+            clickOnBreadcrumbItem(2);
+        }
+    }
+    public void getYearHitDetails () {
+        boolean yearsLoaded = waitUtils.waitForUrlContains(modelName.substring(0,2).toLowerCase());
+        years = waitUtils.waitForAllElementsVisible(otherSelectors);
+            for (yearId = 0 ; yearId < years.size() ; yearId++){
+                years = waitUtils.waitForAllElementsVisible(otherSelectors);
+                WebElement yearHit = years.get(yearId);
+                yearName = yearHit.getText();
+                waitUtils.waitForElementClickable(yearHit).click();
+                getTrimHitDetails();
+                clickOnBreadcrumbItem(3);
+            }
 
-    public void getModelHitDetails () throws InterruptedException {
-        numberOfModelsHits = driver.findElements(otherSelectors).size();
-        if (numberOfModelsHits == modelId) {
-            makeId++;
-            modelId = 0;
-            driver.findElements(breadCrumb).get(1).click();
-            makeModelYearTrimPath();
-        } else {
-            modelName = driver.findElements(otherSelectors).get(modelId).getText();
-            clickOnOtherSelector(modelId);
-            getYearHitDetails();
-        }
+
     }
-    public void getYearHitDetails () throws InterruptedException {
-        numberOfYearsHits = driver.findElements(otherSelectors).size();
-        if (numberOfYearsHits == yearId) {
-            modelId++;
-            yearId = 0;
-            driver.findElements(breadCrumb).get(2).click();
-            getModelHitDetails();
-        } else {
-            yearName = driver.findElements(otherSelectors).get(yearId).getText();
-            clickOnOtherSelector(yearId);
-            getTrimHitDetails();
-        }
-    }
-    public void getTrimHitDetails () throws InterruptedException {
-        numberOfTrimsHits = driver.findElements(otherSelectors).size();
-        if (numberOfTrimsHits == trimId)
-        {
-            yearId++;
-            trimId = 0;
-            driver.findElements(breadCrumb).get(3).click();
-            getYearHitDetails();
-        } else {
-            trimName = driver.findElements(otherSelectors).get(trimId).getText();
-            clickOnOtherSelector(trimId);
-            trimId++;
-            driver.findElements(breadCrumb).get(4).click();
-            getTrimHitDetails();
+    public void getTrimHitDetails () {
+        trims = waitUtils.waitForAllElementsVisible(otherSelectors);
+        for (trimId =0 ; trimId < trims.size() ; trimId++){
+            trims = waitUtils.waitForAllElementsVisible(otherSelectors);
+            WebElement trimHit = trims.get(trimId);
+            trimName = trimHit.getText();
+            waitUtils.waitForElementClickable(trimHit).click();
+            clickOnBreadcrumbItem(4);
         }
     }
 
@@ -234,7 +234,7 @@ public class UsedCarsSEOPages extends TestBase{
                 Actions actions = new Actions(driver);
                 element = driver.findElement(breadCrumb);
                 actions.moveToElement(element);
-                wait.until(ExpectedConditions.elementToBeClickable(element));
+                //wait.until(ExpectedConditions.elementToBeClickable(element));
                 element.click();
                 //searchUsingGovernorateArea();
                 testDone= true;
@@ -243,7 +243,7 @@ public class UsedCarsSEOPages extends TestBase{
         if (testDone == false){
             hitNumber = getRandomHitNumber(selector, driver);
             if (hitNumber > 12 && nextMakeSelected == true && selector.contains("Make")) {
-                clickOnShowAllBrandsButton();
+                openAllBrandsSection();
             }
             element = driver.findElements(By.cssSelector(selector)).get(hitNumber);
             expected = element.getText();
@@ -251,7 +251,7 @@ public class UsedCarsSEOPages extends TestBase{
                 priceFrom = getPriceFrom();
                 priceTo = getPriceTo();
             }
-            wait.until(ExpectedConditions.elementToBeClickable(element));
+            //wait.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
             //Thread.sleep(1000);
         }
