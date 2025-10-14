@@ -29,6 +29,7 @@ public class UsedCarsSEOPages {
     private List<WebElement> models;
     private List<WebElement> years;
     private List<WebElement> trims;
+    private List<WebElement> breadcrumbElements;
     private int makeId;
     private int modelId;
     private int yearId;
@@ -59,7 +60,6 @@ public class UsedCarsSEOPages {
     }
     public void openAllBrandsSection (){
         waitUtils.waitForElementClickable(showAllBrandsButton).click();
-        driver.findElement(showAllBrandsButton).click();
     }
     public void clickOnOtlobhPromotionSection (){
         driver.findElement(otlobhaPromotionSection).click();
@@ -87,7 +87,7 @@ public class UsedCarsSEOPages {
         }
     }
     public void clickOnBreadcrumbItem (int id) {
-        List<WebElement> breadcrumbElements = waitUtils.waitForAllElementsVisible(breadCrumb);
+        breadcrumbElements = waitUtils.waitForAllElementsVisible(breadCrumb);
         breadcrumbElements.get(id).click();
     }
 
@@ -102,8 +102,11 @@ public class UsedCarsSEOPages {
             WebElement makeHit = makes.get(makeId);
             makeName = makeHit.getText();
             waitUtils.waitForElementClickable(makeHit).click();
+            waitUtils.waitForStalenssOfElement(makes.get(0));
             getModelHitDetails();
             clickOnBreadcrumbItem(1);
+            openAllBrandsSection();
+            waitUtils.waitForStalenssOfElement(breadcrumbElements.get(2));
         }
     }
     public void getModelHitDetails () {
@@ -113,23 +116,24 @@ public class UsedCarsSEOPages {
             WebElement modelHit = models.get(modelId);
             modelName = modelHit.getText();
             waitUtils.waitForElementClickable(modelHit).click();
+            waitUtils.waitForStalenssOfElement(models.get(0));
             getYearHitDetails();
             clickOnBreadcrumbItem(2);
+            waitUtils.waitForStalenssOfElement(breadcrumbElements.get(3));
         }
     }
     public void getYearHitDetails () {
-        boolean yearsLoaded = waitUtils.waitForUrlContains(modelName.substring(0,2).toLowerCase());
         years = waitUtils.waitForAllElementsVisible(otherSelectors);
             for (yearId = 0 ; yearId < years.size() ; yearId++){
                 years = waitUtils.waitForAllElementsVisible(otherSelectors);
                 WebElement yearHit = years.get(yearId);
                 yearName = yearHit.getText();
                 waitUtils.waitForElementClickable(yearHit).click();
+                waitUtils.waitForStalenssOfElement(years.get(0));
                 getTrimHitDetails();
                 clickOnBreadcrumbItem(3);
+                waitUtils.waitForStalenssOfElement(breadcrumbElements.get(4));
             }
-
-
     }
     public void getTrimHitDetails () {
         trims = waitUtils.waitForAllElementsVisible(otherSelectors);
@@ -138,7 +142,9 @@ public class UsedCarsSEOPages {
             WebElement trimHit = trims.get(trimId);
             trimName = trimHit.getText();
             waitUtils.waitForElementClickable(trimHit).click();
+            waitUtils.waitForStalenssOfElement(trims.get(0));
             clickOnBreadcrumbItem(4);
+            waitUtils.waitForStalenssOfElement(breadcrumbElements.get(5));
         }
     }
 

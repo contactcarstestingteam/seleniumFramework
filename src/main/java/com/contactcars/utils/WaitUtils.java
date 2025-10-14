@@ -1,7 +1,5 @@
 package com.contactcars.utils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
@@ -28,10 +26,27 @@ public class WaitUtils {
     }
 
     public WebElement waitForElementClickable(By element) {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+        } catch (StaleElementReferenceException e){
+
+        }
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public boolean waitForUrlContains(String partialUrl) {
         return wait.until(ExpectedConditions.urlContains(partialUrl));
     }
+
+    public boolean waitForStalenssOfElement(WebElement element) {
+        return wait.until(ExpectedConditions.stalenessOf(element));
+    }
+
+    public void waitForPageToLoad(int timeoutInSeconds) {
+        new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds)).until(
+                webDriver -> ((JavascriptExecutor) webDriver)
+                        .executeScript("return document.readyState")
+                        .equals("complete"));
+    }
+
 }
