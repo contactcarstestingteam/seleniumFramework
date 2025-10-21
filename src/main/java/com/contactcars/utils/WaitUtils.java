@@ -6,8 +6,8 @@ import java.time.Duration;
 import java.util.List;
 
 public class WaitUtils {
-    private WebDriver driver;
-    private WebDriverWait wait;
+    private final WebDriver driver;
+    private final WebDriverWait wait;
 
     public WaitUtils(WebDriver driver, int timeoutInSeconds) {
         this.driver = driver;

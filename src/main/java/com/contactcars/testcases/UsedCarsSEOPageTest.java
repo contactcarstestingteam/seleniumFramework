@@ -1,5 +1,6 @@
 package com.contactcars.testcases;
 import com.contactcars.base.TestBase;
+import com.contactcars.utils.CsvUtils;
 import com.contactcars.utils.WaitUtils;
 import com.contactcars.pages.HomePage;
 import com.contactcars.pages.UsedCarsSEOPages;
@@ -21,7 +22,7 @@ public class UsedCarsSEOPageTest extends TestBase {
     public void makeModelYearTrimScenario () throws InterruptedException, IOException {
         driverInitialization();
         usedCarsSEOPage = new UsedCarsSEOPages(driver);
-        openChrome(getVariableValueFromSheet1("URLEn"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URLEn"));
         homePage.NavigateToUsedCarSEOPage();
         Thread.sleep(5000);
         usedCarsSEOPage.makeModelYearTrimPath();

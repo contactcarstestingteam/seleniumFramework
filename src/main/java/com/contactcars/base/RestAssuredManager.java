@@ -1,5 +1,6 @@
 package com.contactcars.base;
 
+import com.contactcars.utils.CsvUtils;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -9,6 +10,7 @@ import org.json.JSONObject;
 import static io.restassured.RestAssured.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,10 +21,12 @@ public class RestAssuredManager extends DevToolsManager {
         super();
     }
 
+    public static Map<String, String> queryParams = new HashMap<>();
+
     // Get
     public static Response getRequest(String endpoint, String token) {
         return given()
-                .baseUri( getVariableValueFromSheet1("BaseURL"))
+                .baseUri( CsvUtils.getVariableValueFromSheet1("BaseURL"))
                 .auth().oauth2(token)
                 .header("Accept", "application/json")
                 .header("correlation-id", "test")
@@ -36,7 +40,7 @@ public class RestAssuredManager extends DevToolsManager {
     // Post
     public static Response postRequest(String endpoint, String token, Object body) {
         return given()
-                .baseUri( getVariableValueFromSheet1("BaseURL"))
+                .baseUri( CsvUtils.getVariableValueFromSheet1("BaseURL"))
                 .auth().oauth2(token)
                 .header("Accept", "application/json")
                 .header("Content-Type", "application/json")
@@ -57,7 +61,7 @@ public class RestAssuredManager extends DevToolsManager {
 
     public static List<String> callingShowroomsApi(String... params) {
         // Specify the base URL to the RESTful web service
-        RestAssured.baseURI = getVariableValueFromSheet2("BaseURL") + getVariableValueFromSheet2("SearchDealersApi");
+        RestAssured.baseURI = CsvUtils.getVariableValueFromSheet2("BaseURL") + CsvUtils.getVariableValueFromSheet2("SearchDealersApi");
         // Get the RequestSpecification of the request that is to be sent
         // to the server.
         RequestSpecification httpRequest = RestAssured.given();

@@ -3,6 +3,7 @@ package com.contactcars.testcases;
 import com.contactcars.base.DevToolsManager;
 
 import com.contactcars.pages.HomePage;
+import com.contactcars.utils.CsvUtils;
 import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -42,7 +43,7 @@ public class HomePageTest extends DevToolsManager {
         setupDevTools();
         setupRequestListeners("DealerAds");
         setupResponseListeners("DealerAds", "Array");
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         getResponseItems();
         home.waitDealerAds();

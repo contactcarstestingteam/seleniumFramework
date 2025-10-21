@@ -3,6 +3,8 @@ package com.contactcars.testcases;
 import com.contactcars.base.TestBase;
 import com.contactcars.pages.HomePage;
 import com.contactcars.pages.LoginPage;
+import com.contactcars.utils.CsvUtils;
+import com.contactcars.utils.ExtentReportUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.IOException;
@@ -22,32 +24,32 @@ public class LoginPageTest extends TestBase {
     public void login() throws InterruptedException, IOException {
         //Creating object of HOME and Login pages
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
        // home.clickSkip();
         home.clickLoginLink();
         Thread.sleep(5000);
 
-        login.enterMobileNumber(getVariableValueFromSheet1("MobileNo"));
+        login.enterMobileNumber(CsvUtils.getVariableValueFromSheet1("MobileNo"));
         login.clickLogin();
         Thread.sleep(5000);
 
-        login.enterOtp(getVariableValueFromSheet1("OTP"));
+        login.enterOtp(CsvUtils.getVariableValueFromSheet1("OTP"));
         login.clickConfirm();
         Thread.sleep(5000);
 
         home.clickNoThanks();
 
-        extentTest = extentReports.createTest("Login Test Case");
+        ExtentReportUtils.extentTest = ExtentReportUtils.extentReports.createTest("Login Test Case");
 
         //Check on logging in successfully
         String actualUrl = driver.getCurrentUrl();
-        String expectedUrl = getVariableValueFromSheet1("URL");
+        String expectedUrl = CsvUtils.getVariableValueFromSheet1("URL");
          if (actualUrl.contentEquals(expectedUrl)){
              Assert.assertTrue(actualUrl.contentEquals(expectedUrl));
-             logAssertionBetweenTwoEqualValues(Pass, actualUrl, expectedUrl);
+             ExtentReportUtils.logAssertionBetweenTwoEqualValues(ExtentReportUtils.Pass, actualUrl, expectedUrl);
          } else {
-             logAssertionBetweenTwoEqualValues(Fail, actualUrl, expectedUrl);
+             ExtentReportUtils.logAssertionBetweenTwoEqualValues(ExtentReportUtils.Fail, actualUrl, expectedUrl);
          }
     }
 }

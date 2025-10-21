@@ -4,6 +4,7 @@ import com.contactcars.base.RestAssuredManager;
 import com.contactcars.pages.HomePage;
 import com.contactcars.pages.ShowroomsDetailsPage;
 import com.contactcars.pages.ShowroomsPage;
+import com.contactcars.utils.CsvUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -29,7 +30,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void getAllCarsShowrooms() throws InterruptedException, IOException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         //home.clickSkip();
         home.clickShowroomsLink();
@@ -48,7 +49,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void applyAllFilters() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         //home.clickSkip();
         Thread.sleep(5000);
@@ -78,7 +79,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void applyNameFilter() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         //home.clickSkip();
         Thread.sleep(5000);
@@ -100,7 +101,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void applyGovernorateFilter() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
        // home.clickSkip();
         Thread.sleep(5000);
@@ -123,7 +124,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void applyGovernorateAndAreaFilter() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
        // home.clickSkip();
         Thread.sleep(5000);
@@ -149,7 +150,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void applyMakeFilter() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         // home.clickSkip();
         Thread.sleep(5000);
@@ -174,7 +175,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void applyNewStatusFilter() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         //home.clickSkip();
         Thread.sleep(5000);
@@ -196,7 +197,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void applyUsedStatusFilter() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
        // home.clickSkip();
         Thread.sleep(5000);
@@ -218,7 +219,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void applyNameAndGovernorateFilters() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
       //  home.clickSkip();
         Thread.sleep(5000);
@@ -242,7 +243,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void applyNameAndAreaFilters() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
        // home.clickSkip();
         Thread.sleep(5000);
@@ -268,7 +269,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void applyNameAndMakeFilters() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
       //  home.clickSkip();
         Thread.sleep(5000);
@@ -292,7 +293,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void applyGovernorateAndMakeFilters() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
        // home.clickSkip();
         Thread.sleep(5000);
@@ -317,7 +318,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void applyGovernorateAndNewStatusFilters() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
        // home.clickSkip();
         Thread.sleep(5000);
@@ -341,7 +342,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void applyGovernorateAndUsedStatusFilters() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
        // home.clickSkip();
         Thread.sleep(5000);
@@ -365,7 +366,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void applyAreaAndMakeFilters() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
       //  home.clickSkip();
         Thread.sleep(5000);
@@ -393,7 +394,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void applyAreaAndNewStatusFilters() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         //home.clickSkip();
         Thread.sleep(5000);
@@ -420,7 +421,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void applyAreaAndUsedStatusFilters() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
      //   home.clickSkip();
         Thread.sleep(5000);
@@ -447,7 +448,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void applyMakeAndNewStatusFilters() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
       //  home.clickSkip();
         Thread.sleep(5000);
@@ -471,7 +472,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void applyMakeAndUsedStatusFilters() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
     //    home.clickSkip();
         Thread.sleep(5000);
@@ -495,7 +496,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void openShowroomPage() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URLEn"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URLEn"));
         Thread.sleep(5000);
         // home.clickSkip();
         Thread.sleep(5000);
@@ -513,7 +514,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void openBranchesTab() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URLEn"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URLEn"));
         Thread.sleep(5000);
        // home.clickSkip();
         Thread.sleep(5000);
@@ -536,7 +537,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
     @Test
     public void openContactUsTab() throws InterruptedException {
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("URLEn"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URLEn"));
         Thread.sleep(5000);
         //home.clickSkip();
         Thread.sleep(5000);
