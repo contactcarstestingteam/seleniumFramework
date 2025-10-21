@@ -1,6 +1,6 @@
 package com.contactcars.testcases;
 
-import com.contactcars.base.TestBase;
+import com.contactcars.base.RestAssuredManager;
 import com.contactcars.pages.HomePage;
 import com.contactcars.pages.ShowroomsDetailsPage;
 import com.contactcars.pages.ShowroomsPage;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ShowroomsPageTest extends TestBase {
+public class ShowroomsPageTest extends RestAssuredManager {
 
     //Creating object of Home page
     HomePage home = new HomePage();
