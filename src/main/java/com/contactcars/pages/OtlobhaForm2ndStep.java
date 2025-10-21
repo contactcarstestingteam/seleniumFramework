@@ -1,6 +1,7 @@
 package com.contactcars.pages;
 
 import com.contactcars.base.TestBase;
+import com.contactcars.utils.CsvUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -97,7 +98,7 @@ public class OtlobhaForm2ndStep extends TestBase {
 
     //Check on success page
     public void CheckUrl() throws InterruptedException {
-        String expectedPartialUrl = getVariableValueFromSheet1("OtlobhaSuccessURL");
+        String expectedPartialUrl = CsvUtils.getVariableValueFromSheet1("OtlobhaSuccessURL");
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         boolean urlMatched = wait.until(ExpectedConditions.urlContains(expectedPartialUrl));
