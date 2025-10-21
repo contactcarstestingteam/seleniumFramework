@@ -69,8 +69,8 @@ public class TestBase {
     public static void openChrome(String url) {
         driver.get(url);
     }
-  
     @BeforeTest
+
     public void startReporter() {
         extentSparkReporter  = new ExtentSparkReporter("C:/Users/Nada.Adel/IdeaProjects/seleniumFramework/test-output/extentReport.html");
         extentReports = new ExtentReports();
