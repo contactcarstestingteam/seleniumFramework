@@ -27,6 +27,9 @@ public class HomePage extends TestBase {
         super();
     }
 
+    //locator for my account button
+    By MyAccount = By.cssSelector("header>div>div:nth-child(3)>div:nth-child(2)>a");
+
     //Locator for login button
     By loginLink = By.cssSelector("header > div > div:nth-child(3) > button");
 
@@ -69,6 +72,10 @@ public class HomePage extends TestBase {
     }
 
 
+    //Method to click on my account icon
+    public void ClickMyAccountIcon(){
+        driver.findElement(MyAccount).click();
+    }
     //Method to click login link
     public void clickLoginLink() {
         driver.findElement(loginLink).click();

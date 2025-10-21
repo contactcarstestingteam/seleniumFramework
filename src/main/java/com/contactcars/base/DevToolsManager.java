@@ -21,10 +21,13 @@ public class DevToolsManager extends TestBase{
 
     public static DevTools devTools;
     public static Map<String, String> apiRequests = new ConcurrentHashMap<>();
-    public static JSONArray result;
+    public static JSONArray resultArray;
+    public static JSONObject resultObject;
+    public static JSONObject result;
+    public static JSONObject responseBodyInJSON;
+
 
     public static void setupDevTools() {
-        driverInitialization();
         // Trigger the network activity
         devTools = ((ChromeDriver) driver).getDevTools();
         devTools.createSession();
@@ -49,7 +52,6 @@ public class DevToolsManager extends TestBase{
 //                    System.out.println("URL: " + url);
 //                    System.out.println("Method: " + method);
 //                    System.out.println("Request ID: " + requestId);
-
                     // Log request body for POST/PUT requests
 //                    if (networkRequest.getPostData() != null && !networkRequest.getPostData().isEmpty()) {
 //                        System.out.println("Request Body: " + networkRequest.getPostData());
@@ -59,7 +61,7 @@ public class DevToolsManager extends TestBase{
         });
     }
 
-    public static void setupResponseListeners(String apiName) {
+    public static void setupResponseListeners(String apiName, String type) {
         // Listen for all responses
         devTools.addListener(Network.responseReceived(), response -> {
             String requestId = response.getRequestId().toString();
@@ -69,6 +71,7 @@ public class DevToolsManager extends TestBase{
                 String url = networkResponse.getUrl();
                 int statusCode = networkResponse.getStatus();
                 String statusText = networkResponse.getStatusText();
+
 
 //                System.out.println("✅ API RESPONSE RECEIVED");
 //                System.out.println("URL: " + url);
@@ -82,9 +85,14 @@ public class DevToolsManager extends TestBase{
 //                    System.out.println(formatJsonResponse(body));
 
                     // First get the Json object instance from the Response interface
-                    JSONObject responseBodyInJSON = new JSONObject(body);
-                    // Get the result array from the response
-                    result = responseBodyInJSON.getJSONArray("result");
+                    responseBodyInJSON = new JSONObject(body);
+                    if (type == "Array") {
+                        parseJsonArray();
+                    } else if (type == "Object") {
+                        parseJsonObject();
+                    } else {
+                        result = responseBodyInJSON;
+                    }
                 } catch (Exception e) {
                     System.out.println("Error getting response body: " + e.getMessage());
                 }
@@ -145,6 +153,16 @@ public class DevToolsManager extends TestBase{
         } catch (Exception e) {
             return response; // Return original if formatting fails
         }
+    }
+
+    // Get the resultObject array from the response
+    public static void parseJsonArray() {
+        resultArray = responseBodyInJSON.getJSONArray("result");
+    }
+
+    // Get the resultObject object from the response
+    public static void parseJsonObject() {
+        resultObject = responseBodyInJSON.getJSONObject("result");
     }
 
 }

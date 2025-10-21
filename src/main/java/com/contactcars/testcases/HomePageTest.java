@@ -16,6 +16,7 @@ public class HomePageTest extends DevToolsManager {
 
     //Creating object of Home page
     HomePage home = new HomePage();
+    LoginPageTest login = new LoginPageTest();
     List<String> responseMakesList = new ArrayList<>();
     List<String> responseModelsList = new ArrayList<>();
     List<String> responseYearsList = new ArrayList<>();
@@ -27,7 +28,7 @@ public class HomePageTest extends DevToolsManager {
     }
 
     public void openOtlobhaLandingPage() throws InterruptedException, IOException {
-        LoginPageTest.login();
+        login.login();
         Thread.sleep(5000);
         home.hoverOnServicesLink();
         Thread.sleep(5000);
@@ -37,9 +38,10 @@ public class HomePageTest extends DevToolsManager {
 
     @Test
     public void getRecentDealerAds() throws InterruptedException {
+        driverInitialization();
         setupDevTools();
         setupRequestListeners("DealerAds");
-        setupResponseListeners("DealerAds");
+        setupResponseListeners("DealerAds", "Array");
         openChrome(getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         getResponseItems();
@@ -48,10 +50,10 @@ public class HomePageTest extends DevToolsManager {
     }
 
     public void getResponseItems() {
-        // Loop on all objects inside the main result object
-        for (int i = 0; i < result.length(); i++){
-            // Get the data object from the result array
-            JSONObject data = result.getJSONObject(i);
+        // Loop on all objects inside the main resultObject object
+        for (int i = 0; i < resultArray.length(); i++){
+            // Get the data object from the resultObject array
+            JSONObject data = resultArray.getJSONObject(i);
             // Get the make object
             JSONObject makeObject = data.getJSONObject("make");
             // Get the make name
