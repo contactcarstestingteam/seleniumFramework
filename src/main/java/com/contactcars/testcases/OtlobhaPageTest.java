@@ -25,7 +25,7 @@ public class OtlobhaPageTest extends TestBase {
     //Creating object of csv utils
     CsvUtils csv = new CsvUtils();
     // Creating object of payment utils
-    PaymentUtils paymentUtils = new PaymentUtils(driver);
+    PaymentUtils payment = new PaymentUtils(driver);
 
     public OtlobhaPageTest() throws IOException {
         super();
@@ -58,7 +58,7 @@ public class OtlobhaPageTest extends TestBase {
     form2ndStep.ChooseBankCard();
     form2ndStep.clickSubmit();
    Thread.sleep(10000);
-    paymentUtils.payWithCard();
+    payment.payWithCard();
     Thread.sleep(30000);
     //Check on success page
     form2ndStep.CheckUrl();
@@ -100,7 +100,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         //payment gateway
-        paymentUtils.payWithWallet();
+        payment.payWithWallet();
         Thread.sleep(5000);
         //Check on success page
         form2ndStep.CheckUrl();
@@ -143,7 +143,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         //payment gateway
-        paymentUtils.payWithWallet();
+        payment.payWithWallet();
         Thread.sleep(5000);
         //Check on success page
         form2ndStep.CheckUrl();
@@ -190,7 +190,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         //payment gateway
-        paymentUtils.payWithWallet();
+        payment.payWithWallet();
         Thread.sleep(5000);
         //Check on success page
         form2ndStep.CheckUrl();
@@ -236,7 +236,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         //payment gateway
-        paymentUtils.payWithWallet();
+        payment.payWithWallet();
         Thread.sleep(5000);
         //Check on success page
         form2ndStep.CheckUrl();
@@ -284,7 +284,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         //payment gateway
-        paymentUtils.payWithWallet();
+        payment.payWithWallet();
         Thread.sleep(5000);
         //Check on success page
         form2ndStep.CheckUrl();
@@ -331,7 +331,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         //payment gateway
-        paymentUtils.payWithWallet();
+        payment.payWithWallet();
         Thread.sleep(5000);
         //Check on success page
         form2ndStep.CheckUrl();
@@ -378,7 +378,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         //payment gateway
-        paymentUtils.payWithWallet();
+        payment.payWithWallet();
         Thread.sleep(5000);
         //Check on success page
         form2ndStep.CheckUrl();
@@ -427,7 +427,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         //payment gateway
-        paymentUtils.payWithWallet();
+        payment.payWithWallet();
         Thread.sleep(5000);
         //Check on success page
         form2ndStep.CheckUrl();
@@ -470,7 +470,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         //payment gateway
-        paymentUtils.payWithWallet();
+        payment.payWithWallet();
         Thread.sleep(5000);
         //Check on success page
         form2ndStep.CheckUrl();
@@ -513,7 +513,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         //payment gateway
-        paymentUtils.payWithWallet();
+        payment.payWithWallet();
         Thread.sleep(5000);
         //Check on success page
         form2ndStep.CheckUrl();
@@ -560,7 +560,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         //payment gateway
-        paymentUtils.payWithWallet();
+        payment.payWithWallet();
         Thread.sleep(5000);
         //Check on success page
         form2ndStep.CheckUrl();
@@ -607,7 +607,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         //payment gateway
-        paymentUtils.payWithWallet();
+        payment.payWithWallet();
         Thread.sleep(5000);
         //Check on success page
         form2ndStep.CheckUrl();
@@ -655,7 +655,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         //payment gateway
-        paymentUtils.payWithWallet();
+        payment.payWithWallet();
         Thread.sleep(5000);
         //Check on success page
         form2ndStep.CheckUrl();
@@ -702,7 +702,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         //payment gateway
-        paymentUtils.payWithWallet();
+        payment.payWithWallet();
         Thread.sleep(5000);
         //Check on success page
         form2ndStep.CheckUrl();
@@ -798,7 +798,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         //payment gateway
-        paymentUtils.payWithWallet();
+        payment.payWithWallet();
         Thread.sleep(5000);
         //Check on success page
         form2ndStep.CheckUrl();
@@ -843,7 +843,7 @@ public class OtlobhaPageTest extends TestBase {
         form2ndStep.ChooseBankCard();
         form2ndStep.clickSubmit();
         Thread.sleep(10000);
-        paymentUtils.payWithCard();
+        payment.payWithCard();
         Thread.sleep(30000);
         //Check on success page
         form2ndStep.CheckUrl();

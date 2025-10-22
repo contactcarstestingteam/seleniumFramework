@@ -16,6 +16,8 @@ public class LoginPageTest extends TestBase {
      LoginPage login = new LoginPage();
     //Creating object of csv utils
     CsvUtils csv = new CsvUtils();
+    //Creating object of extent report utils
+    ExtentReportUtils report = new ExtentReportUtils();
 
     public LoginPageTest() throws IOException {
         super();
@@ -42,16 +44,16 @@ public class LoginPageTest extends TestBase {
 
         home.clickNoThanks();
 
-        ExtentReportUtils.extentTest = ExtentReportUtils.extentReports.createTest("Login Test Case");
+        report.extentTest = report.extentReports.createTest("Login Test Case");
 
         //Check on logging in successfully
         String actualUrl = driver.getCurrentUrl();
         String expectedUrl = csv.getVariableValueFromSheet1("URL");
          if (actualUrl.contentEquals(expectedUrl)){
              Assert.assertTrue(actualUrl.contentEquals(expectedUrl));
-             ExtentReportUtils.logAssertionBetweenTwoEqualValues(ExtentReportUtils.Pass, actualUrl, expectedUrl);
+             report.logAssertionBetweenTwoEqualValues(report.Pass, actualUrl, expectedUrl);
          } else {
-             ExtentReportUtils.logAssertionBetweenTwoEqualValues(ExtentReportUtils.Fail, actualUrl, expectedUrl);
+             report.logAssertionBetweenTwoEqualValues(report.Fail, actualUrl, expectedUrl);
          }
     }
 }
