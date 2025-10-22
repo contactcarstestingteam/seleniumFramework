@@ -22,6 +22,8 @@ public class OtlobhaPageTest extends TestBase {
     WalletPaymentGateway wallet = new WalletPaymentGateway();
     // Creating object of home page
     HomePage home = new HomePage();
+    //Creating object of csv utils
+    CsvUtils csv = new CsvUtils();
     // Creating object of payment utils
     PaymentUtils paymentUtils = new PaymentUtils(driver);
 
@@ -93,7 +95,7 @@ public class OtlobhaPageTest extends TestBase {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         form2ndStep.clickSubmit();
         Thread.sleep(5000);
-        form2ndStep.enterWalletNumber(CsvUtils.getVariableValueFromSheet1("WalletNo"));
+        form2ndStep.enterWalletNumber(csv.getVariableValueFromSheet1("WalletNo"));
         form2ndStep.clickProceedToPay();
         Thread.sleep(5000);
 
@@ -136,7 +138,7 @@ public class OtlobhaPageTest extends TestBase {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         form2ndStep.clickSubmit();
         Thread.sleep(5000);
-        form2ndStep.enterWalletNumber(CsvUtils.getVariableValueFromSheet1("WalletNo"));
+        form2ndStep.enterWalletNumber(csv.getVariableValueFromSheet1("WalletNo"));
         form2ndStep.clickProceedToPay();
         Thread.sleep(5000);
 
@@ -183,7 +185,7 @@ public class OtlobhaPageTest extends TestBase {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         form2ndStep.clickSubmit();
         Thread.sleep(5000);
-        form2ndStep.enterWalletNumber(CsvUtils.getVariableValueFromSheet1("WalletNo"));
+        form2ndStep.enterWalletNumber(csv.getVariableValueFromSheet1("WalletNo"));
         form2ndStep.clickProceedToPay();
         Thread.sleep(5000);
 
@@ -229,7 +231,7 @@ public class OtlobhaPageTest extends TestBase {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         form2ndStep.clickSubmit();
         Thread.sleep(5000);
-        form2ndStep.enterWalletNumber(CsvUtils.getVariableValueFromSheet1("WalletNo"));
+        form2ndStep.enterWalletNumber(csv.getVariableValueFromSheet1("WalletNo"));
         form2ndStep.clickProceedToPay();
         Thread.sleep(5000);
 
@@ -277,7 +279,7 @@ public class OtlobhaPageTest extends TestBase {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         form2ndStep.clickSubmit();
         Thread.sleep(5000);
-        form2ndStep.enterWalletNumber(CsvUtils.getVariableValueFromSheet1("WalletNo"));
+        form2ndStep.enterWalletNumber(csv.getVariableValueFromSheet1("WalletNo"));
         form2ndStep.clickProceedToPay();
         Thread.sleep(5000);
 
@@ -324,7 +326,7 @@ public class OtlobhaPageTest extends TestBase {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         form2ndStep.clickSubmit();
         Thread.sleep(5000);
-        form2ndStep.enterWalletNumber(CsvUtils.getVariableValueFromSheet1("WalletNo"));
+        form2ndStep.enterWalletNumber(csv.getVariableValueFromSheet1("WalletNo"));
         form2ndStep.clickProceedToPay();
         Thread.sleep(5000);
 
@@ -371,7 +373,7 @@ public class OtlobhaPageTest extends TestBase {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         form2ndStep.clickSubmit();
         Thread.sleep(5000);
-        form2ndStep.enterWalletNumber(CsvUtils.getVariableValueFromSheet1("WalletNo"));
+        form2ndStep.enterWalletNumber(csv.getVariableValueFromSheet1("WalletNo"));
         form2ndStep.clickProceedToPay();
         Thread.sleep(5000);
 
@@ -420,7 +422,7 @@ public class OtlobhaPageTest extends TestBase {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         form2ndStep.clickSubmit();
         Thread.sleep(5000);
-        form2ndStep.enterWalletNumber(CsvUtils.getVariableValueFromSheet1("WalletNo"));
+        form2ndStep.enterWalletNumber(csv.getVariableValueFromSheet1("WalletNo"));
         form2ndStep.clickProceedToPay();
         Thread.sleep(5000);
 
@@ -463,7 +465,7 @@ public class OtlobhaPageTest extends TestBase {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         form2ndStep.clickSubmit();
         Thread.sleep(5000);
-        form2ndStep.enterWalletNumber(CsvUtils.getVariableValueFromSheet1("WalletNo"));
+        form2ndStep.enterWalletNumber(csv.getVariableValueFromSheet1("WalletNo"));
         form2ndStep.clickProceedToPay();
         Thread.sleep(5000);
 
@@ -506,7 +508,7 @@ public class OtlobhaPageTest extends TestBase {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         form2ndStep.clickSubmit();
         Thread.sleep(5000);
-        form2ndStep.enterWalletNumber(CsvUtils.getVariableValueFromSheet1("WalletNo"));
+        form2ndStep.enterWalletNumber(csv.getVariableValueFromSheet1("WalletNo"));
         form2ndStep.clickProceedToPay();
         Thread.sleep(5000);
 
@@ -553,7 +555,7 @@ public class OtlobhaPageTest extends TestBase {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         form2ndStep.clickSubmit();
         Thread.sleep(5000);
-        form2ndStep.enterWalletNumber(CsvUtils.getVariableValueFromSheet1("WalletNo"));
+        form2ndStep.enterWalletNumber(csv.getVariableValueFromSheet1("WalletNo"));
         form2ndStep.clickProceedToPay();
         Thread.sleep(5000);
 
@@ -600,7 +602,7 @@ public class OtlobhaPageTest extends TestBase {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         form2ndStep.clickSubmit();
         Thread.sleep(5000);
-        form2ndStep.enterWalletNumber(CsvUtils.getVariableValueFromSheet1("WalletNo"));
+        form2ndStep.enterWalletNumber(csv.getVariableValueFromSheet1("WalletNo"));
         form2ndStep.clickProceedToPay();
         Thread.sleep(5000);
 
@@ -648,7 +650,7 @@ public class OtlobhaPageTest extends TestBase {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         form2ndStep.clickSubmit();
         Thread.sleep(5000);
-        form2ndStep.enterWalletNumber(CsvUtils.getVariableValueFromSheet1("WalletNo"));
+        form2ndStep.enterWalletNumber(csv.getVariableValueFromSheet1("WalletNo"));
         form2ndStep.clickProceedToPay();
         Thread.sleep(5000);
 
@@ -695,7 +697,7 @@ public class OtlobhaPageTest extends TestBase {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         form2ndStep.clickSubmit();
         Thread.sleep(5000);
-        form2ndStep.enterWalletNumber(CsvUtils.getVariableValueFromSheet1("WalletNo"));
+        form2ndStep.enterWalletNumber(csv.getVariableValueFromSheet1("WalletNo"));
         form2ndStep.clickProceedToPay();
         Thread.sleep(5000);
 
@@ -740,7 +742,7 @@ public class OtlobhaPageTest extends TestBase {
         // second step
         form2ndStep.chooseWallet();
         Thread.sleep(5000);
-        form2ndStep.enterPromoCode(CsvUtils.getVariableValueFromSheet1("FreeOtlobhaCoupon"));
+        form2ndStep.enterPromoCode(csv.getVariableValueFromSheet1("FreeOtlobhaCoupon"));
         form2ndStep.clickApplyPromoCode();
         Thread.sleep(5000);
         form2ndStep.clickSubmit();
@@ -781,7 +783,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         // second step
-        form2ndStep.enterPromoCode(CsvUtils.getVariableValueFromSheet1("PromoCode"));
+        form2ndStep.enterPromoCode(csv.getVariableValueFromSheet1("PromoCode"));
         form2ndStep.clickApplyPromoCode();
         Thread.sleep(5000);
 
@@ -791,7 +793,7 @@ public class OtlobhaPageTest extends TestBase {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         form2ndStep.clickSubmit();
         Thread.sleep(5000);
-        form2ndStep.enterWalletNumber(CsvUtils.getVariableValueFromSheet1("WalletNo"));
+        form2ndStep.enterWalletNumber(csv.getVariableValueFromSheet1("WalletNo"));
         form2ndStep.clickProceedToPay();
         Thread.sleep(5000);
 
@@ -833,7 +835,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         // second step
-        form2ndStep.enterPromoCode(CsvUtils.getVariableValueFromSheet1("PromoCode"));
+        form2ndStep.enterPromoCode(csv.getVariableValueFromSheet1("PromoCode"));
         form2ndStep.clickApplyPromoCode();
         Thread.sleep(5000);
 
@@ -878,7 +880,7 @@ public class OtlobhaPageTest extends TestBase {
         Thread.sleep(5000);
 
         // second step Fawry
-        form2ndStep.enterPromoCode(CsvUtils.getVariableValueFromSheet1("PromoCode"));
+        form2ndStep.enterPromoCode(csv.getVariableValueFromSheet1("PromoCode"));
         form2ndStep.clickApplyPromoCode();
         Thread.sleep(5000);
 
@@ -894,7 +896,7 @@ public class OtlobhaPageTest extends TestBase {
     @Test //Test (21) login to otlobha from another entry point
     public void LoginFromOtlobha() throws InterruptedException, IOException{
         driverInitialization();
-        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
+        openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
 
 
@@ -908,9 +910,9 @@ public class OtlobhaPageTest extends TestBase {
         //Step one
         Thread.sleep(5000);
         form1stStep.ClickName();
-        form1stStep.WriteName(CsvUtils.getVariableValueFromSheet1("Name"));
+        form1stStep.WriteName(csv.getVariableValueFromSheet1("Name"));
         form1stStep.ClickPhone();
-        form1stStep.WritePhone(CsvUtils.getVariableValueFromSheet1("MobileNo"));
+        form1stStep.WritePhone(csv.getVariableValueFromSheet1("MobileNo"));
         Thread.sleep(5000);
         form1stStep.clickCountry();
         form1stStep.chooseCountryValue(0);
@@ -933,11 +935,11 @@ public class OtlobhaPageTest extends TestBase {
         form1stStep.ClickTerms();
         form1stStep.clickNext();
         Thread.sleep(5000);
-        LoginPage.enterOtp(CsvUtils.getVariableValueFromSheet1("OTP"));
+        LoginPage.enterOtp(csv.getVariableValueFromSheet1("OTP"));
         LoginPage.clickConfirm();
         Thread.sleep(5000);
         // second step Fawry
-        form2ndStep.enterPromoCode(CsvUtils.getVariableValueFromSheet1("PromoCode"));
+        form2ndStep.enterPromoCode(csv.getVariableValueFromSheet1("PromoCode"));
         form2ndStep.clickApplyPromoCode();
         Thread.sleep(5000);
 

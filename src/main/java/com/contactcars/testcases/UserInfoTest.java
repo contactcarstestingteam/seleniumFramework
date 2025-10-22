@@ -23,18 +23,20 @@ public class UserInfoTest extends RestAssuredManager {
      UserInfoPage userInfoPage = new UserInfoPage();
      HomePage home = new HomePage();
      LoginPage Login = new LoginPage();
+    //Creating object of csv utils
+    CsvUtils csv = new CsvUtils();
 
     @Test
     public void compareApiUserInfoWithUi() throws IOException, InterruptedException {
         // --- Login & Navigate to Profile Page ---
         driverInitialization();
-        openChrome(CsvUtils.getVariableValueFromSheet1("LoginURL"));
+        openChrome(csv.getVariableValueFromSheet1("LoginURL"));
         Thread.sleep(5000);
 
-        Login.enterMobileNumber(CsvUtils.getVariableValueFromSheet1("MobileNo"));
+        Login.enterMobileNumber(csv.getVariableValueFromSheet1("MobileNo"));
         Login.clickLogin();
         Thread.sleep(5000);
-        Login.enterOtp(CsvUtils.getVariableValueFromSheet1("OTP"));
+        Login.enterOtp(csv.getVariableValueFromSheet1("OTP"));
         setupDevTools();
         setupRequestListeners("token");
         setupResponseListeners("token", "");

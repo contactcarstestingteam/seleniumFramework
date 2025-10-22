@@ -24,6 +24,9 @@ public class HomePageTest extends DevToolsManager {
     List<String> responsePricesList = new ArrayList<>();
     List<String> responseDealerNamesList = new ArrayList<>();
 
+    //Creating object of csv utils
+    CsvUtils csv = new CsvUtils();
+
     public HomePageTest() throws IOException {
         super();
     }
@@ -43,7 +46,7 @@ public class HomePageTest extends DevToolsManager {
         setupDevTools();
         setupRequestListeners("DealerAds");
         setupResponseListeners("DealerAds", "Array");
-        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
+        openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         getResponseItems();
         home.waitDealerAds();

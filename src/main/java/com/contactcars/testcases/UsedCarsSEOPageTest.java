@@ -13,6 +13,8 @@ public class UsedCarsSEOPageTest extends TestBase {
 
     UsedCarsSEOPages usedCarsSEOPage;
     HomePage homePage = new HomePage();
+    //Creating object of csv utils
+    CsvUtils csv = new CsvUtils();
 
     public UsedCarsSEOPageTest() throws IOException {
         //waitUtils = new WaitUtils(driver, 10);
@@ -22,7 +24,7 @@ public class UsedCarsSEOPageTest extends TestBase {
     public void makeModelYearTrimScenario () throws InterruptedException, IOException {
         driverInitialization();
         usedCarsSEOPage = new UsedCarsSEOPages(driver);
-        openChrome(CsvUtils.getVariableValueFromSheet1("URLEn"));
+        openChrome(csv.getVariableValueFromSheet1("URLEn"));
         homePage.NavigateToUsedCarSEOPage();
         Thread.sleep(5000);
         usedCarsSEOPage.makeModelYearTrimPath();

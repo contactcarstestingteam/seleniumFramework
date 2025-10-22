@@ -15,18 +15,20 @@ import java.util.NoSuchElementException;
 public class PaymentUtils  {
 
     private final WebDriver driver;
+    //Creating object of csv utils
+    CsvUtils csv = new CsvUtils();
 
-    public PaymentUtils(WebDriver driver) {
+    public PaymentUtils(WebDriver driver) throws IOException {
         this.driver = driver;
     }
 
     public void payWithCard() throws IOException {
         //Creating object of card payment gateway page
         CradPaymentGateway card = new CradPaymentGateway();
-        card.enterCardNumber(CsvUtils.getVariableValueFromSheet1("Card No"));
-        card.enterCardName(CsvUtils.getVariableValueFromSheet1("Card Name"));
-        card.enterCardDate(CsvUtils.getVariableValueFromSheet1("Date"));
-        card.enterCardCVV(CsvUtils.getVariableValueFromSheet1("CVV"));
+        card.enterCardNumber(csv.getVariableValueFromSheet1("Card No"));
+        card.enterCardName(csv.getVariableValueFromSheet1("Card Name"));
+        card.enterCardDate(csv.getVariableValueFromSheet1("Date"));
+        card.enterCardCVV(csv.getVariableValueFromSheet1("CVV"));
         card.clickPay();
     }
 
@@ -36,8 +38,8 @@ public class PaymentUtils  {
         WalletPaymentGateway wallet = new WalletPaymentGateway();
 
         try {
-            wallet.enterMPin(CsvUtils.getVariableValueFromSheet1("Mpin"));
-            wallet.enterOtp(CsvUtils.getVariableValueFromSheet1("WalletOTP"));
+            wallet.enterMPin(csv.getVariableValueFromSheet1("Mpin"));
+            wallet.enterOtp(csv.getVariableValueFromSheet1("WalletOTP"));
             wallet.clickPay();
         } catch (NoSuchElementException e) {
             driver.navigate().refresh();
@@ -47,8 +49,8 @@ public class PaymentUtils  {
 
             ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
-            wallet.enterMPin(CsvUtils.getVariableValueFromSheet1("Mpin"));
-            wallet.enterOtp(CsvUtils.getVariableValueFromSheet1("WalletOTP"));
+            wallet.enterMPin(csv.getVariableValueFromSheet1("Mpin"));
+            wallet.enterOtp(csv.getVariableValueFromSheet1("WalletOTP"));
             wallet.clickPay();
         }
     }

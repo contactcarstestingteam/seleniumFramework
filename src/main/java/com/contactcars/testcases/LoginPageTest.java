@@ -14,6 +14,8 @@ public class LoginPageTest extends TestBase {
 
      HomePage home = new HomePage();
      LoginPage login = new LoginPage();
+    //Creating object of csv utils
+    CsvUtils csv = new CsvUtils();
 
     public LoginPageTest() throws IOException {
         super();
@@ -24,17 +26,17 @@ public class LoginPageTest extends TestBase {
     public void login() throws InterruptedException, IOException {
         //Creating object of HOME and Login pages
         driverInitialization();
-        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
+        openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
        // home.clickSkip();
         home.clickLoginLink();
         Thread.sleep(5000);
 
-        login.enterMobileNumber(CsvUtils.getVariableValueFromSheet1("MobileNo"));
+        login.enterMobileNumber(csv.getVariableValueFromSheet1("MobileNo"));
         login.clickLogin();
         Thread.sleep(5000);
 
-        login.enterOtp(CsvUtils.getVariableValueFromSheet1("OTP"));
+        login.enterOtp(csv.getVariableValueFromSheet1("OTP"));
         login.clickConfirm();
         Thread.sleep(5000);
 
@@ -44,7 +46,7 @@ public class LoginPageTest extends TestBase {
 
         //Check on logging in successfully
         String actualUrl = driver.getCurrentUrl();
-        String expectedUrl = CsvUtils.getVariableValueFromSheet1("URL");
+        String expectedUrl = csv.getVariableValueFromSheet1("URL");
          if (actualUrl.contentEquals(expectedUrl)){
              Assert.assertTrue(actualUrl.contentEquals(expectedUrl));
              ExtentReportUtils.logAssertionBetweenTwoEqualValues(ExtentReportUtils.Pass, actualUrl, expectedUrl);

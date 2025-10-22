@@ -13,6 +13,9 @@ import java.time.Duration;
 
 public class OtlobhaForm2ndStep extends TestBase {
 
+    //Creating object of csv utils
+    CsvUtils csv = new CsvUtils();
+
     //Constructor that will be automatically called as soon as the object of the class is created
     public OtlobhaForm2ndStep() throws IOException {
         super();
@@ -98,7 +101,7 @@ public class OtlobhaForm2ndStep extends TestBase {
 
     //Check on success page
     public void CheckUrl() throws InterruptedException {
-        String expectedPartialUrl = CsvUtils.getVariableValueFromSheet1("OtlobhaSuccessURL");
+        String expectedPartialUrl = csv.getVariableValueFromSheet1("OtlobhaSuccessURL");
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         boolean urlMatched = wait.until(ExpectedConditions.urlContains(expectedPartialUrl));
