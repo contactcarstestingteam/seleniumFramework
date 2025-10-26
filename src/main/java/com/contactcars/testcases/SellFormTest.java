@@ -6,7 +6,7 @@ public class SellFormTest {
 
 
     @Test
-    public static void navigateToSellForm (){
+    public void navigateToSellForm(){
 
     }
 }

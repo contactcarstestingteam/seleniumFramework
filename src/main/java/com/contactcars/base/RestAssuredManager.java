@@ -1,5 +1,6 @@
 package com.contactcars.base;
 
+import com.contactcars.utils.CsvUtils;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -9,20 +10,27 @@ import org.json.JSONObject;
 import static io.restassured.RestAssured.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
 public class RestAssuredManager extends DevToolsManager {
+
+    //Creating object of csv utils
+    CsvUtils csv = new CsvUtils();
+
     // Base URL API
     public RestAssuredManager() throws IOException {
         super();
     }
 
+    public static Map<String, String> queryParams = new HashMap<>();
+
     // Get
-    public static Response getRequest(String endpoint, String token) {
+    public Response getRequest(String endpoint, String token) {
         return given()
-                .baseUri( getVariableValueFromSheet1("BaseURL"))
+                .baseUri( csv.getVariableValueFromSheet1("BaseURL"))
                 .auth().oauth2(token)
                 .header("Accept", "application/json")
                 .header("correlation-id", "test")
@@ -34,9 +42,9 @@ public class RestAssuredManager extends DevToolsManager {
     }
 
     // Post
-    public static Response postRequest(String endpoint, String token, Object body) {
+    public Response postRequest(String endpoint, String token, Object body) {
         return given()
-                .baseUri( getVariableValueFromSheet1("BaseURL"))
+                .baseUri( csv.getVariableValueFromSheet1("BaseURL"))
                 .auth().oauth2(token)
                 .header("Accept", "application/json")
                 .header("Content-Type", "application/json")
@@ -48,16 +56,16 @@ public class RestAssuredManager extends DevToolsManager {
                 .response();
     }
     // Build qeury params for any Api
-    public static Map<String, String> buildQueryParams(String... keyValuePairs) {
+    public Map<String, String> buildQueryParams(String... keyValuePairs) {
         for (int i = 0; i < keyValuePairs.length - 1; i += 2) {
             queryParams.put(keyValuePairs[i], keyValuePairs[i + 1]);
         }
         return queryParams;
     }
 
-    public static List<String> callingShowroomsApi(String... params) {
+    public List<String> callingShowroomsApi(String... params) {
         // Specify the base URL to the RESTful web service
-        RestAssured.baseURI = getVariableValueFromSheet2("BaseURL") + getVariableValueFromSheet2("SearchDealersApi");
+        RestAssured.baseURI = csv.getVariableValueFromSheet2("BaseURL") + csv.getVariableValueFromSheet2("SearchDealersApi");
         // Get the RequestSpecification of the request that is to be sent
         // to the server.
         RequestSpecification httpRequest = RestAssured.given();

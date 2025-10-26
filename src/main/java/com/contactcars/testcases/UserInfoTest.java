@@ -5,6 +5,7 @@ import com.contactcars.pages.HomePage;
 import com.contactcars.pages.LoginPage;
 import com.contactcars.base.RestAssuredManager;
 import com.contactcars.pages.UserInfoPage;
+import com.contactcars.utils.CsvUtils;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -22,18 +23,20 @@ public class UserInfoTest extends RestAssuredManager {
      UserInfoPage userInfoPage = new UserInfoPage();
      HomePage home = new HomePage();
      LoginPage Login = new LoginPage();
+    //Creating object of csv utils
+    CsvUtils csv = new CsvUtils();
 
     @Test
     public void compareApiUserInfoWithUi() throws IOException, InterruptedException {
         // --- Login & Navigate to Profile Page ---
         driverInitialization();
-        openChrome(getVariableValueFromSheet1("LoginURL"));
+        openChrome(csv.getVariableValueFromSheet1("LoginURL"));
         Thread.sleep(5000);
 
-        Login.enterMobileNumber(getVariableValueFromSheet1("MobileNo"));
+        Login.enterMobileNumber(csv.getVariableValueFromSheet1("MobileNo"));
         Login.clickLogin();
         Thread.sleep(5000);
-        Login.enterOtp(getVariableValueFromSheet1("OTP"));
+        Login.enterOtp(csv.getVariableValueFromSheet1("OTP"));
         setupDevTools();
         setupRequestListeners("token");
         setupResponseListeners("token", "");

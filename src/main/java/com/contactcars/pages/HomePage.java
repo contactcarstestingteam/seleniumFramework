@@ -1,6 +1,7 @@
 package com.contactcars.pages;
 
 import com.contactcars.base.TestBase;
+import com.contactcars.utils.CsvUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -20,6 +21,8 @@ public class HomePage extends TestBase {
     List<String> modelValues = new ArrayList<>();
     List<String> yearValues = new ArrayList<>();
     List<String> nameValues = new ArrayList<>();
+    //Creating object of csv utils
+    CsvUtils csv = new CsvUtils();
 
 
     //Constructor that will be automatically called as soon as the object of the class is created
@@ -121,9 +124,9 @@ public class HomePage extends TestBase {
         List<WebElement> prices = driver.findElements(allAdsprices);
         for (int i = 0; i < prices.size(); i++) {
             String price = prices.get(i).getText().replaceAll(",", "");
-            if(driver.getCurrentUrl().equals(getVariableValueFromSheet1("URL"))){
+            if(driver.getCurrentUrl().equals(csv.getVariableValueFromSheet1("URL"))){
                 priceValues.add(price.replaceAll(" ج.م.", ""));
-            } else if(driver.getCurrentUrl().equals(getVariableValueFromSheet1("URLEn"))) {
+            } else if(driver.getCurrentUrl().equals(csv.getVariableValueFromSheet1("URLEn"))) {
                 priceValues.add(price.replaceAll("EGP", ""));
             }
         }
