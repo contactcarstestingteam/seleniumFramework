@@ -1,8 +1,11 @@
 package com.contactcars.base;
 
+import com.contactcars.utils.ExtentReportUtils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 
 public class TestBase {
@@ -20,6 +23,16 @@ public class TestBase {
     // Open Website
     public static void openChrome(String url) {
         driver.get(url);
+    }
+
+    @BeforeSuite
+    public void beforeSuite() {
+        ExtentReportUtils.startReporter();  // Initialize Extent
+    }
+
+    @AfterSuite
+    public void afterSuite() {
+        ExtentReportUtils.tearDown(); // Write report
     }
 
     // Close Chrome window
