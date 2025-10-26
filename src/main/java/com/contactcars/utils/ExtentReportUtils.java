@@ -19,7 +19,7 @@ public class ExtentReportUtils {
 
     @BeforeTest
     public void startReporter() {
-        extentSparkReporter  = new ExtentSparkReporter("C:/Users/Nada.Adel/IdeaProjects/seleniumFramework/test-output/extentReport.html");
+        extentSparkReporter  = new ExtentSparkReporter(System.getProperty("user.home") + "/IdeaProjects/seleniumFramework/test-output/extentReport.html");
         extentReports = new ExtentReports();
         extentReports.attachReporter(extentSparkReporter);
 
@@ -29,6 +29,10 @@ public class ExtentReportUtils {
         extentSparkReporter.config().setReportName("Test Report");
         extentSparkReporter.config().setTheme(Theme.STANDARD);
         extentSparkReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
+    }
+
+    public static void createTest (String testName) {
+        extentTest = extentReports.createTest(testName);
     }
 
     public static void logAssertionBetweenTwoEqualValues (String status, String actual, String expected){

@@ -44,16 +44,16 @@ public class LoginPageTest extends TestBase {
 
         home.clickNoThanks();
 
-        report.extentTest = report.extentReports.createTest("Login Test Case");
+        report.createTest("Login Test Case");
 
         //Check on logging in successfully
         String actualUrl = driver.getCurrentUrl();
         String expectedUrl = csv.getVariableValueFromSheet1("URL");
          if (actualUrl.contentEquals(expectedUrl)){
              Assert.assertTrue(actualUrl.contentEquals(expectedUrl));
-             report.logAssertionBetweenTwoEqualValues(report.Pass, actualUrl, expectedUrl);
+             report.logAssertionBetweenTwoEqualValues("Pass", actualUrl, expectedUrl);
          } else {
-             report.logAssertionBetweenTwoEqualValues(report.Fail, actualUrl, expectedUrl);
+             report.logAssertionBetweenTwoEqualValues("Fail", actualUrl, expectedUrl);
          }
     }
 }
