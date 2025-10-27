@@ -6,10 +6,10 @@ import org.openqa.selenium.By;
 import java.io.IOException;
 
 
-public class CradPaymentGateway extends TestBase {
+public class CardPaymentGateway extends TestBase {
 
     //Constructor that will be automatically called as soon as the object of the class is created
-    public CradPaymentGateway() throws IOException {
+    public CardPaymentGateway() throws IOException {
         super();
     }
 

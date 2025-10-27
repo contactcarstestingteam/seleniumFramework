@@ -2,7 +2,6 @@ package com.contactcars.testcases;
 
 import com.contactcars.base.DevToolsManager;
 
-import com.contactcars.pages.HomePage;
 import com.contactcars.utils.CsvUtils;
 import org.json.JSONObject;
 import org.testng.Assert;
@@ -15,9 +14,6 @@ import java.util.List;
 
 public class HomePageTest extends DevToolsManager {
 
-    //Creating object of Home page
-    HomePage home = new HomePage();
-    LoginPageTest login = new LoginPageTest();
     List<String> responseMakesList = new ArrayList<>();
     List<String> responseModelsList = new ArrayList<>();
     List<String> responseYearsList = new ArrayList<>();
@@ -31,18 +27,8 @@ public class HomePageTest extends DevToolsManager {
         super();
     }
 
-    public void openOtlobhaLandingPage() throws InterruptedException, IOException {
-        login.login();
-        Thread.sleep(5000);
-        home.hoverOnServicesLink();
-        Thread.sleep(5000);
-        home.clickOtlobhaButton();
-        Thread.sleep(5000);
-    }
-
     @Test
     public void getRecentDealerAds() throws InterruptedException {
-        driverInitialization();
         setupDevTools();
         setupRequestListeners("DealerAds");
         setupResponseListeners("DealerAds", "Array");

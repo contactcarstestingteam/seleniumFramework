@@ -2,7 +2,6 @@ package com.contactcars.pages;
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
-import com.contactcars.base.TestBase;
 import com.contactcars.utils.WaitUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

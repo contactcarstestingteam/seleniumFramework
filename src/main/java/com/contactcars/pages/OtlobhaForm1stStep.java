@@ -1,8 +1,8 @@
 package com.contactcars.pages;
 
-import com.contactcars.base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,18 +11,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.IOException;
 import java.time.Duration;
 
-public class OtlobhaForm1stStep extends TestBase {
+public class OtlobhaForm1stStep {
+
+    private WebDriver driver;
 
     //Constructor that will be automatically called as soon as the object of the class is created
-    public OtlobhaForm1stStep() throws IOException {
-        super();
+    public OtlobhaForm1stStep(WebDriver driver) throws IOException {
+        this.driver = driver;
     }
 
     //Locator for name field
-    static By Name = By.cssSelector("#name");
+    By Name = By.cssSelector("#name");
 
     //Locator for Phone number field
-    static By Phone = By.cssSelector("#mobile");
+    By Phone = By.cssSelector("#mobile");
 
     //Locator for country drop down
     By country = By.cssSelector("main > div > div:nth-child(2) > form > div:nth-child(4) > div > input");
@@ -223,7 +225,7 @@ public class OtlobhaForm1stStep extends TestBase {
     }
 
     //Method to enter name field
-    public static void WriteName(String UserName) {
+    public void WriteName(String UserName) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement user = wait.until(ExpectedConditions.visibilityOfElementLocated(Name));
         user.sendKeys(UserName);
@@ -236,7 +238,7 @@ public class OtlobhaForm1stStep extends TestBase {
     }
 
     //Method to enter name field
-    public static void WritePhone(String MobileNo) {
+    public void WritePhone(String MobileNo) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement user = wait.until(ExpectedConditions.visibilityOfElementLocated(Phone));
         user.sendKeys(MobileNo);

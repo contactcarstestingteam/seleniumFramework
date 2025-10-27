@@ -1,6 +1,6 @@
 package com.contactcars.utils;
 
-import com.contactcars.pages.CradPaymentGateway;
+import com.contactcars.pages.CardPaymentGateway;
 import com.contactcars.pages.WalletPaymentGateway;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -24,7 +24,7 @@ public class PaymentUtils  {
 
     public void payWithCard() throws IOException {
         //Creating object of card payment gateway page
-        CradPaymentGateway card = new CradPaymentGateway();
+        CardPaymentGateway card = new CardPaymentGateway();
         card.enterCardNumber(csv.getVariableValueFromSheet1("Card No"));
         card.enterCardName(csv.getVariableValueFromSheet1("Card Name"));
         card.enterCardDate(csv.getVariableValueFromSheet1("Date"));

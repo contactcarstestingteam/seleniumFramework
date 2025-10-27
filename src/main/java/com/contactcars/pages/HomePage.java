@@ -1,8 +1,8 @@
 package com.contactcars.pages;
 
-import com.contactcars.base.TestBase;
 import com.contactcars.utils.CsvUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,8 +14,9 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePage extends TestBase {
+public class HomePage {
 
+    private WebDriver driver;
     List<String> priceValues = new ArrayList<>();
     List<String> makeValues = new ArrayList<>();
     List<String> modelValues = new ArrayList<>();
@@ -24,10 +25,9 @@ public class HomePage extends TestBase {
     //Creating object of csv utils
     CsvUtils csv = new CsvUtils();
 
-
     //Constructor that will be automatically called as soon as the object of the class is created
-    public HomePage() throws IOException {
-        super();
+    public HomePage(WebDriver driver) throws IOException {
+        this.driver = driver;
     }
 
     //locator for my account button
@@ -68,6 +68,7 @@ public class HomePage extends TestBase {
     By allAdsNames = By.cssSelector("main > section:nth-child(5) > div > div > div > div > div > div > div > div > span");
     By usedCarsTab = By.cssSelector("body > header > nav > div > ul > li:nth-child(2) > span");
     By showAllUsedCarsButton = By.cssSelector("body > header > nav > div > ul > li:nth-child(2) > div > div > div.flex.items-center.justify-between > a > span");
+
 
     public void NavigateToUsedCarSEOPage (){
         driver.findElement(usedCarsTab).click();
@@ -168,5 +169,14 @@ public class HomePage extends TestBase {
         }
         return nameValues;
     }
+
+    public void openOtlobhaLandingPage() throws InterruptedException, IOException {
+        Thread.sleep(5000);
+        hoverOnServicesLink();
+        Thread.sleep(5000);
+        clickOtlobhaButton();
+        Thread.sleep(5000);
+    }
+
 }
 
