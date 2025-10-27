@@ -1,8 +1,8 @@
 package com.contactcars.pages;
 
-import com.contactcars.base.TestBase;
 import com.contactcars.utils.CsvUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,14 +11,15 @@ import org.testng.Assert;
 import java.io.IOException;
 import java.time.Duration;
 
-public class OtlobhaForm2ndStep extends TestBase {
+public class OtlobhaForm2ndStep {
 
+    private WebDriver driver;
     //Creating object of csv utils
     CsvUtils csv = new CsvUtils();
 
     //Constructor that will be automatically called as soon as the object of the class is created
-    public OtlobhaForm2ndStep() throws IOException {
-        super();
+    public OtlobhaForm2ndStep(WebDriver driver) throws IOException {
+        this.driver = driver;
     }
 
     //Locator for promo code field

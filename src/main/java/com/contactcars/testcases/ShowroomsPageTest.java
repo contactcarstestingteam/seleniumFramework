@@ -1,9 +1,6 @@
 package com.contactcars.testcases;
 
 import com.contactcars.base.RestAssuredManager;
-import com.contactcars.pages.HomePage;
-import com.contactcars.pages.ShowroomsDetailsPage;
-import com.contactcars.pages.ShowroomsPage;
 import com.contactcars.utils.CsvUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,11 +12,6 @@ import java.util.List;
 
 public class ShowroomsPageTest extends RestAssuredManager {
 
-    //Creating object of Home page
-    HomePage home = new HomePage();
-    //Creating object of Showrooms page
-    ShowroomsPage showroom = new ShowroomsPage();
-    ShowroomsDetailsPage showroomDetails = new ShowroomsDetailsPage();
     //Creating object of csv utils
     CsvUtils csv = new CsvUtils();
 
@@ -31,10 +23,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms without any filters
     @Test
     public void getAllCarsShowrooms() throws InterruptedException, IOException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        //home.clickSkip();
         home.clickShowroomsLink();
         Thread.sleep(5000);
         // Adding all names in a list
@@ -50,10 +40,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms with applying all filters
     @Test
     public void applyAllFilters() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        //home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -80,10 +68,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms with applying name filter only
     @Test
     public void applyNameFilter() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        //home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -102,10 +88,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms with applying governorate filter only
     @Test
     public void applyGovernorateFilter() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -125,10 +109,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms with applying governorate and area filters only
     @Test
     public void applyGovernorateAndAreaFilter() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -151,10 +133,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms with applying make filter only
     @Test
     public void applyMakeFilter() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -176,10 +156,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms with applying new status filter only
     @Test
     public void applyNewStatusFilter() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        //home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -198,10 +176,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms with applying used status filter only
     @Test
     public void applyUsedStatusFilter() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -220,10 +196,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms with applying name and governorate filters only
     @Test
     public void applyNameAndGovernorateFilters() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-      //  home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -244,10 +218,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms with applying name, governorate and area filters only
     @Test
     public void applyNameAndAreaFilters() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -270,10 +242,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms with applying name and make filters only
     @Test
     public void applyNameAndMakeFilters() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-      //  home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -294,10 +264,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms with applying governorate and make filters only
     @Test
     public void applyGovernorateAndMakeFilters() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -319,10 +287,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms with applying governorate and new status filters only
     @Test
     public void applyGovernorateAndNewStatusFilters() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -343,10 +309,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms with applying governorate and used status filters only
     @Test
     public void applyGovernorateAndUsedStatusFilters() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -367,10 +331,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms with applying governorate, area and make filters only
     @Test
     public void applyAreaAndMakeFilters() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-      //  home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -395,10 +357,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms with applying governorate, area and new status filters only
     @Test
     public void applyAreaAndNewStatusFilters() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-        //home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -422,10 +382,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms with applying governorate, area and used status filters only
     @Test
     public void applyAreaAndUsedStatusFilters() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-     //   home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -449,10 +407,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms with applying make and new status filters only
     @Test
     public void applyMakeAndNewStatusFilters() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-      //  home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -473,10 +429,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Get all the cars showrooms with applying make and used status filters only
     @Test
     public void applyMakeAndUsedStatusFilters() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
-    //    home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -497,10 +451,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Redirect to a specific showroom page without applying any filters
     @Test
     public void openShowroomPage() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URLEn"));
         Thread.sleep(5000);
-        // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -515,10 +467,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Redirect to a specific showroom branch page without applying any filters
     @Test
     public void openBranchesTab() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URLEn"));
         Thread.sleep(5000);
-       // home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);
@@ -538,10 +488,8 @@ public class ShowroomsPageTest extends RestAssuredManager {
     // Redirect to a specific showroom contact us page without applying any filters
     @Test
     public void openContactUsTab() throws InterruptedException {
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URLEn"));
         Thread.sleep(5000);
-        //home.clickSkip();
         Thread.sleep(5000);
         home.clickShowroomsLink();
         Thread.sleep(5000);

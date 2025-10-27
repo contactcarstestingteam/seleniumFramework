@@ -1,15 +1,17 @@
 package com.contactcars.pages;
 
-import com.contactcars.base.TestBase;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 
-public class ShowroomsDetailsPage extends TestBase {
+public class ShowroomsDetailsPage {
+
+    private WebDriver driver;
 
     //Constructor that will be automatically called as soon as the object of the class is created
-    public ShowroomsDetailsPage() throws IOException {
-        super();
+    public ShowroomsDetailsPage(WebDriver driver) throws IOException {
+        this.driver = driver;
     }
 
     // Locator for showroom name

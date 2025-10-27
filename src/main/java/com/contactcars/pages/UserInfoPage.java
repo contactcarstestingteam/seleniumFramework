@@ -1,16 +1,17 @@
 package com.contactcars.pages;
 
-import com.contactcars.base.TestBase;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-public class UserInfoPage extends TestBase{
+public class UserInfoPage {
 
-    public UserInfoPage() throws IOException {
+    private WebDriver driver;
+
+    public UserInfoPage(WebDriver driver) throws IOException {
+        this.driver = driver;
     }
 
     // UI Locators

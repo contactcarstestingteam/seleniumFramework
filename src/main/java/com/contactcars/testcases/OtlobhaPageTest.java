@@ -1,7 +1,6 @@
 package com.contactcars.testcases;
 
 import com.contactcars.base.TestBase;
-import com.contactcars.pages.*;
 import com.contactcars.utils.CsvUtils;
 import com.contactcars.utils.PaymentUtils;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,18 +9,6 @@ import java.io.IOException;
 
 
 public class OtlobhaPageTest extends TestBase {
-    //Creating object of Home page test
-    HomePageTest homeTest = new HomePageTest();
-    //Creating object of Otlobha landing page
-    OtlobhaLandingPage otlobhaLanding = new OtlobhaLandingPage();
-    //Creating object of Otlobha form 1st step page
-    OtlobhaForm1stStep form1stStep = new OtlobhaForm1stStep();
-    //Creating object of Otlobha form 2nd step page
-    OtlobhaForm2ndStep form2ndStep = new OtlobhaForm2ndStep();
-    //Creating object of Wallet paymnet gateway page
-    WalletPaymentGateway wallet = new WalletPaymentGateway();
-    // Creating object of home page
-    HomePage home = new HomePage();
     //Creating object of csv utils
     CsvUtils csv = new CsvUtils();
     // Creating object of payment utils
@@ -33,8 +20,10 @@ public class OtlobhaPageTest extends TestBase {
 
 @Test // Test (1) (Agency + Specific Trim + cash + Wallet)
     public void OtlobhaAgencySpecificTrim() throws InterruptedException, IOException {
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -68,8 +57,10 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (2) (Agency + All Trims + cash + wallet)
     public void OtlobhaAgencyAllTrims() throws InterruptedException, IOException {
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -110,8 +101,10 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (3) (Agency + Other Trim + cash + wallet)
     public void OtlobhaAgencyOtherTrim() throws InterruptedException, IOException {
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -153,8 +146,10 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (4) (Agency + Specific Trim + Finance + Minimum Down Payment + Wallet)
     public void OtlobhaAgencyMinDownPayment() throws InterruptedException, IOException {
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -199,8 +194,10 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (5) (Agency + All Trims +  Finance + Minimum Down Payment + wallet)
     public void OtlobhaAgencyMinDownPayment2() throws InterruptedException, IOException {
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -246,8 +243,10 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (6) (Agency + Other Trim + Finance + Minimum Down Payment + wallet)
     public void OtlobhaAgencyMinDownPayment3() throws InterruptedException, IOException {
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -294,8 +293,10 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (7) (Agency + Specific Trim + Finance + Down Payment Value + Wallet)
     public void OtlobhaAgencyDownPaymentValue() throws InterruptedException, IOException {
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -341,8 +342,10 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (8) (Agency + All Trims + Finance + Down Payment Value + Wallet)
     public void OtlobhaAgencyDownPaymentValue2() throws InterruptedException, IOException {
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -389,8 +392,10 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (9) (Agency +Other Trim + Finance + Down Payment Value + Wallet)
     public void OtlobhaAgencyDownPaymentValue3() throws InterruptedException, IOException {
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -437,8 +442,10 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (10) (Imported + Specific Trim + cash + wallet)
     public void OtlobhaImportedSpecificTrim() throws InterruptedException, IOException {
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -480,8 +487,10 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (11) (Imported + "Imported= All trims" + cash + wallet)
     public void OtlobhaImportedAllTrims() throws InterruptedException, IOException {
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -522,8 +531,10 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (12) (Imported + Specific Trim + Finance + Minimum Down Payment + wallet)
     public void OtlobhaImportedMiniDP() throws InterruptedException, IOException {
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -569,8 +580,10 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (13) (Imported + (Imported = all trims) + Finance + Minimum Down Payment + wallet)
     public void OtlobhaImportedMiniDP2() throws InterruptedException, IOException {
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -617,8 +630,10 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (14) (Imported + Specific trim + Finance + Down Payment value + wallet)
     public void OtlobhaImportedDPvalue() throws InterruptedException, IOException {
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -664,8 +679,10 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test // Test (15) (Imported + All trims + Finance + Down Payment value + wallet)
     public void OtlobhaImportedDPvalue2() throws InterruptedException, IOException {
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -712,8 +729,10 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test //Test (16) wallet then free promocode
     public void ReqFreePromo() throws InterruptedException, IOException{
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -753,10 +772,12 @@ public class OtlobhaPageTest extends TestBase {
     }
 
 
-    @Test //Test (17) Parcial promocode + Wallet
-    public void ReqParcialPromoWallet() throws InterruptedException, IOException{
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+    @Test //Test (17) Partial promocode + Wallet
+    public void ReqPartialPromoWallet() throws InterruptedException, IOException{
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -805,10 +826,12 @@ public class OtlobhaPageTest extends TestBase {
         quitChrome();
     }
 
-    @Test //Test (18) Parcial promocode + Bank Card
-    public void ReqParcialPromoVisa() throws InterruptedException, IOException{
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+    @Test //Test (18) Partial promocode + Bank Card
+    public void ReqPartialPromoVisa() throws InterruptedException, IOException{
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -850,10 +873,12 @@ public class OtlobhaPageTest extends TestBase {
         quitChrome();
     }
 
-    @Test //Test (19) Parcial promocode + Fawry
-    public void ReqParcialPromoFawry() throws InterruptedException, IOException{
-        homeTest.openOtlobhaLandingPage();
-        OtlobhaLandingPage.clickRequestNewCarButton();
+    @Test //Test (19) Partial promocode + Fawry
+    public void ReqPartialPromoFawry() throws InterruptedException, IOException{
+        openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
+        home.openOtlobhaLandingPage();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -895,8 +920,8 @@ public class OtlobhaPageTest extends TestBase {
 
     @Test //Test (21) login to otlobha from another entry point
     public void LoginFromOtlobha() throws InterruptedException, IOException{
-        driverInitialization();
         openChrome(csv.getVariableValueFromSheet1("URL"));
+        login.loginScenario();
         Thread.sleep(5000);
 
 
@@ -905,7 +930,7 @@ public class OtlobhaPageTest extends TestBase {
 
         home.clickOtlobhaButton();
         Thread.sleep(5000);
-        OtlobhaLandingPage.clickRequestNewCarButton();
+        otlobhaLanding.clickRequestNewCarButton();
 
         //Step one
         Thread.sleep(5000);
@@ -935,8 +960,8 @@ public class OtlobhaPageTest extends TestBase {
         form1stStep.ClickTerms();
         form1stStep.clickNext();
         Thread.sleep(5000);
-        LoginPage.enterOtp(csv.getVariableValueFromSheet1("OTP"));
-        LoginPage.clickConfirm();
+        login.enterOtp(csv.getVariableValueFromSheet1("OTP"));
+        login.clickConfirm();
         Thread.sleep(5000);
         // second step Fawry
         form2ndStep.enterPromoCode(csv.getVariableValueFromSheet1("PromoCode"));
