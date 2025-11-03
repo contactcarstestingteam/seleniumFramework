@@ -7,12 +7,6 @@
   <name>Archetype - ContactCarsRetailStaging</name>
   <url>http://maven.apache.org</url>
   <dependencies>
-    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-<!--    <dependency>-->
-<!--      <groupId>org.seleniumhq.selenium</groupId>-->
-<!--      <artifactId>selenium-java</artifactId>-->
-<!--      <version>4.28.1</version>-->
-<!--    </dependency>-->
 
     <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
     <dependency>
@@ -27,14 +21,6 @@
       <artifactId>webdrivermanager</artifactId>
       <version>5.9.2</version>
     </dependency>
-
-    <dependency>
-      <groupId>org.testng</groupId>
-      <artifactId>testng</artifactId>
-      <version>7.9.0</version>
-      <scope>test</scope>
-    </dependency>
-
 
     <dependency>
       <groupId>org.testng</groupId>
@@ -114,6 +100,18 @@
           <version>4.34.0</version>
       </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+    <dependency>
+      <groupId>org.jsoup</groupId>
+      <artifactId>jsoup</artifactId>
+      <version>1.21.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.httpcomponents.client5</groupId>
+      <artifactId>httpclient5</artifactId>
+      <version>5.5.1</version>
+    </dependency>
 
   </dependencies>
   <build>
