@@ -14,10 +14,13 @@ public class SitemapUtils {
     public static List<String> extractUrlsFromSitemap(String sitemapUrl) throws IOException {
         List<String> urls = new ArrayList<>();
         Document doc = Jsoup.connect(sitemapUrl).get();
-        Elements urlElements = doc.select("url > loc");
-
+        Elements urlElements = doc.getElementsByTag("loc");
         for (Element el : urlElements) {
-            urls.add(el.text());
+            Document locsDoc = Jsoup.connect(el.text()).get();
+            Elements locsElements = locsDoc.getElementsByTag("loc");
+            for (Element locEl : locsElements) {
+                urls.add(locEl.text());
+            }
         }
         return urls;
     }

@@ -15,7 +15,7 @@ public class ExtentReportUtils {
     public static ExtentSparkReporter extentSparkReporter;
     public static ExtentReports extentReports;
     public static ExtentTest extentTest;
-    private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+    public static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
     public static String Pass;
     public static String Fail;
 
@@ -46,7 +46,18 @@ public class ExtentReportUtils {
         }
     }
 
-    @AfterSuite
+    public static void testInfo(String info) {
+        extentTest.info(info);
+    }
+
+    public static void testPass(String pass) {
+        extentTest.pass(pass);
+    }
+
+    public static void testWarning(String warning) {
+        extentTest.warning(warning);
+    }
+
     public static void tearDown() {
         //to write or update test information to the reporter
         extentReports.flush();
