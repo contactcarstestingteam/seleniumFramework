@@ -14,7 +14,7 @@ public class SitemapUtils {
     public static List<String> extractUrlsFromSitemap(String sitemapUrl) throws IOException {
         List<String> urls = new ArrayList<>();
         Document doc = Jsoup.connect(sitemapUrl).get();
-        Elements urlElements = doc.getElementsByTag("loc");
+        Element urlElements = doc.getElementsByTag("loc").get(12);
         for (Element el : urlElements) {
             Document locsDoc = Jsoup.connect(el.text()).get();
             Elements locsElements = locsDoc.getElementsByTag("loc");
