@@ -6,7 +6,7 @@ on:
     #8,20 → hours in UTC (10 AM, 10 PM)
     #* * * → every day of month, every month, every day of week
 
-    - cron: "45 9 * * *"  # Runs at 8 AM & 8 PM UTC (10 AM & 10 PM Egypt time)
+    - cron: "15 11 * * *"  # Runs at 8 AM & 8 PM UTC (10 AM & 10 PM Egypt time)
   workflow_dispatch:  # optional – allows you to run it manually too
 
 jobs:
@@ -33,7 +33,7 @@ jobs:
       - name: Upload Extent Report
         uses: actions/upload-artifact@v4
         with:
-          name: extent-report
+          name: extentReport
           path: test-output/extentReport.html
 
       
