@@ -16,6 +16,8 @@ public class TestBase {
     public static WebDriver driver;
     //Creating object of csv utils
     CsvUtils csv = new CsvUtils();
+    //Creating object of report utils
+    ExtentReportUtils report = new ExtentReportUtils();
     public HomePage home;
     public LoginPage login;
     public OtlobhaForm1stStep form1stStep;
@@ -46,7 +48,7 @@ public class TestBase {
 
     @BeforeSuite
     public void beforeSuite() {
-        ExtentReportUtils.startReporter();  // Initialize Extent
+        report.startReporter();  // Initialize Extent
         driverInitialization();
     }
 
@@ -70,7 +72,7 @@ public class TestBase {
 
     @AfterSuite
     public void afterSuite() {
-        ExtentReportUtils.tearDown(); // Write report
+        report.tearDown(); // Write report
     }
 
     // Close Chrome window

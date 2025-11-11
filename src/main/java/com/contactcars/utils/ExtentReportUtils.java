@@ -15,9 +15,7 @@ public class ExtentReportUtils {
     public static ExtentSparkReporter extentSparkReporter;
     public static ExtentReports extentReports;
     public static ExtentTest extentTest;
-    private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
-    public static String Pass;
-    public static String Fail;
+    public static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
 
     public static void startReporter() {
@@ -39,14 +37,25 @@ public class ExtentReportUtils {
     }
 
     public static void logAssertionBetweenTwoEqualValues (String status, String actual, String expected){
-        if (status == Pass){
-            extentTest.log(Status.PASS, "Actual Result = "+ actual + " & " + "Expected Result = " + expected);
-        } else if (status == Fail){
-            extentTest.log(Status.FAIL,"Actual Result = "+ actual + " & " + "Expected Result = " + expected);
+        if (status.equals("Pass")){
+            extentTest.log(Status.PASS, "Actual Result = " + actual + " & " + "Expected Result = " + expected);
+        } else if (status.equals("Fail")){
+            extentTest.log(Status.FAIL,"Actual Result = " + actual + " & " + "Expected Result = " + expected);
         }
     }
 
-    @AfterSuite
+    public static void testInfo(String info) {
+        extentTest.info(info);
+    }
+
+    public static void testPass(String pass) {
+        extentTest.pass(pass);
+    }
+
+    public static void testWarning(String warning) {
+        extentTest.warning(warning);
+    }
+
     public static void tearDown() {
         //to write or update test information to the reporter
         extentReports.flush();
