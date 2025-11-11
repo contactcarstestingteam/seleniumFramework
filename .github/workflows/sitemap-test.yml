@@ -6,7 +6,7 @@ on:
     #8,20 → hours in UTC (10 AM, 10 PM)
     #* * * → every day of month, every month, every day of week
 
-    - cron: "15 8 * * *"  # Runs at 8 AM & 8 PM UTC (10 AM & 10 PM Egypt time)
+    - cron: "25 8 * * *"  # Runs at 8 AM & 8 PM UTC (10 AM & 10 PM Egypt time)
   workflow_dispatch:  # optional – allows you to run it manually too
 
 jobs:
