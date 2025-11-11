@@ -36,7 +36,7 @@ public class SitemapTest extends TestBase {
             int statusCode = http.getStatusCode(url);
 
             if(statusCode == 200) {
-                driver.get(url);
+//                driver.get(url);
 //                String title = driver.getTitle();
 //
 //                report.testInfo("Page title: " + title);
@@ -48,7 +48,6 @@ public class SitemapTest extends TestBase {
             } else {
 //                Assert.assertFalse(driver.getTitle().isEmpty(), "Page has no title: " + url);
                 report.logAssertionBetweenTwoEqualValues("Fail", String.valueOf(statusCode), String.valueOf(200));
-                System.out.println("fail");
             }
         }
     }

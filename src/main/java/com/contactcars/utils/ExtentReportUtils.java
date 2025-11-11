@@ -41,7 +41,6 @@ public class ExtentReportUtils {
             extentTest.log(Status.PASS, "Actual Result = " + actual + " & " + "Expected Result = " + expected);
         } else if (status.equals("Fail")){
             extentTest.log(Status.FAIL,"Actual Result = " + actual + " & " + "Expected Result = " + expected);
-            System.out.println("report fail");
         }
     }
 
