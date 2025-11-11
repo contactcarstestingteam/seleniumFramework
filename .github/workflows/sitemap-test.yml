@@ -6,7 +6,7 @@ on:
     #8,20 → hours in UTC (10 AM, 10 PM)
     #* * * → every day of month, every month, every day of week
 
-    - cron: "0 9 * * *"  # Runs at 8 AM & 8 PM UTC (10 AM & 10 PM Egypt time)
+    - cron: "20 9 * * *"  # Runs at 8 AM & 8 PM UTC (10 AM & 10 PM Egypt time)
   workflow_dispatch:  # optional – allows you to run it manually too
 
 jobs:
@@ -17,15 +17,12 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up Java
+      - name: Set up Java 11 with Maven
         uses: actions/setup-java@v4
         with:
+          distribution: temurin
           java-version: '11'
-
-      - name: Set up Maven
-        uses: s4u/setup-maven-action@v1
-        with:
-          maven-version: '3.9.6'
+          cache: maven
 
       - name: Build and Run Tests
         run: mvn clean test
