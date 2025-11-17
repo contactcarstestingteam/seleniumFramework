@@ -43,7 +43,6 @@ public class SitemapTest extends TestBase {
                 report.testPass("Page loaded successfully !");
                 Assert.assertEquals(statusCode, 200, "Broken or bad URL: " + url);
 
-
                 report.logAssertionBetweenTwoEqualValues("Pass", String.valueOf(statusCode), String.valueOf(200));
             } else {
 //                Assert.assertFalse(driver.getTitle().isEmpty(), "Page has no title: " + url);
