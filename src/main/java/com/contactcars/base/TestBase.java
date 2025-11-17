@@ -2,6 +2,7 @@ package com.contactcars.base;
 
 import com.contactcars.pages.*;
 import com.contactcars.utils.CsvUtils;
+import com.contactcars.utils.EmailUtils;
 import com.contactcars.utils.ExtentReportUtils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
@@ -18,6 +19,8 @@ public class TestBase {
     CsvUtils csv = new CsvUtils();
     //Creating object of report utils
     ExtentReportUtils report = new ExtentReportUtils();
+    // Creating object of email utils
+    EmailUtils mail = new EmailUtils();
     public HomePage home;
     public LoginPage login;
     public OtlobhaForm1stStep form1stStep;
@@ -71,8 +74,10 @@ public class TestBase {
     }
 
     @AfterSuite
-    public void afterSuite() {
+    public void afterSuite() throws IOException {
         report.tearDown(); // Write report
+        // Send report via email (using SendGrid)
+        mail.sendExtentReport("test-output/extentReport.html", System.getenv("REPORT_RECIPIENT"));
     }
 
     // Close Chrome window
