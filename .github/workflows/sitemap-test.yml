@@ -12,6 +12,7 @@ on:
 jobs:
   test-sitemap:
     runs-on: ubuntu-latest
+    environment: email-env
 
     steps:
       - name: Check out repository
