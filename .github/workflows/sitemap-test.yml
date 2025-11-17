@@ -39,11 +39,11 @@ jobs:
           path: test-output/extentReport.html
 
       - name: Send email with sendgrid
-        run: mvn clean test
         env:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
           FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
           TO_EMAIL: ${{ secrets.TO_EMAIL }}
+        run: mvn clean test
 
 
       
