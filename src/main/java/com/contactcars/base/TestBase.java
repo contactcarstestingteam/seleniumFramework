@@ -77,7 +77,7 @@ public class TestBase {
     public void afterSuite() throws IOException {
         report.tearDown(); // Write report
         // Send report via email (using SendGrid)
-        mail.sendExtentReport("test-output/extentReport.html", System.getenv("REPORT_RECIPIENT"));
+        mail.sendExtentReport("test-output/extentReport.html", System.getenv("TO_EMAIL"));
     }
 
     // Close Chrome window

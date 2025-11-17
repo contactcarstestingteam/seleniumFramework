@@ -14,7 +14,7 @@ import java.io.IOException;
 public class EmailUtils {
 
     public static void sendExtentReport(String reportPath, String recipient) throws IOException {
-        Email from = new Email(System.getenv("REPORT_SENDER"));
+        Email from = new Email(System.getenv("FROM_EMAIL"));
         String subject = "Automation Test Report";
         Email to = new Email(recipient);
         Content content = new Content("text/plain", "Please find the attached Extent Report.");
