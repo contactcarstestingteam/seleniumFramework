@@ -13,6 +13,7 @@ jobs:
   test-sitemap:
     runs-on: ubuntu-latest
     environment: email-env
+
     env:
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
       FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
@@ -41,6 +42,18 @@ jobs:
         with:
           name: extentReport
           path: test-output/extentReport.html
+
+      - name: Send report via email (SendGrid)
+        run: |
+          echo "Sending email via SendGrid..."
+            
+          mvn \
+            -DSENDGRID_API_KEY="$SENDGRID_API_KEY" \
+            -DFROM_EMAIL="$FROM_EMAIL" \
+            -DTO_EMAIL="$TO_EMAIL" \
+            -DsendReport=true \
+            clean test
+
 
       
 

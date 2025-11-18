@@ -14,7 +14,7 @@ import java.io.IOException;
 public class EmailUtils {
 
     public static void sendExtentReport(String reportPath, String recipient) throws IOException {
-        Email from = new Email(System.getenv("FROM_EMAIL"));
+        Email from = new Email(System.getProperty("FROM_EMAIL"));
         String subject = "Automation Test Report";
         Email to = new Email(recipient);
         Content content = new Content("text/plain", "Please find the attached Extent Report.");
@@ -29,23 +29,26 @@ public class EmailUtils {
         attachments.setDisposition("attachment");
         mail.addAttachments(attachments);
 
-        SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
+        System.out.println("📨 Email send function reached");
+        SendGrid sg = new SendGrid(System.getProperty("SENDGRID_API_KEY"));
         Request request = new Request();
 
         try {
             request.setMethod(Method.POST);
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
+            System.out.println("📡 Sending email to SendGrid...");
             Response response = sg.api(request);
             System.out.println("Report email sent. Status: " + response.getStatusCode());
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
+            ex.printStackTrace();
          //   throw ex;
         }
 
-        System.out.println("Using API Key: " + System.getenv("SENDGRID_API_KEY"));
-        System.out.println("Sending from: " + System.getenv("FROM_EMAIL"));
-        System.out.println("Sending to: " + System.getenv("TO_EMAIL"));
+        System.out.println("Using API Key: " + System.getProperty("SENDGRID_API_KEY"));
+        System.out.println("Sending from: " + System.getProperty("FROM_EMAIL"));
+        System.out.println("Sending to: " + System.getProperty("TO_EMAIL"));
     }
 
 }
