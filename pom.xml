@@ -152,8 +152,10 @@
         <version>3.2.5</version>
         <configuration>
           <includes>
+            <include>**/testcases/*.java</include>
             <include>**/*Test.java</include>
           </includes>
+          <testClassesDirectory>src/main/java</testClassesDirectory>
         </configuration>
       </plugin>
     </plugins>
