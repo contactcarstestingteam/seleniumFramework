@@ -155,7 +155,9 @@
             <include>**/testcases/*.java</include>
             <include>**/*Test.java</include>
           </includes>
-          <testClassesDirectory>src/main/java</testClassesDirectory>
+          <testClassesDirectory>${project.basedir}/src/main/java</testClassesDirectory>
+          <forkCount>1</forkCount>
+          <reuseForks>true</reuseForks>
         </configuration>
       </plugin>
     </plugins>
