@@ -121,32 +121,41 @@
     </dependency>
 
   </dependencies>
+<!--  <build>-->
+<!--    <plugins>-->
+<!--      <plugin>-->
+<!--        <groupId>org.apache.maven.plugins</groupId>-->
+<!--        <artifactId>maven-compiler-plugin</artifactId>-->
+<!--        <configuration>-->
+<!--          <source>11</source>-->
+<!--          <target>11</target>-->
+<!--          <compilerArgs>&#45;&#45;enable-preview</compilerArgs>-->
+<!--        </configuration>-->
+<!--      </plugin>-->
+<!--    </plugins>-->
+<!--  </build>-->
   <build>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
         <configuration>
           <source>11</source>
           <target>11</target>
-          <compilerArgs>--enable-preview</compilerArgs>
         </configuration>
       </plugin>
 
-      <!-- Surefire plugin to run TestNG tests with preview features -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.2.5</version>
         <configuration>
-          <!-- Enable preview features in the forked JVM -->
-          <argLine>--enable-preview</argLine>
-          <suiteXmlFiles>
-            <suiteXmlFile>testng.xml</suiteXmlFile>
-          </suiteXmlFiles>
+          <includes>
+            <include>**/*Test.java</include>
+          </includes>
         </configuration>
       </plugin>
-
     </plugins>
   </build>
 </project>
