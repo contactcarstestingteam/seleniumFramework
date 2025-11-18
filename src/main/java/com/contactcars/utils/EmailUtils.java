@@ -39,8 +39,13 @@ public class EmailUtils {
             Response response = sg.api(request);
             System.out.println("Report email sent. Status: " + response.getStatusCode());
         } catch (IOException ex) {
-            throw ex;
+            System.out.println(ex.getMessage());
+         //   throw ex;
         }
+
+        System.out.println("Using API Key: " + System.getenv("SENDGRID_API_KEY"));
+        System.out.println("Sending from: " + System.getenv("FROM_EMAIL"));
+        System.out.println("Sending to: " + System.getenv("TO_EMAIL"));
     }
 
 }
