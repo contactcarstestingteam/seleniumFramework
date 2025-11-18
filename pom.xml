@@ -122,7 +122,6 @@
 
   </dependencies>
   <build>
-    <testSourceDirectory>src/main/java</testSourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -142,9 +141,9 @@
         <configuration>
           <!-- Enable preview features in the forked JVM -->
           <argLine>--enable-preview</argLine>
-<!--          <suiteXmlFiles>-->
-<!--            <suiteXmlFile>testng.xml</suiteXmlFile>-->
-<!--          </suiteXmlFiles>-->
+          <suiteXmlFiles>
+            <suiteXmlFile>testng.xml</suiteXmlFile>
+          </suiteXmlFiles>
         </configuration>
       </plugin>
 
