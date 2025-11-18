@@ -52,6 +52,7 @@ jobs:
             -DFROM_EMAIL="$FROM_EMAIL" \
             -DTO_EMAIL="$TO_EMAIL" \
             -DsendReport=true \
+            -Dtest=SitemapTest \
             clean test
 
 
