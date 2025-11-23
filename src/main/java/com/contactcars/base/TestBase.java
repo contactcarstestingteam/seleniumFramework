@@ -15,12 +15,15 @@ import java.io.IOException;
 public class TestBase {
  
     public static WebDriver driver;
-    //Creating object of csv utils
-    CsvUtils csv = new CsvUtils();
-    //Creating object of report utils
-    ExtentReportUtils report = new ExtentReportUtils();
-    // Creating object of email utils
-    EmailUtils mail = new EmailUtils();
+    public CsvUtils csv;
+    public ExtentReportUtils report;
+    public EmailUtils mail;
+//    //Creating object of csv utils
+//    CsvUtils csv = new CsvUtils();
+//    //Creating object of report utils
+//    ExtentReportUtils report = new ExtentReportUtils();
+//    // Creating object of email utils
+//    EmailUtils mail = new EmailUtils();
     public HomePage home;
     public LoginPage login;
     public OtlobhaForm1stStep form1stStep;
@@ -33,7 +36,14 @@ public class TestBase {
 
 
 
-    public TestBase() throws IOException {
+    public TestBase() {
+    }
+
+    // Initailiz utilities
+    private void initializeUtilities() throws IOException {
+        csv = new CsvUtils();
+        report = new ExtentReportUtils();
+        mail = new EmailUtils();
     }
 
     // Initialize web driver
@@ -50,8 +60,9 @@ public class TestBase {
     }
 
     @BeforeSuite
-    public void beforeSuite() {
+    public void beforeSuite() throws IOException {
         report.startReporter();  // Initialize Extent
+        initializeUtilities();
         driverInitialization();
     }
 
