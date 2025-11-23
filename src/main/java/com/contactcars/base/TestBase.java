@@ -39,13 +39,6 @@ public class TestBase {
     public TestBase() {
     }
 
-    // Initailiz utilities
-    public void initializeUtilities() throws IOException {
-        csv = new CsvUtils();
-        report = new ExtentReportUtils();
-        mail = new EmailUtils();
-    }
-
     // Initialize web driver
     public static WebDriver driverInitialization() {
         WebDriverManager.chromedriver().setup();
@@ -62,7 +55,6 @@ public class TestBase {
     @BeforeSuite
     public void beforeSuite() throws IOException {
         report.startReporter();  // Initialize Extent
-        initializeUtilities();
         driverInitialization();
     }
 
@@ -77,6 +69,11 @@ public class TestBase {
         showroom = new ShowroomsPage(driver);
         usedCarsSEOPage = new UsedCarsSEOPages(driver);
         userInfoPage = new UserInfoPage(driver);
+
+        csv = new CsvUtils();
+        report = new ExtentReportUtils();
+        mail = new EmailUtils();
+
     }
 
     @AfterTest

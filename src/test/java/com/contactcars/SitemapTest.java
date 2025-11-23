@@ -16,10 +16,10 @@ import java.util.List;
 public class SitemapTest extends TestBase {
 
 
-    private CsvUtils csv;
+//    private CsvUtils csv;
     private SitemapUtils map;
     private HttpClientUtils http;
-    private ExtentReportUtils report;
+//    private ExtentReportUtils report;
 
     public SitemapTest(){
     }
@@ -36,10 +36,10 @@ public class SitemapTest extends TestBase {
     @Test
     public void validateSitemapUrls() throws IOException {
         // Initialize all utilities that might throw IOException
-        csv = new CsvUtils();
+//        csv = new CsvUtils();
         map = new SitemapUtils();
         http = new HttpClientUtils();
-        report = new ExtentReportUtils();
+//        report = new ExtentReportUtils();
 
         // Extract URLs from sitemap
         List<String> urls = map.extractUrlsFromSitemap(csv.getVariableValueFromSheet1("Sitemap"));
