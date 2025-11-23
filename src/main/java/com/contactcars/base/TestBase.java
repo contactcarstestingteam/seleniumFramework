@@ -40,7 +40,7 @@ public class TestBase {
     }
 
     // Initailiz utilities
-    private void initializeUtilities() throws IOException {
+    public void initializeUtilities() throws IOException {
         csv = new CsvUtils();
         report = new ExtentReportUtils();
         mail = new EmailUtils();
