@@ -14,6 +14,7 @@ import java.util.List;
 public class SitemapTest extends TestBase {
 
     public SitemapTest() throws IOException {
+        super();
     }
 
     //Creating object of Csv utils
