@@ -70,15 +70,17 @@ public class TestBase {
 
     @BeforeClass
     public void instanceSetUp() throws IOException {
-        home = new HomePage(driver);
-        login = new LoginPage(driver);
-        form1stStep = new OtlobhaForm1stStep(driver);
-        form2ndStep = new OtlobhaForm2ndStep(driver);
-        otlobhaLanding = new OtlobhaLandingPage(driver);
-        showroomDetails = new ShowroomsDetailsPage(driver);
-        showroom = new ShowroomsPage(driver);
-        usedCarsSEOPage = new UsedCarsSEOPages(driver);
-        userInfoPage = new UserInfoPage(driver);
+        if(!this.getClass().getSimpleName().equals("SitemapTest")){
+            home = new HomePage(driver);
+            login = new LoginPage(driver);
+            form1stStep = new OtlobhaForm1stStep(driver);
+            form2ndStep = new OtlobhaForm2ndStep(driver);
+            otlobhaLanding = new OtlobhaLandingPage(driver);
+            showroomDetails = new ShowroomsDetailsPage(driver);
+            showroom = new ShowroomsPage(driver);
+            usedCarsSEOPage = new UsedCarsSEOPages(driver);
+            userInfoPage = new UserInfoPage(driver);
+        }
 
 //        csv = new CsvUtils();
         report = new ExtentReportUtils();
