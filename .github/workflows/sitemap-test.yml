@@ -18,15 +18,11 @@ jobs:
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
       FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
       TO_EMAIL: ${{ secrets.TO_EMAIL }}
+      SITEMAP_URL: ${{ secrets.SITEMAP_URL }}
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
-      - name: Install Chromium
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y chromium-browser
 
       - name: Set up Java 11 with Maven
         uses: actions/setup-java@v4

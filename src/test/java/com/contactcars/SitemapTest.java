@@ -43,7 +43,9 @@ public class SitemapTest extends TestBase {
 //        report = new ExtentReportUtils();
 
         // Extract URLs from sitemap
-        List<String> urls = map.extractUrlsFromSitemap(csv.getVariableValueFromSheet1("Sitemap"));
+//        List<String> urls = map.extractUrlsFromSitemap(csv.getVariableValueFromSheet1("Sitemap"));
+        List<String> urls = map.extractUrlsFromSitemap(System.getProperty("SITEMAP_URL"));
+
 
         for (String url : urls) {
             report.createTest("Testing URL: " + url);
