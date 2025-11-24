@@ -90,8 +90,14 @@ public class TestBase {
 
     @AfterMethod
     public void goToHomePage() {
+
+        String url = System.getenv("WEBSITE_URL");
+        if (url != null && !url.isEmpty()) {
+            driver.get(url);
+        }
+
 //        driver.get(csv.getVariableValueFromSheet1("URL"));
-        driver.get(System.getProperty("WEBSITE_URL"));
+//        driver.get(System.getProperty("WEBSITE_URL"));
     }
 
 
