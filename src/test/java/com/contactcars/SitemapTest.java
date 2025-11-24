@@ -44,7 +44,7 @@ public class SitemapTest extends TestBase {
 
         // Extract URLs from sitemap
 //        List<String> urls = map.extractUrlsFromSitemap(csv.getVariableValueFromSheet1("Sitemap"));
-        List<String> urls = map.extractUrlsFromSitemap(System.getProperty("SITEMAP_URL"));
+        List<String> urls = map.extractUrlsFromSitemap(System.getenv("SITEMAP_URL"));
 
 
         for (String url : urls) {

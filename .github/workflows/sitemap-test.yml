@@ -43,7 +43,7 @@ jobs:
           echo "Workflow started at (Egypt): $(TZ=Africa/Cairo date)"
 
       - name: Build and Run Tests
-        run: mvn clean test
+        run: mvn clean test -Dwebsite.url=${{ secrets.WEBSITE_URL }}
 
       - name: Upload Extent Report
         uses: actions/upload-artifact@v4
