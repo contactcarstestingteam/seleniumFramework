@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.*;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 
 public class TestBase {
@@ -86,7 +87,10 @@ public class TestBase {
     }
 
     @AfterTest
-    public void goToHomePage() {
+    public void goToHomePage(Method method) {
+        if(method.getName().equals("validateSitemapUrls")) {
+            return;
+        }
         driver.get(csv.getVariableValueFromSheet1("URL"));
     }
 
