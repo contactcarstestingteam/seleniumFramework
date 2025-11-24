@@ -7,6 +7,7 @@ import com.contactcars.utils.ExtentReportUtils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.*;
 
 import java.io.IOException;
@@ -41,8 +42,16 @@ public class TestBase {
 
     // Initialize web driver
     public static WebDriver driverInitialization() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--disable-extensions");
+        options.addArguments("--remote-allow-origins=*");
+
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         return driver;
     }
