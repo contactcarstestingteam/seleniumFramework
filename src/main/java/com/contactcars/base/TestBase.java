@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
 public class TestBase {
  
     public static WebDriver driver;
-    public CsvUtils csv;
+//    public CsvUtils csv;
     public ExtentReportUtils report;
     public EmailUtils mail;
 //    //Creating object of csv utils
@@ -80,7 +80,7 @@ public class TestBase {
         usedCarsSEOPage = new UsedCarsSEOPages(driver);
         userInfoPage = new UserInfoPage(driver);
 
-        csv = new CsvUtils();
+//        csv = new CsvUtils();
         report = new ExtentReportUtils();
         mail = new EmailUtils();
 
