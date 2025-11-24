@@ -19,6 +19,7 @@ jobs:
       FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
       TO_EMAIL: ${{ secrets.TO_EMAIL }}
       SITEMAP_URL: ${{ secrets.SITEMAP_URL }}
+      WEBSITE_URL: ${{ secrets.WEBSITE_URL }}
 
     steps:
       - name: Check out repository

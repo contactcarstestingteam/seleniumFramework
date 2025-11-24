@@ -87,11 +87,11 @@ public class TestBase {
     }
 
     @AfterMethod
-    public void goToHomePage(Method method) {
-        if(!method.getName().equals("validateSitemapUrls")) {
-            driver.get(csv.getVariableValueFromSheet1("URL"));
-        }
+    public void goToHomePage() {
+//        driver.get(csv.getVariableValueFromSheet1("URL"));
+        driver.get(System.getProperty("WEBSITE_URL"));
     }
+
 
     @AfterSuite
     public void afterSuite() throws IOException {
