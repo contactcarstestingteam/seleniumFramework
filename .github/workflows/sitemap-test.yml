@@ -24,10 +24,11 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Install Chromium
+      - name: Install Chromium & ChromeDriver
         run: |
-          sudo apt-get update
-          sudo apt-get install -y chromium-browser
+          sudo apt-get update --fix-missing
+          sudo apt-get install -y chromium
+          sudo apt-get install -y chromium-driver
 
       - name: Set up Java 11 with Maven
         uses: actions/setup-java@v4
