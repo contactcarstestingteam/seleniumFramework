@@ -22,6 +22,7 @@ public class SitemapTest extends TestBase {
 //    private ExtentReportUtils report;
 
     public SitemapTest(){
+        super();
     }
 
 //    //Creating object of Csv utils
