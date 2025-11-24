@@ -86,12 +86,11 @@ public class TestBase {
 
     }
 
-    @AfterTest
+    @AfterMethod
     public void goToHomePage(Method method) {
-        if(method.getName().equals("validateSitemapUrls")) {
-            return;
+        if(!method.getName().equals("validateSitemapUrls")) {
+            driver.get(csv.getVariableValueFromSheet1("URL"));
         }
-        driver.get(csv.getVariableValueFromSheet1("URL"));
     }
 
     @AfterSuite
