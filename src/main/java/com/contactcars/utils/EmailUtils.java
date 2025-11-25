@@ -28,8 +28,6 @@ public class EmailUtils {
         attachments.setFilename("extentReport.html");
         attachments.setDisposition("attachment");
         mail.addAttachments(attachments);
-
-        System.out.println("📨 Email send function reached");
         SendGrid sg = new SendGrid(System.getProperty("SENDGRID_API_KEY"));
         Request request = new Request();
 
@@ -37,18 +35,12 @@ public class EmailUtils {
             request.setMethod(Method.POST);
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
-            System.out.println("📡 Sending email to SendGrid...");
             Response response = sg.api(request);
             System.out.println("Report email sent. Status: " + response.getStatusCode());
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
-         //   throw ex;
         }
-
-        System.out.println("Using API Key: " + System.getProperty("SENDGRID_API_KEY"));
-        System.out.println("Sending from: " + System.getProperty("FROM_EMAIL"));
-        System.out.println("Sending to: " + System.getProperty("TO_EMAIL"));
     }
 
 }
