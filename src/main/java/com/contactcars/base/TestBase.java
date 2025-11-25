@@ -11,21 +11,13 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.*;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 
 
 public class TestBase {
  
     public static WebDriver driver;
-//    public CsvUtils csv;
     public ExtentReportUtils report;
     public EmailUtils mail;
-//    //Creating object of csv utils
-//    CsvUtils csv = new CsvUtils();
-//    //Creating object of report utils
-//    ExtentReportUtils report = new ExtentReportUtils();
-//    // Creating object of email utils
-//    EmailUtils mail = new EmailUtils();
     public HomePage home;
     public LoginPage login;
     public OtlobhaForm1stStep form1stStep;
@@ -42,9 +34,11 @@ public class TestBase {
     }
 
     // Initialize web driver
-    public static WebDriver driverInitialization() {
+    public static WebDriver driverInitialization(String browserMode) {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
+        if (browserMode.equals("headless")) {
+            options.addArguments("--headless=new");
+        }
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-gpu");
@@ -63,9 +57,12 @@ public class TestBase {
     }
 
     @BeforeSuite
-    public void beforeSuite() throws IOException {
+    @Parameters("browserMode")
+    public void beforeSuite(String browserMode) {
+        mail = new EmailUtils();
+        report = new ExtentReportUtils();
         report.startReporter();  // Initialize Extent
-        driverInitialization();
+        driverInitialization(browserMode);
     }
 
     @BeforeClass
@@ -81,25 +78,15 @@ public class TestBase {
             usedCarsSEOPage = new UsedCarsSEOPages(driver);
             userInfoPage = new UserInfoPage(driver);
         }
-
-//        csv = new CsvUtils();
-        report = new ExtentReportUtils();
-        mail = new EmailUtils();
-
     }
 
     @AfterMethod
     public void goToHomePage() {
-
         String url = System.getenv("WEBSITE_URL");
         if (url != null && !url.isEmpty()) {
             driver.get(url);
         }
-
-//        driver.get(csv.getVariableValueFromSheet1("URL"));
-//        driver.get(System.getProperty("WEBSITE_URL"));
     }
-
 
     @AfterSuite
     public void afterSuite() throws IOException {

@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
+    <parameter name="browserMode" value="normal" />
     <test verbose="2" preserve-order="true" name="C:/Users/sara.maghraby/IdeaProjects/ContactCarsRetailStaging">
         <classes>
-<!--                <class name="com.contactcars.testcases.LoginPageTest"></class>-->
-                <class name="com.contactcars.testcases.LoginPageTest">
-                    <methods>
-                        <include name="login"></include>
-                    </methods>
-                </class>
-<!--               <class name="com.contactcars.testcases.HomePageTest"></class>-->
-<!--              <class name="com.contactcars.testcases.ShowroomsPageTest">-->
-<!--                  <methods>-->
-<!--                      <include name="openContactUsTab"></include>-->
-<!--                  </methods>-->
-<!--              </class>-->
+<!--            <class name="com.contactcars.testcases.HomePageTest"></class>-->
+            <class name="com.contactcars.testcases.LoginPageTest"></class>
+<!--            <class name="com.contactcars.testcases.OtlobhaPageTest"></class>-->
+<!--            <class name="com.contactcars.testcases.SellFormTest"></class>-->
+<!--            <class name="com.contactcars.testcases.ShowroomsPageTest"></class>-->
+<!--            <class name="com.contactcars.testcases.UsedCarsSEOPageTest"></class>-->
+<!--            <class name="com.contactcars.testcases.UserInfoTest"></class>-->
+        </classes>
+    </test>
+
+    <test name="Sitemap Test">
+        <parameter name="browserMode" value="headless" />
+        <classes>
+            <class name="com.contactcars.SitemapTest"></class>
         </classes>
     </test>
 </suite>
+
