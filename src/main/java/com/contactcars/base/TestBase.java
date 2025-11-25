@@ -58,7 +58,7 @@ public class TestBase {
 
     @BeforeSuite
     @Parameters("browserMode")
-    public void beforeSuite(String browserMode) {
+    public void beforeSuite(@Optional("headless") String browserMode) {
         mail = new EmailUtils();
         report = new ExtentReportUtils();
         report.startReporter();  // Initialize Extent
