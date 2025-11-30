@@ -29,12 +29,12 @@ public class EmailUtils {
 
         // Handle multiple recipients
         Personalization personalization = new Personalization();
-        String[] emails = recipients.split(",");
 
-        for (String email : emails) {
-            String trimmed = email.trim();
-            if (!trimmed.isEmpty()) {
-                personalization.addTo(new Email(trimmed));
+        if (recipients != null) {
+            for (String email : recipients.split(",")) {
+                if (email != null && !email.trim().isEmpty()) {
+                    personalization.addTo(new Email(email.trim()));
+                }
             }
         }
 
