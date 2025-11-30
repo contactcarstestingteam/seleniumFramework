@@ -8,17 +8,38 @@ import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Attachments;
 import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
+import com.sendgrid.helpers.mail.objects.Personalization;
 
 import java.io.IOException;
 
 public class EmailUtils {
 
-    public static void sendExtentReport(String reportPath, String recipient) throws IOException {
+    public static void sendExtentReport(String reportPath, String recipients) throws IOException {
         Email from = new Email(System.getProperty("FROM_EMAIL"));
         String subject = "Automation Test Report";
-        Email to = new Email(recipient);
+//        Email to = new Email(recipient);
         Content content = new Content("text/plain", "Please find the attached Extent Report.");
-        Mail mail = new Mail(from, subject, to, content);
+//        Mail mail = new Mail(from, subject, to, content);
+
+        // Create mail object
+        Mail mail = new Mail();
+        mail.setFrom(from);
+        mail.setSubject(subject);
+        mail.addContent(content);
+
+        // Handle multiple recipients
+        Personalization personalization = new Personalization();
+        String[] emails = recipients.split(",");
+
+        for (String email : emails) {
+            String trimmed = email.trim();
+            if (!trimmed.isEmpty()) {
+                personalization.addTo(new Email(trimmed));
+            }
+        }
+
+        mail.addPersonalization(personalization);
+
 
         // Attach HTML report
         Attachments attachments = new Attachments();
