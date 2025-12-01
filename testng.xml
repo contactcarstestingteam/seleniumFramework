@@ -5,7 +5,7 @@
     <test verbose="2" preserve-order="true" name="C:/Users/sara.maghraby/IdeaProjects/ContactCarsRetailStaging">
         <classes>
 <!--            <class name="com.contactcars.testcases.HomePageTest"></class>-->
-            <class name="com.contactcars.testcases.LoginPageTest"></class>
+<!--            <class name="com.contactcars.testcases.LoginPageTest"></class>-->
 <!--            <class name="com.contactcars.testcases.OtlobhaPageTest"></class>-->
 <!--            <class name="com.contactcars.testcases.SellFormTest"></class>-->
 <!--            <class name="com.contactcars.testcases.ShowroomsPageTest"></class>-->
@@ -14,11 +14,11 @@
         </classes>
     </test>
 
-<!--    <test name="Sitemap Test">-->
-<!--        <parameter name="browserMode" value="headless" />-->
-<!--        <classes>-->
-<!--            <class name="com.contactcars.SitemapTest"></class>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="Sitemap Test">
+        <parameter name="browserMode" value="headless" />
+        <classes>
+            <class name="com.contactcars.SitemapTest"></class>
+        </classes>
+    </test>
 </suite>
 
