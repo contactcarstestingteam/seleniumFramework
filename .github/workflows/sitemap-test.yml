@@ -93,7 +93,7 @@ jobs:
         run: |
                 echo "Sending email via SendGrid..."
                 
-                # First check if report exists
+#                 First check if report exists
                 if [ ! -f "test-output/extentReport.html" ]; then
                   echo "ERROR: Report file not found!"
                   exit 1
