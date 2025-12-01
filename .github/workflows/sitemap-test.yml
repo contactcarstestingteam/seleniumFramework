@@ -25,6 +25,18 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+
+
+      - name: Clean previous test outputs
+        run: |
+          echo "Cleaning previous test outputs..."
+          rm -rf test-output/ || true
+          rm -rf target/ || true
+          rm -rf .extentreports/ || true
+          find . -name "*.html" -type f -delete || true
+
+
+
       - name: Install Chromium & ChromeDriver
         run: |
           sudo apt-get update --fix-missing
@@ -49,25 +61,71 @@ jobs:
 
       - name: Build and Run Tests
         run: mvn clean test -Duser.timezone=Africa/Cairo -Dwebsite.url=${{ secrets.WEBSITE_URL }}
+        
+        # Debug: Check what was generated
+         echo "Generated files:"
+         ls -la test-output/ || echo "No test-output directory"
+         find . -name "*.html" -type f | head -10
 
-      - name: Upload Extent Report
+
+
+      - name: Upload Extent Report with unique name
         uses: actions/upload-artifact@v4
         with:
-          name: extentReport
-          path: test-output/extentReport.html
+            name: extentReport-${{ github.run_id }}-${{ github.run_attempt }}
+            path: test-output/extentReport.html
+            overwrite: true
+            retention-days: 7
 
-      - name: Send report via email (SendGrid)
+      - name: Verify report was generated
         run: |
-          echo "Sending email via SendGrid..."
-            
-          mvn \
-            -Duser.timezone=Africa/Cairo \
-            -DSENDGRID_API_KEY="$SENDGRID_API_KEY" \
-            -DFROM_EMAIL="$FROM_EMAIL" \
-            -DTO_EMAIL="$TO_EMAIL" \
-            -DsendReport=true \
-            -Dtest=SitemapTest \
-             test
+                if [ -f "test-output/extentReport.html" ]; then
+                  echo "✅ Report generated successfully"
+                  echo "File size: $(du -h test-output/extentReport.html | cut -f1)"
+                else
+                  echo "❌ Report NOT found!"
+                  echo "Looking for extentReport.html in:"
+                  find . -name "*.html" -type f
+                  exit 1
+                fi
+
+            - name: Send report via email (SendGrid)
+              run: |
+                echo "Sending email via SendGrid..."
+                
+                # First check if report exists
+                if [ ! -f "test-output/extentReport.html" ]; then
+                  echo "ERROR: Report file not found!"
+                  exit 1
+                fi
+                
+                mvn \
+                  -Duser.timezone=Africa/Cairo \
+                  -DSENDGRID_API_KEY="$SENDGRID_API_KEY" \
+                  -DFROM_EMAIL="$FROM_EMAIL" \
+                  -DTO_EMAIL="$TO_EMAIL" \
+                  -DsendReport=true \
+                  -Dtest=SitemapTest \
+                   test
+
+#      - name: Upload Extent Report
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: extentReport
+#          path: test-output/extentReport.html
+#
+#      - name: Send report via email (SendGrid)
+#        run: |
+#          echo "Sending email via SendGrid..."
+#
+#          mvn \
+#            -Duser.timezone=Africa/Cairo \
+#            -DSENDGRID_API_KEY="$SENDGRID_API_KEY" \
+#            -DFROM_EMAIL="$FROM_EMAIL" \
+#            -DTO_EMAIL="$TO_EMAIL" \
+#            -DsendReport=true \
+#            -Dtest=SitemapTest \
+#             test
 
 
       
