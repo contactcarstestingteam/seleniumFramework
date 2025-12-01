@@ -93,24 +93,9 @@ public class TestBase {
 
     @AfterSuite
     public void afterSuite() throws IOException {
-//        report.tearDown(); // Write report
-//        // Send report via email (using SendGrid)
-//        mail.sendExtentReport("test-output/extentReport.html", System.getProperty("TO_EMAIL"));
-
-        // Close the report BEFORE trying to attach it
-        if (report != null) {
-            report.tearDown();
-        }
-
-        // Send email WITH correct path
-        String path = "test-output/extentReport.html";
-
-        if (new File(path).exists()) {
-            mail.sendExtentReport(path, System.getProperty("TO_EMAIL"));
-        } else {
-            System.err.println("ERROR: Report file not found at: " + path);
-        }
-
+        report.tearDown(); // Write report
+        // Send report via email (using SendGrid)
+        mail.sendExtentReport("test-output/extentReport.html", System.getProperty("TO_EMAIL"));
     }
 
     // Close Chrome window
