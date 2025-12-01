@@ -47,54 +47,27 @@ jobs:
         run: |
           echo "Workflow started at (Egypt): $(TZ=Africa/Cairo date)"
 
-      - name: Clean old reports
-        run: rm -rf test-output || true
+      - name: Build and Run Tests
+        run: mvn clean test -Duser.timezone=Africa/Cairo -Dwebsite.url=${{ secrets.WEBSITE_URL }}
 
-      - name: Ensure test-output folder exists
-        run: mkdir -p test-output
+      - name: Upload Extent Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: extentReport
+          path: test-output/extentReport.html
 
-
-      - name: Run Tests (single run) + Send Email
+      - name: Send report via email (SendGrid)
         run: |
-          echo "Running tests & sending report..."
+          echo "Sending email via SendGrid..."
+            
           mvn \
             -Duser.timezone=Africa/Cairo \
             -DSENDGRID_API_KEY="$SENDGRID_API_KEY" \
             -DFROM_EMAIL="$FROM_EMAIL" \
             -DTO_EMAIL="$TO_EMAIL" \
             -DsendReport=true \
-            -Dwebsite.url="${{ secrets.WEBSITE_URL }}" \
+            -Dtest=SitemapTest \
             clean test
-
-      - name: Upload Extent Report
-        uses: actions/upload-artifact@v4
-        with:
-                name: extentReport
-                path: test-output/extentReport.html
-
-
-
-#      - name: Build and Run Tests
-#        run: mvn clean test -Duser.timezone=Africa/Cairo -Dwebsite.url=${{ secrets.WEBSITE_URL }}
-#
-#      - name: Upload Extent Report
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: extentReport
-#          path: test-output/extentReport.html
-#
-#      - name: Send report via email (SendGrid)
-#        run: |
-#          echo "Sending email via SendGrid..."
-#
-#          mvn \
-#            -Duser.timezone=Africa/Cairo \
-#            -DSENDGRID_API_KEY="$SENDGRID_API_KEY" \
-#            -DFROM_EMAIL="$FROM_EMAIL" \
-#            -DTO_EMAIL="$TO_EMAIL" \
-#            -DsendReport=true \
-#            -Dtest=SitemapTest \
-#            clean test
 
 
       
