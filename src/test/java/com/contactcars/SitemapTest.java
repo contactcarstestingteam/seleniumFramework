@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 public class SitemapTest extends TestBase {
@@ -33,6 +34,8 @@ public class SitemapTest extends TestBase {
 
         for (String url : urls) {
             report.createTest("Testing URL: " + url);
+            // Set custom start time
+            report.extentTest.getModel().setStartTime(new Date(System.currentTimeMillis()));
             int statusCode = http.getStatusCode(url);
 
             if(statusCode == 200) {
@@ -48,6 +51,8 @@ public class SitemapTest extends TestBase {
 //                Assert.assertFalse(driver.getTitle().isEmpty(), "Page has no title: " + url);
                 report.logAssertionBetweenTwoEqualValues("Fail", String.valueOf(statusCode), String.valueOf(200));
             }
+            // Set custom end time
+            report.extentTest.getModel().setEndTime(new Date());
         }
     }
 }
