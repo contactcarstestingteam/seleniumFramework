@@ -17,9 +17,7 @@ public class EmailUtils {
     public static void sendExtentReport(String reportPath, String recipients) throws IOException {
         Email from = new Email(System.getProperty("FROM_EMAIL"));
         String subject = "Automation Test Report";
-//        Email to = new Email(recipient);
         Content content = new Content("text/plain", "Please find the attached Extent Report.");
-//        Mail mail = new Mail(from, subject, to, content);
 
         // Create mail object
         Mail mail = new Mail();
@@ -39,7 +37,6 @@ public class EmailUtils {
         }
 
         mail.addPersonalization(personalization);
-
 
         // Attach HTML report
         Attachments attachments = new Attachments();
@@ -63,5 +60,4 @@ public class EmailUtils {
             ex.printStackTrace();
         }
     }
-
 }
