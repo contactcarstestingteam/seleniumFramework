@@ -92,13 +92,7 @@ jobs:
       - name: Send report via email (SendGrid)
         run: |
                 echo "Sending email via SendGrid..."
-                
-#                 First check if report exists
-                if [ ! -f "test-output/extentReport.html" ]; then
-                  echo "ERROR: Report file not found!"
-                  exit 1
-                fi
-                
+
                 mvn \
                   -Duser.timezone=Africa/Cairo \
                   -DSENDGRID_API_KEY="$SENDGRID_API_KEY" \
