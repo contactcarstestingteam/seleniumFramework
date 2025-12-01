@@ -38,12 +38,17 @@ jobs:
           java-version: '11'
           cache: maven
 
+      - name: Set Egypt timezone
+        run: |
+          sudo timedatectl set-timezone Africa/Cairo || true
+          echo "System timezone set to: $(date)"
+
       - name: Log start time
         run: |
           echo "Workflow started at (Egypt): $(TZ=Africa/Cairo date)"
 
       - name: Build and Run Tests
-        run: mvn clean test -Dwebsite.url=${{ secrets.WEBSITE_URL }}
+        run: mvn clean test -Duser.timezone=Africa/Cairo -Dwebsite.url=${{ secrets.WEBSITE_URL }}
 
       - name: Upload Extent Report
         uses: actions/upload-artifact@v4
@@ -56,6 +61,7 @@ jobs:
           echo "Sending email via SendGrid..."
             
           mvn \
+            -Duser.timezone=Africa/Cairo \
             -DSENDGRID_API_KEY="$SENDGRID_API_KEY" \
             -DFROM_EMAIL="$FROM_EMAIL" \
             -DTO_EMAIL="$TO_EMAIL" \
