@@ -63,9 +63,9 @@ jobs:
         run: mvn clean test -Duser.timezone=Africa/Cairo -Dwebsite.url=${{ secrets.WEBSITE_URL }}
         
         # Debug: Check what was generated
-         echo "Generated files:"
-         ls -la test-output/ || echo "No test-output directory"
-         find . -name "*.html" -type f | head -10
+          echo "Generated files:"
+          ls -la test-output/ || echo "No test-output directory"
+          find . -name "*.html" -type f | head -10
 
 
 
@@ -79,18 +79,18 @@ jobs:
 
       - name: Verify report was generated
         run: |
-                if [ -f "test-output/extentReport.html" ]; then
-                  echo "✅ Report generated successfully"
-                  echo "File size: $(du -h test-output/extentReport.html | cut -f1)"
-                else
-                  echo "❌ Report NOT found!"
-                  echo "Looking for extentReport.html in:"
-                  find . -name "*.html" -type f
-                  exit 1
-                fi
+          if [ -f "test-output/extentReport.html" ]; then
+            echo "✅ Report generated successfully"
+            echo "File size: $(du -h test-output/extentReport.html | cut -f1)"
+          else
+            echo "❌ Report NOT found!"
+            echo "Looking for extentReport.html in:"
+            find . -name "*.html" -type f
+            exit 1
+          fi
 
-            - name: Send report via email (SendGrid)
-              run: |
+      - name: Send report via email (SendGrid)
+        run: |
                 echo "Sending email via SendGrid..."
                 
                 # First check if report exists
