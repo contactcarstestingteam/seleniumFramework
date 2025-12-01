@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.*;
 
+import java.io.File;
 import java.io.IOException;
 
 
@@ -59,6 +60,8 @@ public class TestBase {
     @BeforeSuite
     @Parameters("browserMode")
     public void beforeSuite(@Optional("headless") String browserMode) {
+        // Create output directory
+        new File("test-output").mkdirs();
         mail = new EmailUtils();
         report = new ExtentReportUtils();
         report.startReporter();  // Initialize Extent
@@ -90,9 +93,24 @@ public class TestBase {
 
     @AfterSuite
     public void afterSuite() throws IOException {
-        report.tearDown(); // Write report
-        // Send report via email (using SendGrid)
-        mail.sendExtentReport("test-output/extentReport.html", System.getProperty("TO_EMAIL"));
+//        report.tearDown(); // Write report
+//        // Send report via email (using SendGrid)
+//        mail.sendExtentReport("test-output/extentReport.html", System.getProperty("TO_EMAIL"));
+
+        // Close the report BEFORE trying to attach it
+        if (report != null) {
+            report.tearDown();
+        }
+
+        // Send email WITH correct path
+        String path = "test-output/extentReport.html";
+
+        if (new File(path).exists()) {
+            mail.sendExtentReport(path, System.getProperty("TO_EMAIL"));
+        } else {
+            System.err.println("ERROR: Report file not found at: " + path);
+        }
+
     }
 
     // Close Chrome window

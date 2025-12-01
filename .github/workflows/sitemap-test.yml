@@ -50,6 +50,9 @@ jobs:
       - name: Clean old reports
         run: rm -rf test-output || true
 
+      - name: Ensure test-output folder exists
+        run: mkdir -p test-output
+
       - name: Build and Run Tests
         run: mvn clean test -Duser.timezone=Africa/Cairo -Dwebsite.url=${{ secrets.WEBSITE_URL }}
 
