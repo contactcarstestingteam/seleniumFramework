@@ -14,7 +14,7 @@ public class SitemapTest extends TestBase {
 
     private SitemapUtils map;
     private HttpClientUtils http;
-//    private ExtentReportUtils report;
+    private ExtentReportUtils report;
 
     public SitemapTest(){
         super();
@@ -25,7 +25,7 @@ public class SitemapTest extends TestBase {
         // Initialize all utilities that might throw IOException
         map = new SitemapUtils();
         http = new HttpClientUtils();
-//        report = new ExtentReportUtils();
+        report = new ExtentReportUtils();
 
         // Extract URLs from sitemap
         List<String> urls = map.extractUrlsFromSitemap(System.getenv("SITEMAP_URL"));
