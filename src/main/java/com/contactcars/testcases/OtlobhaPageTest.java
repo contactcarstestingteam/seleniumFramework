@@ -3,8 +3,10 @@ package com.contactcars.testcases;
 import com.contactcars.base.TestBase;
 import com.contactcars.utils.CsvUtils;
 import com.contactcars.utils.PaymentUtils;
+import lombok.Data;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import java.io.IOException;
 
@@ -19,14 +21,25 @@ public class OtlobhaPageTest extends TestBase {
         super();
     }
 
+
+    @DataProvider(name = "Otlobha")
+    public Object[][] getOtlobhaData() {
+        return new Object[][]{
+                {"",""},
+                {"",""},
+                {"",""}
+        };
+    }
+
+
     @BeforeClass
     public void setUp() throws IOException, InterruptedException {
         openChrome(csv.getVariableValueFromSheet1("URL"));
         login.loginScenario();
     }
 
-@Test // Test (1) (Agency + Specific Trim + cash + Wallet)
-    public void OtlobhaAgencySpecificTrim() throws InterruptedException, IOException {
+@Test (dataProvider = "Otlobha")// Test (1) (Agency + Specific Trim + cash + Wallet)
+    public void OtlobhaAgencySpecificTrim(int makeId) throws InterruptedException, IOException {
         home.openOtlobhaLandingPage();
         otlobhaLanding.clickRequestNewCarButton();
         //Step one
@@ -38,7 +51,7 @@ public class OtlobhaPageTest extends TestBase {
             1, // trim
             true
     );
-    form1stStep.fillOtlobhaAgencySpecificTrim();
+   // form1stStep.fillOtlobhaAgencySpecificTrim(makeId);
     // second step Bank Card
     form2ndStep.ChooseBankCard();
     form2ndStep.clickSubmit();

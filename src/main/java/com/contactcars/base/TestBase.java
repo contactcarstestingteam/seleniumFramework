@@ -34,7 +34,7 @@ public class TestBase {
 
 
 
-    public TestBase() {
+    public TestBase() throws IOException {
     }
 
     // Initialize web driver
@@ -61,6 +61,12 @@ public class TestBase {
     }
 
     @BeforeSuite
+    public static void openWebsite (){
+        driverInitialization("Chrome");
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
+    }
+
+
     @Parameters("browserMode")
     public void beforeSuite(@Optional("headless") String browserMode) {
         // Create output directory
@@ -96,9 +102,9 @@ public class TestBase {
 
     @AfterSuite
     public void afterSuite() throws IOException {
-        report.tearDown(); // Write report
+        //report.tearDown(); // Write report
         // Send report via email (using SendGrid)
-        mail.sendExtentReport("test-output/extentReport.html", System.getProperty("TO_EMAIL"));
+        //mail.sendExtentReport("test-output/extentReport.html", System.getProperty("TO_EMAIL"));
     }
 
 //    @AfterSuite
