@@ -403,8 +403,7 @@ private void selectTrim() {
         }
     }
 
-    // ===== Main Flow =====
-    public void fillOtlobhaAgencySpecificTrim() {
+    public void fillOtlobhaFirstStepMainData(int countryIndex, int makeIndex, int modelIndex, int yearIndex ) {
 
         clickCountry();
         chooseCountryValue(countryIndex);
@@ -415,15 +414,33 @@ private void selectTrim() {
         clickModel();
         chooseModelValue(modelIndex);
 
-        clickAgency();
+        //clickAgency();
 
         clickYear();
         chooseYearValue(yearIndex);
 
-        selectTrim();
-        selectOtherTrimIfNeeded();
+    }
 
+    public void fillOtlobhaFirstStepCashOrFinanceType () {
+
+    }
+
+    // ===== Main Trim Flows =====
+    public void fillOtlobhaAgencySpecificTrimOrAllTrims(int countryIndex, int makeIndex, int modelIndex, int yearIndex) {
+
+        fillOtlobhaFirstStepMainData(countryIndex, makeIndex, modelIndex,yearIndex);
+        selectTrim();
+        fillOtlobhaFirstStepCashOrFinanceType();
         ClickTerms();
+        clickNext();
+    }
+
+    public void fillOtlobhaAgencyOtherTrim(int countryIndex, int makeIndex, int modelIndex, int yearIndex) {
+    // Will need to call "Click and Choose Other Trim"
+        fillOtlobhaFirstStepMainData(countryIndex, makeIndex, modelIndex,yearIndex);
+        selectTrim();
+        fillOtlobhaFirstStepCashOrFinanceType();
+        ClickAndChooseOtherTrim();
         clickNext();
     }
 
