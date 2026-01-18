@@ -1,6 +1,7 @@
 package com.contactcars.pages;
 
 import com.contactcars.utils.CsvUtils;
+import com.contactcars.utils.WaitUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,7 @@ import java.util.List;
 public class HomePage {
 
     private WebDriver driver;
+    private WaitUtils wait;
     List<String> priceValues = new ArrayList<>();
     List<String> makeValues = new ArrayList<>();
     List<String> modelValues = new ArrayList<>();
@@ -28,6 +30,7 @@ public class HomePage {
     //Constructor that will be automatically called as soon as the object of the class is created
     public HomePage(WebDriver driver) throws IOException {
         this.driver = driver;
+        this.wait = new WaitUtils(driver, 30);
     }
 
     //locator for my account button
@@ -69,10 +72,12 @@ public class HomePage {
     By usedCarsTab = By.cssSelector("body > header > nav > div > ul > li:nth-child(2) > span");
     By showAllUsedCarsButton = By.cssSelector("body > header > nav > div > ul > li:nth-child(2) > div > div > div.flex.items-center.justify-between > a > span");
 
+    By homeLoginBtn= By.cssSelector("div.relative.group.cursor-pointer.me-4 > a");
 
     public void NavigateToUsedCarSEOPage (){
         driver.findElement(usedCarsTab).click();
         driver.findElement(showAllUsedCarsButton).click();
+
     }
 
 
@@ -81,8 +86,13 @@ public class HomePage {
         driver.findElement(MyAccount).click();
     }
     //Method to click login link
+//    public void clickLoginLink() {
+//        driver.findElement(loginLink).click();
+//    }
     public void clickLoginLink() {
+        wait.waitForElementClickable(loginLink);
         driver.findElement(loginLink).click();
+       // wait.waitForUrlContains("login");
     }
 
     //Method to click on no thanks button
@@ -100,8 +110,7 @@ public class HomePage {
 
     //Method to click on otlobha button
     public void clickOtlobhaButton() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(otlobhaButton));
+        WebElement button = wait.waitForElementClickable(otlobhaButton);
         button.click();
     }
 
@@ -113,11 +122,13 @@ public class HomePage {
 
     //Method to wait until dealer ads section appears
     public void waitDealerAds() {
-        // Create a WebDriverWait instance
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.waitForElementVisible(dealerAds);
 
-        // Use Explicit Wait to wait for a specific condition
-        wait.until(ExpectedConditions.visibilityOfElementLocated(dealerAds));
+//        // Create a WebDriverWait instance
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//
+//        // Use Explicit Wait to wait for a specific condition
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(dealerAds));
     }
 
     //Method to get text for all dealer ads prices
@@ -171,12 +182,20 @@ public class HomePage {
     }
 
     public void openOtlobhaLandingPage() throws InterruptedException, IOException {
-        Thread.sleep(5000);
+//        Thread.sleep(5000);
+//        hoverOnServicesLink();
+//        Thread.sleep(5000);
+//        clickOtlobhaButton();
+//        Thread.sleep(5000);
         hoverOnServicesLink();
-        Thread.sleep(5000);
-        clickOtlobhaButton();
-        Thread.sleep(5000);
+        WebElement button = wait.waitForElementClickable(otlobhaButton);
+        button.click();
     }
+
+    public void waitForLoginButton() {
+        wait.waitForElementVisible(homeLoginBtn);
+    }
+
 
 }
 

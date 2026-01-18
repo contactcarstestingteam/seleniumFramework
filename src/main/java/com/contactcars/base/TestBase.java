@@ -14,6 +14,7 @@ import java.io.IOException;
 public class TestBase {
  
     public static WebDriver driver;
+     private boolean firstTest = true;
     //Creating object of csv utils
     CsvUtils csv = new CsvUtils();
     public HomePage home;
@@ -63,18 +64,44 @@ public class TestBase {
         userInfoPage = new UserInfoPage(driver);
     }
 
-    @AfterTest
-    public void goToHomePage() {
+   // @AfterTest    nnnnn
+    @BeforeMethod
+//    public void goToHomePage() {
+//        driver.get(csv.getVariableValueFromSheet1("URL"));
+//    }
+
+
+
+
+    public void goToHomePage() throws InterruptedException {
         driver.get(csv.getVariableValueFromSheet1("URL"));
+//        Thread.sleep(5000);
+//       home.waitForLoginButton();
     }
 
-    @AfterSuite
-    public void afterSuite() {
-        ExtentReportUtils.tearDown(); // Write report
+    @BeforeMethod
+    public void openHomePage() throws IOException {
+        if (!firstTest) {
+            driver.get(csv.getVariableValueFromSheet1("URL"));
+        }
+        firstTest = false;
     }
 
-    // Close Chrome window
-    public void quitChrome() {
-        driver.quit();
+//    @AfterSuite
+//    public void afterSuite() {
+//        ExtentReportUtils.tearDown(); // Write report
+//    }
+//
+//    // Close Chrome window
+//    public void quitChrome() {
+//        driver.quit();
+//    }
+    @AfterClass(alwaysRun = true)
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
+
+    
 }

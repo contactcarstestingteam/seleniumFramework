@@ -4,9 +4,9 @@
     <test verbose="2" preserve-order="true" name="C:/Users/sara.maghraby/IdeaProjects/ContactCarsRetailStaging">
         <classes>
 <!--                <class name="com.contactcars.testcases.LoginPageTest"></class>-->
-                <class name="com.contactcars.testcases.LoginPageTest">
+                <class name="com.contactcars.testcases.OtlobhaPageTest">
                     <methods>
-                        <include name="login"></include>
+                        <include name="OtlobhaAgencyMinDownPayment3"></include>
                     </methods>
                 </class>
 <!--               <class name="com.contactcars.testcases.HomePageTest"></class>-->
