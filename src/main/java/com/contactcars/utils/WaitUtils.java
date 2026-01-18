@@ -65,4 +65,21 @@ public class WaitUtils {
                         .equals("complete"));
     }
 
+    // Wait for a URL to NOT contain a specific value
+    public boolean waitForUrlNotContains(String partialUrl) {
+        return wait.until(driver -> !driver.getCurrentUrl().contains(partialUrl));
+    }
+
+    public List<WebElement> waitForElementsVisible(By locator) {
+        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+    }
+
+    // Wait for element to be present in DOM
+    public WebElement waitForElementPresent(By locator) {
+        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+
+
+
+
 }

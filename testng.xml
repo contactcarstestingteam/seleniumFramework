@@ -4,13 +4,18 @@
     <parameter name="browserMode" value="normal" />
     <test verbose="2" preserve-order="true" name="C:/Users/sara.maghraby/IdeaProjects/ContactCarsRetailStaging">
         <classes>
-<!--            <class name="com.contactcars.testcases.HomePageTest"></class>-->
-<!--            <class name="com.contactcars.testcases.LoginPageTest"></class>-->
-<!--            <class name="com.contactcars.testcases.OtlobhaPageTest"></class>-->
-<!--            <class name="com.contactcars.testcases.SellFormTest"></class>-->
-<!--            <class name="com.contactcars.testcases.ShowroomsPageTest"></class>-->
-<!--            <class name="com.contactcars.testcases.UsedCarsSEOPageTest"></class>-->
-<!--            <class name="com.contactcars.testcases.UserInfoTest"></class>-->
+<!--                <class name="com.contactcars.testcases.LoginPageTest"></class>-->
+                <class name="com.contactcars.testcases.OtlobhaPageTest">
+                    <methods>
+                        <include name="OtlobhaAgencyMinDownPayment3"></include>
+                    </methods>
+                </class>
+<!--               <class name="com.contactcars.testcases.HomePageTest"></class>-->
+<!--              <class name="com.contactcars.testcases.ShowroomsPageTest">-->
+<!--                  <methods>-->
+<!--                      <include name="openContactUsTab"></include>-->
+<!--                  </methods>-->
+<!--              </class>-->
         </classes>
     </test>
 

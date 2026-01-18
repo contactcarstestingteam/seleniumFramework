@@ -1,23 +1,32 @@
 package com.contactcars.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.contactcars.utils.WaitUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 
 public class OtlobhaForm1stStep {
 
     private WebDriver driver;
+    private WaitUtils wait;
+
+    // Test Data
+    private int countryIndex;
+    private int makeIndex;
+    private int modelIndex;
+    private int yearIndex;
+    private int trimIndex;
+    private boolean otherTrim;
 
     //Constructor that will be automatically called as soon as the object of the class is created
     public OtlobhaForm1stStep(WebDriver driver) throws IOException {
         this.driver = driver;
+        this.wait = new WaitUtils(driver, 30);
     }
 
     //Locator for name field
@@ -60,7 +69,7 @@ public class OtlobhaForm1stStep {
     By trim = By.cssSelector("div:nth-child(10) > div > div > div > input");
 
     //Locator for all trims values
-    By allTrims = By.cssSelector("div:nth-child(10) > div > div > div > ul > li");
+    static final By allTrims = By.cssSelector("div:nth-child(10) > div > div > div > ul > li");
 
     //Locator for other trim field
     By OtherTrim = By.cssSelector("div:nth-child(10) > div > div.mt-3 > input");
@@ -87,8 +96,12 @@ public class OtlobhaForm1stStep {
     By Terms = By.cssSelector("#terms");
 
     //Method to click on country drop down
+//    public void clickCountry() {
+//        driver.findElement(country).click();
+//    }
     public void clickCountry() {
-        driver.findElement(country).click();
+        WebElement element = wait.waitForElementClickable(country);
+        element.click();
     }
 
     //Method to choose country value
@@ -124,11 +137,18 @@ public class OtlobhaForm1stStep {
     }
 
     //Method to click on imported radio button
+//    public void clickImported() {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//
+//   //wait
+//        WebElement importedCheckbox = wait.until(ExpectedConditions.elementToBeClickable(Imported));
+//
+//        if (!importedCheckbox.isSelected()) {
+//            importedCheckbox.click();
+//        }
+//    }
     public void clickImported() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-   //wait
-        WebElement importedCheckbox = wait.until(ExpectedConditions.elementToBeClickable(Imported));
+        WebElement importedCheckbox = wait.waitForElementClickable(Imported);
 
         if (!importedCheckbox.isSelected()) {
             importedCheckbox.click();
@@ -142,11 +162,17 @@ public class OtlobhaForm1stStep {
     public void MinimumDownPayment() {driver.findElement(downpayment).click();}
 
     //Method to click on Down payment Value Field
+//    public void DownPaymentValue2() {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        wait.until(ExpectedConditions.elementToBeClickable(downpaymentValue));
+//        driver.findElement(downpaymentValue).click();
+//        driver.findElement(downpaymentValue).sendKeys("7000");
+//    }
+
     public void DownPaymentValue2() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(downpaymentValue));
-        driver.findElement(downpaymentValue).click();
-        driver.findElement(downpaymentValue).sendKeys("7000");
+        WebElement downPaymentInput = wait.waitForElementClickable(downpaymentValue);
+        downPaymentInput.click();
+        downPaymentInput.sendKeys("7000");
     }
 
     // Method to scroll to Job title and click it
@@ -159,7 +185,6 @@ public class OtlobhaForm1stStep {
         // Click on the element
         jobTitleElement.click();
     }
-
 
     //
     public void WriteJopTilte(){driver.findElement(JopTitle).sendKeys("Engineer");}
@@ -175,46 +200,105 @@ public class OtlobhaForm1stStep {
     }
 
     //Method to click on trim drop down
+//    public void clickTrim() {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        wait.until(ExpectedConditions.elementToBeClickable(trim));
+//        driver.findElement(trim).click();
+//    }
+
+//    public void clickTrim() {
+//        WebElement ClickTrm =wait.waitForElementClickable(trim);
+//        ClickTrm.click();
+//    }
+//public void clickTrim() {
+//    WebElement clickTrm = wait.waitForElementClickable(trim);
+//    clickTrm.click();
+//    wait.waitForElementsVisible(allTrims);
+//}
+
     public void clickTrim() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(trim));
-        driver.findElement(trim).click();
+        WebElement trimBtn = wait.waitForElementClickable(trim);
+        trimBtn.click();
     }
 
     //Method to choose trim value
     public void chooseTrimValue(int index) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement trimOption = wait.until(ExpectedConditions.elementToBeClickable(driver.findElements(allTrims).get(index)));
-        trimOption.click();
+
+        By trimsContainer = By.cssSelector("div:nth-child(10) ul");
+        wait.waitForElementPresent(trimsContainer);
+
+        List<WebElement> trims = driver.findElements(allTrims);
+
+        if (trims.size() > index) {
+            trims.get(index).click();
+        } else {
+            throw new RuntimeException(
+                    "Trim index " + index + " out of bounds. Size = " + trims.size()
+            );
+        }
     }
 
+
+
+
+//
+//    public void chooseTrimValue(int index) {
+//    List<WebElement> trims = wait.waitForAllElementsVisible(allTrims);
+//
+//    if (trims.size() > index) {
+//        trims.get(index).click();
+//    } else {
+//        throw new RuntimeException(
+//                "Index " + index + " out of bounds for trims list size " + trims.size()
+//        );
+//    }
+//}
+
     //Method to Click on other trim field
+//    public void ClickAndChooseOtherTrim(){
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        wait.until(ExpectedConditions.elementToBeClickable(OtherTrim));
+//        driver.findElement(OtherTrim).click();
+//        driver.findElement(OtherTrim).sendKeys("Test");
+//    }
+
     public void ClickAndChooseOtherTrim(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(OtherTrim));
-        driver.findElement(OtherTrim).click();
-        driver.findElement(OtherTrim).sendKeys("Test");
+        WebElement otherTrimElement =wait.waitForElementClickable(OtherTrim);
+        otherTrimElement.click();
+        otherTrimElement.sendKeys("Test");
     }
 
     //Method to click on next button
     public void clickNext() {
         driver.findElement(nextButton).click();
+        wait.waitForUrlContains("order-confirmation");
     }
 
-    //Method to Click on Terms
+//    //Method to Click on Terms
+//    public void ClickTerms() {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        WebElement termsElement = wait.until(ExpectedConditions.presenceOfElementLocated(Terms));
+//        // Scroll with more than type
+//        try {
+//
+//            //  Move + Click
+//            Actions actions = new Actions(driver);
+//            actions.moveToElement(termsElement).click().perform();
+//
+//        } catch (Exception e) {
+//            //if all of this not working use JavaScript click
+//            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", termsElement);
+//        }
+//    }
+
     public void ClickTerms() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement termsElement = wait.until(ExpectedConditions.presenceOfElementLocated(Terms));
-
-        // Scroll with more than type
+        WebElement termsElement = wait.waitForElementPresent(Terms);
         try {
-
-            //  Move + Click
             Actions actions = new Actions(driver);
             actions.moveToElement(termsElement).click().perform();
 
         } catch (Exception e) {
-            //if all of this not working use JavaScript click
+            // fallback click
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", termsElement);
         }
     }
@@ -224,13 +308,18 @@ public class OtlobhaForm1stStep {
         driver.findElement(Name).click();
     }
 
+//    //Method to enter name field
+//    public void WriteName(String UserName) {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        WebElement user = wait.until(ExpectedConditions.visibilityOfElementLocated(Name));
+//        user.sendKeys(UserName);
+//    }
+
     //Method to enter name field
     public void WriteName(String UserName) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement user = wait.until(ExpectedConditions.visibilityOfElementLocated(Name));
+        WebElement user = wait.waitForElementVisible(Name);
         user.sendKeys(UserName);
     }
-
 
     //Method to click on phone field
     public void ClickPhone (){
@@ -238,10 +327,107 @@ public class OtlobhaForm1stStep {
     }
 
     //Method to enter name field
+//    public void WritePhone(String MobileNo) {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        WebElement user = wait.until(ExpectedConditions.visibilityOfElementLocated(Phone));
+//        user.sendKeys(MobileNo);
+//    }
+
     public void WritePhone(String MobileNo) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement user = wait.until(ExpectedConditions.visibilityOfElementLocated(Phone));
+        WebElement user = wait.waitForElementVisible(Phone);
         user.sendKeys(MobileNo);
     }
+
+    //  Init Test Data
+    public void initFormData(
+            int countryIndex,
+            int makeIndex,
+            int modelIndex,
+            int yearIndex,
+            int trimIndex,
+            boolean otherTrim
+    ) {
+        this.countryIndex = countryIndex;
+        this.makeIndex = makeIndex;
+        this.modelIndex = modelIndex;
+        this.yearIndex = yearIndex;
+        this.trimIndex = trimIndex;
+        this.otherTrim = otherTrim;
+    }
+
+/*
+    public void fillOtlobhaAgencySpecificTrim(
+            int countryIndex,
+            int makeIndex,
+            int modelIndex,
+            int yearIndex,
+            int trimIndex,
+            boolean otherTrim
+    ) {
+
+        clickCountry();
+        chooseCountryValue(countryIndex);
+
+        clickMake();
+        chooseMakeValue(makeIndex);
+
+        clickModel();
+        chooseModelValue(modelIndex);
+
+        clickAgency();
+
+        clickYear();
+        chooseYearValue(yearIndex);
+
+        clickTrim();
+        chooseTrimValue(trimIndex);
+
+        if (otherTrim) {
+            ClickAndChooseOtherTrim();
+        }
+
+        ClickTerms();
+        clickNext();
+    }
+
+ */
+// ===== Trim Actions =====
+private void selectTrim() {
+    clickTrim();
+    chooseTrimValue(trimIndex);
+}
+
+    private void selectOtherTrimIfNeeded() {
+        if (otherTrim) {
+            ClickAndChooseOtherTrim();
+        }
+    }
+
+    // ===== Main Flow =====
+    public void fillOtlobhaAgencySpecificTrim() {
+
+        clickCountry();
+        chooseCountryValue(countryIndex);
+
+        clickMake();
+        chooseMakeValue(makeIndex);
+
+        clickModel();
+        chooseModelValue(modelIndex);
+
+        clickAgency();
+
+        clickYear();
+        chooseYearValue(yearIndex);
+
+        selectTrim();
+        selectOtherTrimIfNeeded();
+
+        ClickTerms();
+        clickNext();
+    }
+
+
+
 
 }

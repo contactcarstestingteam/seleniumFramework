@@ -61,4 +61,3 @@ public class ExtentReportUtils {
         extentReports.flush();
     }
 }
-

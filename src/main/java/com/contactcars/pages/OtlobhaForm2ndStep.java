@@ -1,6 +1,7 @@
 package com.contactcars.pages;
 
 import com.contactcars.utils.CsvUtils;
+import com.contactcars.utils.WaitUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,12 +15,15 @@ import java.time.Duration;
 public class OtlobhaForm2ndStep {
 
     private WebDriver driver;
+    private WaitUtils wait;
+
     //Creating object of csv utils
     CsvUtils csv = new CsvUtils();
 
     //Constructor that will be automatically called as soon as the object of the class is created
     public OtlobhaForm2ndStep(WebDriver driver) throws IOException {
         this.driver = driver;
+        this.wait = new WaitUtils(driver, 30);
     }
 
     //Locator for promo code field
@@ -66,46 +70,90 @@ public class OtlobhaForm2ndStep {
     }
 
     //Method to choose wallet option
+//    public void chooseWallet() {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        WebElement wallet = wait.until(ExpectedConditions.elementToBeClickable(walletOption));
+//        wallet.click();
+//    }
+
     public void chooseWallet() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement wallet = wait.until(ExpectedConditions.elementToBeClickable(walletOption));
+        WebElement wallet = wait.waitForElementClickable(walletOption);
         wallet.click();
     }
 
     //Method to click on submit button
+//    public void clickSubmit() {
+//        driver.findElement(submitButton).click();
+//    }
     public void clickSubmit() {
-        driver.findElement(submitButton).click();
+        WebElement submitBtn = wait.waitForElementClickable(submitButton);
+        submitBtn.click();
     }
 
     //Method to enter wallet number
+//    public void enterWalletNumber(String mobileNo) {
+//
+//        driver.findElement(walletNumber).sendKeys(mobileNo);
+//    }
     public void enterWalletNumber(String mobileNo) {
-        driver.findElement(walletNumber).sendKeys(mobileNo);
+        WebElement walletField = wait.waitForElementVisible(walletNumber);
+        walletField.clear();
+        walletField.sendKeys(mobileNo);
     }
+
+    //    public void clickProceedToPay() {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        WebElement pay = wait.until(ExpectedConditions.elementToBeClickable(proceedToPay));
+//        pay.click();
+//    }
+
     public void clickProceedToPay() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement pay = wait.until(ExpectedConditions.elementToBeClickable(proceedToPay));
+        WebElement pay = wait.waitForElementClickable(proceedToPay);
         pay.click();
     }
 
+//    public void ChooseFawry() {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        WebElement wallet = wait.until(ExpectedConditions.elementToBeClickable(FawryOption));
+//        wallet.click();
+//    }
+
     public void ChooseFawry() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement wallet = wait.until(ExpectedConditions.elementToBeClickable(FawryOption));
+        WebElement wallet = wait.waitForElementClickable(FawryOption);
         wallet.click();
     }
 
     //Method TO choose Bank Card
+//    public void ChooseBankCard() {
+//        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+//        WebElement BankCard = wait.until(ExpectedConditions.elementToBeClickable(BackCardOption));
+//        BankCard.click();
+//    }
+
     public void ChooseBankCard() {
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-        WebElement BankCard = wait.until(ExpectedConditions.elementToBeClickable(BackCardOption));
+        WebElement BankCard = wait.waitForElementClickable(BackCardOption);
         BankCard.click();
     }
 
     //Check on success page
+//    public void CheckUrl() throws InterruptedException {
+//        String expectedPartialUrl = csv.getVariableValueFromSheet1("OtlobhaSuccessURL");
+//
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//        boolean urlMatched = wait.until(ExpectedConditions.urlContains(expectedPartialUrl));
+//
+//        String actualUrl = driver.getCurrentUrl();
+//        System.out.println("Actual URL: " + actualUrl);
+//
+//        Assert.assertTrue(actualUrl.contains(expectedPartialUrl), "URL doesn't contain expected value");
+//
+//        Thread.sleep(5000); //wait
+//    }
+
     public void CheckUrl() throws InterruptedException {
         String expectedPartialUrl = csv.getVariableValueFromSheet1("OtlobhaSuccessURL");
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        boolean urlMatched = wait.until(ExpectedConditions.urlContains(expectedPartialUrl));
+        boolean urlMatched = wait.waitForUrlContains(expectedPartialUrl);
 
         String actualUrl = driver.getCurrentUrl();
         System.out.println("Actual URL: " + actualUrl);

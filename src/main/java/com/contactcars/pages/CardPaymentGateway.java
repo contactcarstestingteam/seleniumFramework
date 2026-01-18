@@ -1,6 +1,7 @@
 package com.contactcars.pages;
 
 import com.contactcars.base.TestBase;
+import com.contactcars.utils.WaitUtils;
 import org.openqa.selenium.By;
 
 import java.io.IOException;
@@ -30,10 +31,16 @@ public class CardPaymentGateway extends TestBase {
 
 
     //Method to enter card number
+//    public void enterCardNumber(String cardNo) {
+//       // driver.switchTo().frame(0);
+//        driver.findElement(cardNumber).sendKeys(cardNo);
+//    }
     public void enterCardNumber(String cardNo) {
+        WaitUtils wait = new WaitUtils(driver, 10);
         driver.switchTo().frame(0);
-        driver.findElement(cardNumber).sendKeys(cardNo);
+        wait.waitForElementVisible(By.id("number")).sendKeys(cardNo);
     }
+
 
     //Method to enter card holder name
     public void enterCardName(String cardName) {
