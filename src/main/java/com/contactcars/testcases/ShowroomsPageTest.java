@@ -22,7 +22,7 @@ public class ShowroomsPageTest extends RestAssuredManager {
 
     // Get all the cars showrooms without any filters
     @Test
-    public void getAllCarsShowrooms() throws InterruptedException, IOException {
+    public void getAllCarsShowrooms() throws InterruptedException {
         openChrome(csv.getVariableValueFromSheet1("URL"));
         Thread.sleep(5000);
         home.clickShowroomsLink();

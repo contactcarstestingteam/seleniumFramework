@@ -1,0 +1,63 @@
+package com.contactcars.utils;
+
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.Response;
+import com.sendgrid.SendGrid;
+import com.sendgrid.helpers.mail.Mail;
+import com.sendgrid.helpers.mail.objects.Attachments;
+import com.sendgrid.helpers.mail.objects.Content;
+import com.sendgrid.helpers.mail.objects.Email;
+import com.sendgrid.helpers.mail.objects.Personalization;
+
+import java.io.IOException;
+
+public class EmailUtils {
+
+    public static void sendExtentReport(String reportPath, String recipients) throws IOException {
+        Email from = new Email(System.getProperty("FROM_EMAIL"));
+        String subject = "Automation Test Report";
+        Content content = new Content("text/plain", "Please find the attached Extent Report.");
+
+        // Create mail object
+        Mail mail = new Mail();
+        mail.setFrom(from);
+        mail.setSubject(subject);
+        mail.addContent(content);
+
+        // Handle multiple recipients
+        Personalization personalization = new Personalization();
+
+        if (recipients != null) {
+            for (String email : recipients.split(",")) {
+                if (email != null && !email.trim().isEmpty()) {
+                    personalization.addTo(new Email(email.trim()));
+                }
+            }
+        }
+
+        mail.addPersonalization(personalization);
+
+        // Attach HTML report
+        Attachments attachments = new Attachments();
+        attachments.setContent(java.util.Base64.getEncoder()
+                .encodeToString(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(reportPath))));
+        attachments.setType("text/html");
+        attachments.setFilename("extentReport.html");
+        attachments.setDisposition("attachment");
+        mail.addAttachments(attachments);
+        SendGrid sg = new SendGrid(System.getProperty("SENDGRID_API_KEY"));
+        Request request = new Request();
+
+        try {
+            request.setMethod(Method.POST);
+            request.setEndpoint("mail/send");
+            request.setBody(mail.build());
+            Response response = sg.api(request);
+            System.out.println("Report email sent. Status: " + response.getStatusCode());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+}

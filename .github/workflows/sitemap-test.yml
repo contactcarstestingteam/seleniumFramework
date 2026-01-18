@@ -1,0 +1,75 @@
+name: Daily Sitemap Test
+
+on:
+  schedule:
+    #0 → minute (start of the hour)
+    #8,20 → hours in UTC (10 AM, 10 PM)
+    #* * * → every day of month, every month, every day of week
+
+    - cron: "0 8,20 * * *"  # Runs at 8 AM & 8 PM UTC (10 AM & 10 PM Egypt time)
+  workflow_dispatch:  # optional – allows you to run it manually too
+
+jobs:
+  test-sitemap:
+    runs-on: ubuntu-latest
+    environment: email-env
+
+    env:
+      SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+      FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
+      TO_EMAIL: ${{ secrets.TO_EMAIL }}
+      SITEMAP_URL: ${{ secrets.SITEMAP_URL }}
+      WEBSITE_URL: ${{ secrets.WEBSITE_URL }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Chromium & ChromeDriver
+        run: |
+          sudo apt-get update --fix-missing
+          sudo apt-get install -y chromium
+          sudo apt-get install -y chromium-driver
+
+      - name: Set up Java 11 with Maven
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '11'
+          cache: maven
+
+      - name: Set Egypt timezone
+        run: |
+          sudo timedatectl set-timezone Africa/Cairo || true
+          echo "System timezone set to: $(date)"
+
+      - name: Log start time
+        run: |
+          echo "Workflow started at (Egypt): $(TZ=Africa/Cairo date)"
+
+      - name: Build and Run Tests
+        run: mvn clean test -Duser.timezone=Africa/Cairo -Dwebsite.url=${{ secrets.WEBSITE_URL }}
+        
+
+      - name: Upload Extent Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: extentReport
+          path: test-output/extentReport.html
+
+      - name: Send report via email (SendGrid)
+        run: |
+          echo "Sending email via SendGrid..."
+
+          mvn \
+            -Duser.timezone=Africa/Cairo \
+            -DSENDGRID_API_KEY="$SENDGRID_API_KEY" \
+            -DFROM_EMAIL="$FROM_EMAIL" \
+            -DTO_EMAIL="$TO_EMAIL" \
+            -DsendReport=true \
+            -Dtest=SitemapTest \
+             test
+
+
+      
+
