@@ -61,12 +61,6 @@ public class TestBase {
     }
 
     @BeforeSuite
-    public static void openWebsite (){
-        driverInitialization("Chrome");
-        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
-    }
-
-
     @Parameters("browserMode")
     public void beforeSuite(@Optional("headless") String browserMode) {
         // Create output directory
@@ -75,6 +69,7 @@ public class TestBase {
         report = new ExtentReportUtils();
         report.startReporter();  // Initialize Extent
         driverInitialization(browserMode);
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
     }
 
     @BeforeClass

@@ -17,7 +17,7 @@ public class SitemapTest extends TestBase {
     private HttpClientUtils http;
     private ExtentReportUtils report;
 
-    public SitemapTest(){
+    public SitemapTest() throws IOException {
         super();
     }
 
