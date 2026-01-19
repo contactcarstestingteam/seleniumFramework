@@ -5,9 +5,9 @@
     <test verbose="2" preserve-order="true" name="C:/Users/sara.maghraby/IdeaProjects/ContactCarsRetailStaging">
         <classes>
 <!--                <class name="com.contactcars.testcases.LoginPageTest"></class>-->
-                <class name="com.contactcars.testcases.OtlobhaPageTest">
+                <class name="com.contactcars.testcases.InsurancePageTest">
                     <methods>
-                        <include name="OtlobhaAgencyMinDownPayment3"></include>
+                        <include name="submitInsuranceRequest"></include>
                     </methods>
                 </class>
 <!--               <class name="com.contactcars.testcases.HomePageTest"></class>-->
@@ -22,7 +22,7 @@
     <test name="Sitemap Test">
         <parameter name="browserMode" value="headless" />
         <classes>
-            <class name="com.contactcars.SitemapTest"></class>
+<!--            <class name="com.contactcars.SitemapTest"></class>-->
         </classes>
     </test>
 </suite>

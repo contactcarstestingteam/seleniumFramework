@@ -31,6 +31,8 @@ public class TestBase {
     public ShowroomsPage showroom;
     public UsedCarsSEOPages usedCarsSEOPage;
     public UserInfoPage userInfoPage;
+    public InsurancePage insurancePage;
+
 
 
 
@@ -61,12 +63,6 @@ public class TestBase {
     }
 
     @BeforeSuite
-    public static void openWebsite (){
-        driverInitialization("Chrome");
-        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
-    }
-
-
     @Parameters("browserMode")
     public void beforeSuite(@Optional("headless") String browserMode) {
         // Create output directory
@@ -75,6 +71,7 @@ public class TestBase {
         report = new ExtentReportUtils();
         report.startReporter();  // Initialize Extent
         driverInitialization(browserMode);
+        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
     }
 
     @BeforeClass
@@ -89,6 +86,7 @@ public class TestBase {
             showroom = new ShowroomsPage(driver);
             usedCarsSEOPage = new UsedCarsSEOPages(driver);
             userInfoPage = new UserInfoPage(driver);
+            insurancePage = new InsurancePage(driver);
         }
     }
 
