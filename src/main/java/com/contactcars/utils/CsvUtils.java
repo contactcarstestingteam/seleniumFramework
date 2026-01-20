@@ -5,7 +5,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class CsvUtils {
@@ -16,19 +15,10 @@ public class CsvUtils {
 
 
     // Loading properties and credentials files
-    public CsvUtils() {
+    public CsvUtils() throws IOException {
         File credentials = new File("D:\\Website Variables.xlsx");
-        FileInputStream fis = null;
-        try {
-            fis = new FileInputStream(credentials);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            workbook = new XSSFWorkbook(fis);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        FileInputStream fis = new FileInputStream(credentials);
+        workbook = new XSSFWorkbook(fis);
         sheet1 = workbook.getSheetAt(0);
         sheet2 = workbook.getSheetAt(1);
     }

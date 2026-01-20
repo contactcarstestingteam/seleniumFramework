@@ -19,7 +19,16 @@ public class TestBase {
     public static WebDriver driver;
      private boolean firstTest = true;
     //Creating object of csv utils
-    CsvUtils csv = new CsvUtils();
+    CsvUtils csv;
+
+    {
+        try {
+            csv = new CsvUtils();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public ExtentReportUtils report;
     public EmailUtils mail;
     public HomePage home;
@@ -71,7 +80,9 @@ public class TestBase {
         report = new ExtentReportUtils();
         report.startReporter();  // Initialize Extent
         driverInitialization(browserMode);
-        openChrome(CsvUtils.getVariableValueFromSheet1("URLEn"));
+//        if(browserMode.equals("normal")) {
+            openChrome(csv.getVariableValueFromSheet1("URLEn"));
+//        }
     }
 
     @BeforeClass
@@ -100,9 +111,9 @@ public class TestBase {
 
     @AfterSuite
     public void afterSuite() throws IOException {
-        //report.tearDown(); // Write report
-        // Send report via email (using SendGrid)
-        //mail.sendExtentReport("test-output/extentReport.html", System.getProperty("TO_EMAIL"));
+        report.tearDown(); // Write report
+//         Send report via email (using SendGrid)
+        mail.sendExtentReport("test-output/extentReport.html", System.getProperty("TO_EMAIL"));
     }
 
 //    @AfterSuite
