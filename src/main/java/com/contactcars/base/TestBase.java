@@ -36,7 +36,7 @@ public class TestBase {
 
 
 
-    public TestBase() throws IOException {
+    public TestBase()  {
     }
 
     // Initialize web driver
