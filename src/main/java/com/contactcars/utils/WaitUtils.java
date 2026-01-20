@@ -26,6 +26,10 @@ public class WaitUtils {
         return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
+    //Wait for list of web elements located using the same locator to be fully visible
+    public List<WebElement> waitForAllElementsVisible(List <WebElement> list) {
+        return wait.until(ExpectedConditions.visibilityOfAllElements(list));
+    }
 
     //Wait for web element to be clickable
     public WebElement waitForElementClickable(WebElement element) {
@@ -68,10 +72,6 @@ public class WaitUtils {
     // Wait for a URL to NOT contain a specific value
     public boolean waitForUrlNotContains(String partialUrl) {
         return wait.until(driver -> !driver.getCurrentUrl().contains(partialUrl));
-    }
-
-    public List<WebElement> waitForElementsVisible(By locator) {
-        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
     // Wait for element to be present in DOM

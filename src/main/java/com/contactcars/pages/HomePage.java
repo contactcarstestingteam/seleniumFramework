@@ -48,6 +48,9 @@ public class HomePage {
     //Locator for otlobha button
     By otlobhaButton = By.cssSelector("header > nav > div > ul > li:nth-child(4) > div > div > div > a > span");
 
+    // Locator for insurance link
+    By insuranceLink = By.cssSelector("header > nav > div > ul > li:nth-child(4) > div > div > div > a:last-child > span");
+
     //Locator for showrooms link
     By showroomsLink = By.cssSelector("header > nav > div > ul > li:nth-child(5) > a");
 
@@ -112,6 +115,13 @@ public class HomePage {
     public void clickOtlobhaButton() {
         WebElement button = wait.waitForElementClickable(otlobhaButton);
         button.click();
+    }
+
+    //Method to click on insurance link
+    public void clickInsuranceLink() {
+        WebElement insurancebutton = wait.waitForElementClickable(insuranceLink);
+        insurancebutton.click();
+        wait.waitForUrlContains("insurance");
     }
 
     //Method to click on showrooms link

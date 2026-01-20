@@ -31,6 +31,8 @@ public class TestBase {
     public ShowroomsPage showroom;
     public UsedCarsSEOPages usedCarsSEOPage;
     public UserInfoPage userInfoPage;
+    public InsurancePage insurancePage;
+
 
 
 
@@ -84,6 +86,7 @@ public class TestBase {
             showroom = new ShowroomsPage(driver);
             usedCarsSEOPage = new UsedCarsSEOPages(driver);
             userInfoPage = new UserInfoPage(driver);
+            insurancePage = new InsurancePage(driver);
         }
     }
 
