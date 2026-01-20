@@ -48,18 +48,18 @@ public class InsurancePage {
     By submitButton = By.cssSelector("form > div > button");
 
     //Method to insure your car
-    public void insureCarRequest(String name, String mobile, String price, int makeIndex, int modelIndex, int yearIndex) {
-        actions.buttonClick(driver.findElement(insureYourCarButton));
-        actions.type(driver.findElement(carOwner), name);
-        actions.type(driver.findElement(mobileNumber), mobile);
-        actions.type(driver.findElement(carPrice), price);
-        actions.buttonClick(driver.findElement(carMake));
-        actions.chooseValue(driver.findElements(allCarMakes), makeIndex);
-        actions.buttonClick(driver.findElement(carModel));
-        actions.chooseValue(driver.findElements(allCarModels), modelIndex);
-        actions.buttonClick(driver.findElement(carYear));
-        actions.chooseValue(driver.findElements(allCarYears), yearIndex);
-        actions.buttonClick(driver.findElement(submitButton));
+    public void insureCarRequest(String name, String mobile, String price, String makeName, String modelName, String year) {
+        actions.buttonClick(insureYourCarButton);
+        actions.type(carOwner, name);
+        actions.type(mobileNumber, mobile);
+        actions.type(carPrice, price);
+        actions.buttonClick(carMake);
+        actions.chooseValue(allCarMakes, makeName);
+        actions.buttonClick(carModel);
+        actions.chooseValue(allCarModels, modelName);
+        actions.buttonClick(carYear);
+        actions.chooseValue(allCarYears, year);
+        actions.buttonClick(submitButton);
     }
 
 }

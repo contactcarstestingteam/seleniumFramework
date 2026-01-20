@@ -1,9 +1,11 @@
 package com.contactcars.pages;
 import java.io.IOException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Random;
 import com.contactcars.utils.WaitUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -12,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class UsedCarsSEOPages {
 
     private WebDriver driver;
-    private WaitUtils waitUtils = new WaitUtils(driver,10);
+    private WaitUtils waitUtils = new WaitUtils(driver,2);
     private Random rand = new Random();
     private String expected;
     private int priceTo;
@@ -38,6 +40,8 @@ public class UsedCarsSEOPages {
     private String make_URL;
     private boolean testDone;
     private boolean nextMakeSelected;
+
+
     private static final By mainTabsSelector = By.cssSelector("#tabs > div > ul > li");
     private static final By makeHitSelector = By.cssSelector("#tabs > div:nth-child(4) > ul > li");
     private static final By cityHitSelector = By.cssSelector("#tabs > div:nth-child(5) > ul > li");
@@ -90,7 +94,6 @@ public class UsedCarsSEOPages {
         breadcrumbElements = waitUtils.waitForAllElementsVisible(breadCrumb);
         breadcrumbElements.get(id).click();
     }
-
     public void chooseTab(int id){
         driver.findElements(mainTabsSelector).get(id).click();
     }
@@ -106,8 +109,31 @@ public class UsedCarsSEOPages {
             getModelHitDetails();
             clickOnBreadcrumbItem(1);
             openAllBrandsSection();
-            waitUtils.waitForStalenssOfElement(breadcrumbElements.get(2));
-        }
+            //waitUtils.waitForAllElementsVisible(otherSelectorsFirstTab);
+            try {
+                waitUtils.waitForStalenssOfElement(breadcrumbElements.get(1));
+            } catch (TimeoutException e) {
+                waitUtils.waitForElementClickable(breadcrumbElements.get(0));
+            }        }
+    }
+    public void cityAreaMakeModelPath () {
+        openAllBrandsSection();
+        makes = waitUtils.waitForAllElementsVisible(makeHitSelector);
+        for (makeId = 0 ; makeId < makes.size() ; makeId ++){
+            makes = waitUtils.waitForAllElementsVisible(makeHitSelector);
+            WebElement makeHit = makes.get(makeId);
+            makeName = makeHit.getText();
+            waitUtils.waitForElementClickable(makeHit).click();
+            waitUtils.waitForStalenssOfElement(makes.get(0));
+            getModelHitDetails();
+            clickOnBreadcrumbItem(1);
+            openAllBrandsSection();
+            //waitUtils.waitForAllElementsVisible(otherSelectorsFirstTab);
+            try {
+                waitUtils.waitForStalenssOfElement(breadcrumbElements.get(1));
+            } catch (TimeoutException e) {
+                waitUtils.waitForElementClickable(breadcrumbElements.get(0));
+            }        }
     }
     public void getModelHitDetails () {
         models = waitUtils.waitForAllElementsVisible(otherSelectorsFirstTab);
@@ -119,7 +145,11 @@ public class UsedCarsSEOPages {
             waitUtils.waitForStalenssOfElement(models.get(0));
             getYearHitDetails();
             clickOnBreadcrumbItem(2);
-            waitUtils.waitForStalenssOfElement(breadcrumbElements.get(3));
+            try {
+                waitUtils.waitForStalenssOfElement(breadcrumbElements.get(2));
+            } catch (TimeoutException e) {
+                waitUtils.waitForElementClickable(breadcrumbElements.get(1));
+            }
         }
     }
     public void getYearHitDetails () {
@@ -132,8 +162,12 @@ public class UsedCarsSEOPages {
                 waitUtils.waitForStalenssOfElement(years.get(0));
                 getTrimHitDetails();
                 clickOnBreadcrumbItem(3);
-                waitUtils.waitForStalenssOfElement(breadcrumbElements.get(4));
-            }
+                //waitUtils.waitForAllElementsVisible(otherSelectorsFirstTab);
+                try {
+                    waitUtils.waitForStalenssOfElement(breadcrumbElements.get(3));
+                } catch (TimeoutException e) {
+                    waitUtils.waitForElementClickable(breadcrumbElements.get(2));
+                }            }
     }
     public void getTrimHitDetails () {
         trims = waitUtils.waitForAllElementsVisible(otherSelectorsFirstTab);
@@ -144,10 +178,31 @@ public class UsedCarsSEOPages {
             waitUtils.waitForElementClickable(trimHit).click();
             waitUtils.waitForStalenssOfElement(trims.get(0));
             clickOnBreadcrumbItem(4);
-            waitUtils.waitForStalenssOfElement(breadcrumbElements.get(5));
+            //waitUtils.waitForAllElementsVisible(otherSelectorsFirstTab);
+             try {
+                 waitUtils.waitForStalenssOfElement(breadcrumbElements.get(4));
+             } catch (TimeoutException e) {
+                 waitUtils.waitForElementClickable(breadcrumbElements.get(3));
+             }
         }
     }
-
+    public void getCityHitDetails () {
+        trims = waitUtils.waitForAllElementsVisible(otherSelectorsFirstTab);
+        for (trimId =0 ; trimId < trims.size() ; trimId++){
+            trims = waitUtils.waitForAllElementsVisible(otherSelectorsFirstTab);
+            WebElement trimHit = trims.get(trimId);
+            trimName = trimHit.getText();
+            waitUtils.waitForElementClickable(trimHit).click();
+            waitUtils.waitForStalenssOfElement(trims.get(0));
+            clickOnBreadcrumbItem(4);
+            //waitUtils.waitForAllElementsVisible(otherSelectorsFirstTab);
+            try {
+                waitUtils.waitForStalenssOfElement(breadcrumbElements.get(4));
+            } catch (TimeoutException e) {
+                waitUtils.waitForElementClickable(breadcrumbElements.get(3));
+            }
+        }
+    }
     private int getPriceFrom (){
         int price = 0;
         if (expected.charAt(1) == 'k'){
@@ -172,7 +227,6 @@ public class UsedCarsSEOPages {
         }
         return price;
     }
-
     private int getPriceTo (){
         if (expected.charAt(8) == 'k'){
             priceTo = Integer.valueOf(expected.substring(6,8));

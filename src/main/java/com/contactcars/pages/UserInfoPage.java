@@ -15,8 +15,8 @@ public class UserInfoPage {
     }
 
     // UI Locators
-     By nameLocator = By.cssSelector("div.container.w-full.flex.justify-center > div > div.hidden.md\\:flex.lg\\:sticky.lg\\:top-\\[102px\\].h-auto.lg\\:w-1\\/4.w-full.lg\\:h-fit > div > div > div > h3");
-     By phoneLocator = By.cssSelector("div.txt-sm.font-medium.text-dark-blue-600");
+    By nameLocator = By.cssSelector("div.container.w-full.flex.justify-center > div > div.hidden.md\\:flex.lg\\:sticky.lg\\:top-\\[102px\\].h-auto.lg\\:w-1\\/4.w-full.lg\\:h-fit > div > div > div > h3");
+    By phoneLocator = By.cssSelector("div.txt-sm.font-medium.text-dark-blue-600");
     By areaLocator = By.cssSelector("input[placeholder='مثال : مدينة نصر']");
     By governorateLocator = By.cssSelector("input[placeholder='مثال : القاهرة']");
 

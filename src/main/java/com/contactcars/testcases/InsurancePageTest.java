@@ -15,6 +15,6 @@ public class InsurancePageTest extends TestBase {
     public void submitInsuranceRequest() {
         home.hoverOnServicesLink();
         home.clickInsuranceLink();
-        insurancePage.insureCarRequest("Test", "01010101010", "350000", 1, 0, 2);
+        insurancePage.insureCarRequest("Test", "01010101010", "350000", "Audi", "A4", "2022");
     }
 }

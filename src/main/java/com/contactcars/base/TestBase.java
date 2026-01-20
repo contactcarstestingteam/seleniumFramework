@@ -71,7 +71,7 @@ public class TestBase {
         report = new ExtentReportUtils();
         report.startReporter();  // Initialize Extent
         driverInitialization(browserMode);
-        openChrome(CsvUtils.getVariableValueFromSheet1("URL"));
+        openChrome(CsvUtils.getVariableValueFromSheet1("URLEn"));
     }
 
     @BeforeClass
