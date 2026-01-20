@@ -22,7 +22,7 @@
     <test name="Sitemap Test">
         <parameter name="browserMode" value="headless" />
         <classes>
-<!--            <class name="com.contactcars.SitemapTest"></class>-->
+            <class name="com.contactcars.SitemapTest"></class>
         </classes>
     </test>
 </suite>
