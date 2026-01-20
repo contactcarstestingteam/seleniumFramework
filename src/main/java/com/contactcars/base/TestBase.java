@@ -81,7 +81,7 @@ public class TestBase {
         report.startReporter();  // Initialize Extent
         driverInitialization(browserMode);
 //        if(browserMode.equals("normal")) {
-            openChrome(csv.getVariableValueFromSheet1("URLEn"));
+//            openChrome(csv.getVariableValueFromSheet1("URLEn"));
 //        }
     }
 
