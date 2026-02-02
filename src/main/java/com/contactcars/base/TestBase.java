@@ -79,10 +79,10 @@ public class TestBase {
         mail = new EmailUtils();
         report = new ExtentReportUtils();
         report.startReporter();  // Initialize Extent
-        if(browserMode.equals("normal")) {
-            driverInitialization(browserMode);
-            openChrome(csv.getVariableValueFromSheet1("URLEn"));
-        }
+//        if(browserMode.equals("normal")) {
+//            driverInitialization(browserMode);
+//            openChrome(csv.getVariableValueFromSheet1("URLEn"));
+//        }
     }
 
     @BeforeClass
