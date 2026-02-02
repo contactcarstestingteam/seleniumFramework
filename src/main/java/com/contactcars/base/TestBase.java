@@ -17,18 +17,7 @@ import java.io.IOException;
 public class TestBase {
  
     public static WebDriver driver;
-     private boolean firstTest = true;
-    //Creating object of csv utils
-//    CsvUtils csv;
-//
-//    {
-//        try {
-//            csv = new CsvUtils();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
+    private boolean firstTest = true;
     public ExtentReportUtils report;
     public EmailUtils mail;
     public HomePage home;
@@ -116,15 +105,13 @@ public class TestBase {
         mail.sendExtentReport("test-output/extentReport.html", System.getProperty("TO_EMAIL"));
     }
 
-//    @AfterSuite
-//    public void afterSuite() {
-//        ExtentReportUtils.tearDown(); // Write report
-//    }
+
 //
 //    // Close Chrome window
 //    public void quitChrome() {
 //        driver.quit();
 //    }
+
     @AfterClass(alwaysRun = true)
     public void tearDown() {
         if (driver != null) {
