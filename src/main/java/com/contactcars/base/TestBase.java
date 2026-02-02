@@ -17,18 +17,7 @@ import java.io.IOException;
 public class TestBase {
  
     public static WebDriver driver;
-     private boolean firstTest = true;
-    //Creating object of csv utils
-//    CsvUtils csv;
-//
-//    {
-//        try {
-//            csv = new CsvUtils();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
+    private boolean firstTest = true;
     public ExtentReportUtils report;
     public EmailUtils mail;
     public HomePage home;
@@ -73,7 +62,7 @@ public class TestBase {
 
     @BeforeSuite
     @Parameters("browserMode")
-    public void beforeSuite(@Optional("headless") String browserMode) {
+    public void beforeSuite(@Optional("headless") String browserMode) throws IOException {
         // Create output directory
         new File("test-output").mkdirs();
         mail = new EmailUtils();
@@ -81,7 +70,8 @@ public class TestBase {
         report.startReporter();  // Initialize Extent
         driverInitialization(browserMode);
         if(browserMode.equals("normal")) {
-            openChrome(CsvUtils.getVariableValueFromSheet1("URLEn"));
+            CsvUtils csv = new CsvUtils();
+            openChrome(csv.getVariableValueFromSheet1("URLEn"));
         }
     }
 
@@ -116,21 +106,19 @@ public class TestBase {
         mail.sendExtentReport("test-output/extentReport.html", System.getProperty("TO_EMAIL"));
     }
 
-//    @AfterSuite
-//    public void afterSuite() {
-//        ExtentReportUtils.tearDown(); // Write report
-//    }
+
 //
 //    // Close Chrome window
 //    public void quitChrome() {
 //        driver.quit();
 //    }
-    @AfterClass(alwaysRun = true)
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+
+//    @AfterClass(alwaysRun = true)
+//    public void tearDown() {
+//        if (driver != null) {
+//            driver.quit();
+//        }
+//    }
 
     
 }
