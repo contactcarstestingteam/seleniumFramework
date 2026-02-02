@@ -19,15 +19,15 @@ public class TestBase {
     public static WebDriver driver;
      private boolean firstTest = true;
     //Creating object of csv utils
-    CsvUtils csv;
-
-    {
-        try {
-            csv = new CsvUtils();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    CsvUtils csv;
+//
+//    {
+//        try {
+//            csv = new CsvUtils();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     public ExtentReportUtils report;
     public EmailUtils mail;
@@ -79,10 +79,10 @@ public class TestBase {
         mail = new EmailUtils();
         report = new ExtentReportUtils();
         report.startReporter();  // Initialize Extent
-//        if(browserMode.equals("normal")) {
-//            driverInitialization(browserMode);
-//            openChrome(csv.getVariableValueFromSheet1("URLEn"));
-//        }
+        driverInitialization(browserMode);
+        if(browserMode.equals("normal")) {
+            openChrome(CsvUtils.getVariableValueFromSheet1("URLEn"));
+        }
     }
 
     @BeforeClass
