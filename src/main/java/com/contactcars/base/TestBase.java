@@ -62,7 +62,7 @@ public class TestBase {
 
     @BeforeSuite
     @Parameters("browserMode")
-    public void beforeSuite(@Optional("headless") String browserMode) {
+    public void beforeSuite(@Optional("headless") String browserMode) throws IOException {
         // Create output directory
         new File("test-output").mkdirs();
         mail = new EmailUtils();
@@ -70,7 +70,8 @@ public class TestBase {
         report.startReporter();  // Initialize Extent
         driverInitialization(browserMode);
         if(browserMode.equals("normal")) {
-            openChrome(CsvUtils.getVariableValueFromSheet1("URLEn"));
+            CsvUtils csv = new CsvUtils();
+            openChrome(csv.getVariableValueFromSheet1("URLEn"));
         }
     }
 
@@ -112,12 +113,12 @@ public class TestBase {
 //        driver.quit();
 //    }
 
-    @AfterClass(alwaysRun = true)
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+//    @AfterClass(alwaysRun = true)
+//    public void tearDown() {
+//        if (driver != null) {
+//            driver.quit();
+//        }
+//    }
 
     
 }
